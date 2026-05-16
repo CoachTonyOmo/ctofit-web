@@ -249,17 +249,17 @@
     .featured-author{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:0.08em;color:var(--neon);}
 
     /* RECEIPTS */
-    .receipts{background:var(--graphite);padding:96px 0;overflow:hidden;}
-    .receipts-inner{max-width:100%;padding:0 72px;}
+    .receipts{background:var(--graphite);padding:96px 0;}
+    .receipts-inner{max-width:100%;padding:0 48px;}
 
-    /* CAROUSEL */
+    /* CAROUSEL - padding peek approach, no overflow tricks needed */
     .carousel-wrap{position:relative;padding-bottom:40px;}
-    .carousel-window{overflow:visible;width:100%;padding:20px 0;}
+    .carousel-window{width:100%;padding:20px 15% 20px;box-sizing:border-box;}
     .carousel-track{display:flex;gap:16px;transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);}
-    .carousel-slide{flex:0 0 60%;transition:opacity 0.4s,transform 0.4s;opacity:0.3;transform:scale(0.9);cursor:pointer;border-radius:16px;overflow:hidden;}
-    .carousel-slide.active{opacity:1;transform:scale(1);cursor:default;box-shadow:0 0 0 2px rgba(0,242,97,0.3),0 24px 64px rgba(0,0,0,0.6);}
+    .carousel-slide{flex:0 0 70%;transition:opacity 0.4s,transform 0.4s;opacity:0.35;transform:scale(0.92);cursor:pointer;border-radius:16px;}
+    .carousel-slide.active{opacity:1;transform:scale(1);cursor:default;box-shadow:0 0 0 2px rgba(0,242,97,0.3),0 24px 64px rgba(0,0,0,0.7);}
     .carousel-slide img{width:100%;display:block;border-radius:16px;}
-    .carousel-btn{position:absolute;top:50%;transform:translateY(-60%);background:rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.2);color:var(--white);width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:20;transition:all 0.2s;}
+    .carousel-btn{position:absolute;top:45%;transform:translateY(-50%);background:rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.2);color:var(--white);width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:20;transition:all 0.2s;}
     .carousel-btn:hover{background:var(--neon);color:var(--black);}
     .carousel-btn.prev{left:16px;}
     .carousel-btn.next{right:16px;}
@@ -274,11 +274,13 @@
       .featured-author{font-size:20px;}
       .receipts{padding:64px 0;}
       .receipts-inner{padding:0 20px;}
-      .carousel-slide{flex:0 0 75%;}
+      .carousel-window{padding:20px 8% 20px;}
+      .carousel-slide{flex:0 0 80%;}
     }
     @media(max-width:480px){
       .featured-quote{font-size:18px;}
-      .carousel-slide{flex:0 0 85%;}
+      .carousel-window{padding:20px 5% 20px;}
+      .carousel-slide{flex:0 0 88%;}
     }
 
     @media(max-width:900px){
@@ -659,9 +661,9 @@
 
     function go(n){
       cur = (n + N) % N;
-      var winW   = win.offsetWidth;
+      // Slide by one slide width + gap per step — padding handles the centering
       var slideW = slides[0].offsetWidth;
-      var offset = (winW/2) - (slideW/2) - cur*(slideW+gap);
+      var offset = -cur * (slideW + gap);
       track.style.transform = 'translateX('+offset+'px)';
       slides.forEach(function(s,i){ s.classList.toggle('active', i===cur); });
       dots.querySelectorAll('.carousel-dot').forEach(function(d,i){ d.classList.toggle('active',i===cur); });
