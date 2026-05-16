@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/lessons/*"
+  to = "/lessons/:splat/index.html"
+  status = 200
