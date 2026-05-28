@@ -1,2 +1,3 @@
-# fit40-tracker
-FIT 40 14-Day Kickstart Tracker
+git add .
+git commit -m "Update README with live URLs and structure"
+git push
