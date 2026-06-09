@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Reframe | FIT 40 Inner Circle</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --neon:#00F261;--neon-dim:rgba(0,242,97,0.1);--neon-glow:rgba(0,242,97,0.22);
+  --volt:#E4F222;--red:#FF4444;--red-dim:rgba(255,68,68,0.1);
+  --bg:#0D0F12;--surface:#181B1F;--card:#1E2126;--card-hi:#242830;--rim:#2A2E36;
+  --white:#ffffff;--text:rgba(255,255,255,0.72);--text-hi:rgba(255,255,255,0.9);
+  --dim:rgba(255,255,255,0.34);--dim2:rgba(255,255,255,0.14);
+  --border:rgba(255,255,255,0.07);--border-hi:rgba(255,255,255,0.13);
+  --r:10px;--r-sm:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Sora',sans-serif;font-size:17px;line-height:1.75;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(0,242,97,0.05) 0%,transparent 65%);pointer-events:none;z-index:0;}
+::selection{background:rgba(0,242,97,0.18);}
+/* HEADER */
+#hdr{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(13,15,18,0.88);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:100;}
+.hdr-brand{display:flex;align-items:center;gap:8px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;}
+.hdr-logo{color:#000;background:var(--neon);border-radius:3px;padding:2px 7px;font-size:11px;}
+.hdr-name{color:rgba(255,255,255,0.55);}
+.hdr-tool{font-family:'Sora',sans-serif;font-size:11px;color:var(--dim);}
+.hdr-pill{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--neon);background:var(--neon-dim);border:1px solid rgba(0,242,97,0.2);border-radius:20px;padding:3px 10px;}
+/* APP */
+#app{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:80px 20px 80px;}
+.screen{max-width:620px;width:100%;display:none;flex-direction:column;gap:0;}
+.screen.active{display:flex;}
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
+@keyframes dotPulse{0%,100%{opacity:1;}50%{opacity:0.2;}}
+@keyframes glowPulse{0%,100%{box-shadow:0 4px 24px rgba(0,242,97,0.25);}50%{box-shadow:0 4px 36px rgba(0,242,97,0.4),0 0 60px rgba(0,242,97,0.15);}}
+/* SHARED */
+.btn-primary{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--neon);color:#000;font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;height:56px;border:none;border-radius:var(--r-sm);cursor:pointer;transition:all 0.2s;box-shadow:0 4px 20px rgba(0,242,97,0.25);}
+.btn-primary:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,242,97,0.35);}
+.btn-primary.off{opacity:0.25;pointer-events:none;box-shadow:none;}
+.btn-ghost{display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--dim);font-family:'Sora',sans-serif;font-size:14px;height:48px;border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;transition:all 0.2s;width:100%;}
+.btn-ghost:hover{border-color:var(--border-hi);color:var(--text-hi);}
+/* INTRO */
+#s-intro{align-items:center;text-align:center;gap:28px;padding-top:20px;animation:fadeIn 0.6s ease both;}
+.intro-orb{position:absolute;width:500px;height:320px;background:radial-gradient(ellipse,rgba(0,242,97,0.07) 0%,transparent 70%);pointer-events:none;top:50px;left:50%;transform:translateX(-50%);z-index:0;}
+.intro-overline{display:inline-flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.2em;color:var(--dim);animation:fadeUp 0.5s ease both;position:relative;z-index:1;}
+.intro-overline::before,.intro-overline::after{content:'';height:1px;width:22px;background:linear-gradient(90deg,transparent,var(--border-hi));}
+.intro-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(64px,14vw,108px);text-transform:uppercase;letter-spacing:-0.01em;line-height:0.84;position:relative;z-index:1;animation:fadeUp 0.5s 0.05s ease both;}
+.intro-title .l1{color:var(--white);display:block;}
+.intro-title .l2{color:var(--neon);display:block;text-shadow:0 0 60px rgba(0,242,97,0.4),0 0 120px rgba(0,242,97,0.15);}
+.intro-sub{font-size:18px;line-height:1.72;color:var(--text);max-width:440px;animation:fadeUp 0.5s 0.1s ease both;position:relative;z-index:1;}
+.intro-steps{display:flex;flex-direction:column;gap:8px;width:100%;max-width:390px;animation:fadeUp 0.5s 0.15s ease both;}
+.intro-step{display:flex;align-items:flex-start;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;transition:border-color 0.2s,transform 0.2s;}
+.intro-step:hover{border-color:var(--border-hi);transform:translateX(2px);}
+.step-num{font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;color:var(--neon);background:var(--neon-dim);border:1px solid rgba(0,242,97,0.18);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.step-text{font-size:15px;color:var(--text);line-height:1.5;text-align:left;}
+.intro-cta{display:flex;flex-direction:column;align-items:center;gap:10px;animation:fadeUp 0.5s 0.2s ease both;}
+.btn-start{display:inline-flex;align-items:center;gap:12px;background:var(--neon);color:#000;font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;height:58px;padding:0 48px;border:none;border-radius:var(--r-sm);cursor:pointer;transition:all 0.2s;animation:glowPulse 3s ease-in-out 1s infinite;}
+.btn-start:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 10px 36px rgba(0,242,97,0.4);}
+.btn-arrow{font-size:18px;transition:transform 0.2s;}
+.btn-start:hover .btn-arrow{transform:translateX(4px);}
+.intro-note{font-size:11px;color:var(--dim);letter-spacing:0.04em;}
+/* QUIZ */
+#s-quiz{gap:22px;}
+.prog-wrap{display:flex;flex-direction:column;gap:10px;animation:fadeIn 0.4s ease both;}
+.prog-top{display:flex;justify-content:space-between;}
+.prog-label{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--dim);}
+.prog-count{font-family:'Sora',sans-serif;font-size:12px;color:var(--neon);font-weight:600;}
+.prog-track{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--neon);border-radius:2px;transition:width 0.5s cubic-bezier(0.22,1,0.36,1);box-shadow:0 0 10px rgba(0,242,97,0.6);width:0%;}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:32px 32px 28px;position:relative;overflow:hidden;animation:scaleIn 0.35s ease both;}
+.q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon),rgba(0,242,97,0.3),transparent);}
+.q-card::after{content:'';position:absolute;top:0;right:0;width:180px;height:180px;background:radial-gradient(circle at 100% 0%,rgba(0,242,97,0.04) 0%,transparent 60%);pointer-events:none;}
+.q-eyebrow{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:var(--neon);background:var(--neon-dim);border:1px solid rgba(0,242,97,0.16);border-radius:20px;padding:3px 10px;display:inline-block;margin-bottom:16px;}
+.q-text{font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(19px,2.8vw,25px);text-transform:uppercase;letter-spacing:0.02em;line-height:1.2;color:var(--white);margin-bottom:8px;}
+.q-context{font-size:15px;color:var(--dim);margin-bottom:22px;font-style:italic;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px 18px;cursor:pointer;transition:all 0.18s;text-align:left;width:100%;position:relative;overflow:hidden;}
+.option:hover{border-color:rgba(0,242,97,0.28);transform:translateX(2px);background:rgba(0,242,97,0.03);}
+.option.selected{border-color:var(--neon);background:rgba(0,242,97,0.07);box-shadow:0 0 0 1px rgba(0,242,97,0.14);}
+.opt-circle{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border-hi);display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;color:var(--dim);flex-shrink:0;margin-top:1px;transition:all 0.18s;}
+.option.selected .opt-circle{background:var(--neon);border-color:var(--neon);color:#000;box-shadow:0 0 10px rgba(0,242,97,0.35);}
+.opt-text{font-size:16px;color:var(--text);line-height:1.5;}
+.option.selected .opt-text{color:var(--text-hi);}
+.q-nav{display:flex;align-items:center;justify-content:space-between;}
+.btn-back{font-family:'Sora',sans-serif;font-size:13px;color:var(--dim);background:none;border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 20px;cursor:pointer;transition:all 0.18s;}
+.btn-back:hover{border-color:var(--border-hi);color:var(--text-hi);}
+.btn-next{font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;background:var(--neon);color:#000;border:none;border-radius:var(--r-sm);padding:11px 28px;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 14px rgba(0,242,97,0.2);}
+.btn-next.off{opacity:0.25;pointer-events:none;box-shadow:none;}
+.btn-next:not(.off):hover{opacity:0.88;transform:translateY(-1px);}
+/* PATTERN */
+#s-pattern{gap:18px;}
+.pattern-hero{text-align:center;padding:28px 0 6px;animation:fadeUp 0.5s ease both;position:relative;}
+.pattern-hero::before{content:'';position:absolute;top:10%;left:50%;transform:translateX(-50%);width:280px;height:180px;background:radial-gradient(ellipse,rgba(0,242,97,0.1) 0%,transparent 70%);pointer-events:none;}
+.pattern-overline{font-family:'Sora',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.2em;color:var(--dim);margin-bottom:12px;display:block;}
+.pattern-badge{display:inline-flex;align-items:center;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--neon);background:var(--neon-dim);border:1px solid rgba(0,242,97,0.2);border-radius:20px;padding:4px 14px;margin-bottom:14px;}
+.pattern-name{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(50px,11vw,84px);text-transform:uppercase;line-height:0.86;color:var(--white);position:relative;z-index:1;}
+.pattern-name em{color:var(--neon);font-style:normal;display:block;text-shadow:0 0 60px rgba(0,242,97,0.3);}
+.spectrum-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;animation:fadeUp 0.5s 0.08s ease both;}
+.spectrum-labels{display:flex;justify-content:space-between;font-family:'Sora',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:9px;}
+.spectrum-track{height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-bottom:9px;}
+.spectrum-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,rgba(0,242,97,0.45),var(--neon));box-shadow:0 0 10px rgba(0,242,97,0.5);transition:width 1s cubic-bezier(0.22,1,0.36,1);width:0%;}
+.spectrum-note{font-size:14px;color:var(--dim);font-style:italic;line-height:1.5;}
+.diag-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;animation:fadeUp 0.5s 0.12s ease both;position:relative;overflow:hidden;}
+.diag-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon),rgba(0,242,97,0.3),transparent);}
+.diag-lbl{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:var(--dim);margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.diag-dot{width:5px;height:5px;border-radius:50%;background:var(--neon);box-shadow:0 0 7px var(--neon);animation:dotPulse 2s ease-in-out infinite;flex-shrink:0;}
+.diag-text{font-size:17px;line-height:1.78;color:var(--text);}
+/* REFRAME */
+#s-reframe{gap:14px;}
+.rf-eyebrow{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:var(--neon);background:var(--neon-dim);border:1px solid rgba(0,242,97,0.16);border-radius:20px;padding:3px 12px;display:inline-block;animation:fadeUp 0.4s ease both;}
+.rf-heading{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(26px,4vw,34px);text-transform:uppercase;letter-spacing:0.02em;line-height:1.05;color:var(--white);animation:fadeUp 0.4s 0.04s ease both;}
+.rf-heading em{color:var(--neon);font-style:normal;}
+.pbox{border-radius:var(--r-sm);padding:16px 20px;animation:fadeUp 0.4s 0.08s ease both;}
+.pbox.fixed{background:var(--red-dim);border:1px solid rgba(255,68,68,0.18);border-left:3px solid var(--red);}
+.pbox.growth{background:var(--neon-dim);border:1px solid rgba(0,242,97,0.18);border-left:3px solid var(--neon);}
+.pbox-lbl{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:6px;display:block;}
+.pbox.fixed .pbox-lbl{color:var(--red);}
+.pbox.growth .pbox-lbl{color:var(--neon);}
+.pbox.fixed p{font-size:16px;line-height:1.65;color:rgba(255,255,255,0.7);font-style:italic;}
+.pbox.growth p{font-family:'Oswald',sans-serif;font-size:clamp(16px,2.2vw,20px);font-weight:600;text-transform:uppercase;letter-spacing:0.04em;color:var(--neon);line-height:1.3;}
+.input-grp{display:flex;flex-direction:column;gap:7px;animation:fadeUp 0.4s 0.12s ease both;}
+.input-lbl{font-family:'Sora',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--dim);}
+.input-hint{font-size:13px;color:var(--dim);line-height:1.5;margin-top:-3px;}
+.txt-input{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px 18px;color:var(--white);outline:none;width:100%;transition:border-color 0.2s,box-shadow 0.2s;}
+.txt-input:focus{border-color:rgba(0,242,97,0.36);box-shadow:0 0 0 3px rgba(0,242,97,0.07);}
+input.txt-input{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+input.txt-input::placeholder{color:rgba(255,255,255,0.14);}
+textarea.txt-input{font-family:'Sora',sans-serif;font-size:14px;line-height:1.7;resize:vertical;min-height:92px;}
+textarea.txt-input::placeholder{color:rgba(255,255,255,0.14);}
+/* RESULT */
+#s-result{gap:14px;}
+.result-lbl{text-align:center;padding:14px 0 2px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--dim);animation:fadeIn 0.5s ease both;}
+#share-card{background:var(--card);border:1px solid var(--border-hi);border-radius:var(--r);padding:26px 26px 22px;position:relative;overflow:hidden;animation:scaleIn 0.5s 0.05s ease both;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(0,242,97,0.07);}
+#share-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon),rgba(0,242,97,0.4),transparent 70%);}
+#share-card::after{content:'';position:absolute;top:-30px;right:-30px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,242,97,0.06) 0%,transparent 60%);pointer-events:none;}
+.sc-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.sc-prog{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--dim);}
+.sc-logo{font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;color:#000;background:var(--neon);border-radius:2px;padding:2px 5px;}
+.sc-name-lbl{font-family:'Sora',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--dim);margin-bottom:3px;display:block;}
+.sc-name{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(24px,5vw,38px);text-transform:uppercase;letter-spacing:0.02em;line-height:1;color:var(--white);margin-bottom:16px;}
+.sc-spec{margin-bottom:16px;}
+.sc-spec-hdr{display:flex;justify-content:space-between;font-family:'Sora',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:6px;}
+.sc-spec-track{height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;}
+.sc-spec-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,rgba(0,242,97,0.4),var(--neon));box-shadow:0 0 6px rgba(0,242,97,0.4);}
+.sc-pat-lbl{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--neon);margin-bottom:3px;display:block;}
+.sc-pat{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(15px,2.5vw,20px);text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:14px;}
+.sc-rf-lbl{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--neon);margin-bottom:7px;display:block;}
+.sc-rf{background:rgba(0,242,97,0.05);border:1px solid rgba(0,242,97,0.13);border-left:3px solid var(--neon);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;margin-bottom:18px;}
+.sc-rf p{font-size:16px;line-height:1.65;color:rgba(255,255,255,0.82);font-style:italic;}
+.sc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;gap:8px;}
+.sc-coach{font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--white);display:flex;align-items:center;gap:6px;}
+.sc-url{font-family:'Sora',sans-serif;font-size:10px;color:var(--dim);}
+.story-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;position:relative;overflow:hidden;animation:fadeUp 0.5s 0.1s ease both;}
+.story-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--volt),rgba(228,242,34,0.3),transparent);}
+.story-dot-row{display:flex;align-items:center;gap:7px;font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--volt);margin-bottom:7px;}
+.story-dot{width:5px;height:5px;border-radius:50%;background:var(--volt);box-shadow:0 0 7px var(--volt);animation:dotPulse 2s ease-in-out infinite;flex-shrink:0;}
+.story-hdg{font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:9px;}
+.story-desc{font-size:15px;line-height:1.72;color:var(--text);margin-bottom:14px;}
+.story-prompt{background:rgba(228,242,34,0.04);border:1px solid rgba(228,242,34,0.1);border-radius:var(--r-sm);padding:12px 16px;}
+.story-prompt p{font-size:15px;line-height:1.8;color:rgba(255,255,255,0.58);}
+.story-prompt strong{color:var(--volt);}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;animation:fadeUp 0.5s 0.14s ease both;}
+.act-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:15px 10px;border-radius:var(--r-sm);cursor:pointer;transition:all 0.2s;border:none;font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;}
+.act-btn .ico{font-size:19px;line-height:1;}
+.act-btn.sec{background:var(--surface);color:var(--white);border:1px solid var(--border);}
+.act-btn.sec:hover{border-color:rgba(0,242,97,0.28);color:var(--neon);}
+.act-btn.sec.copied{background:rgba(0,242,97,0.08);border-color:rgba(0,242,97,0.28);color:var(--neon);}
+.act-btn.pri{background:var(--neon);color:#000;box-shadow:0 4px 16px rgba(0,242,97,0.2);}
+.act-btn.pri:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,242,97,0.3);}
+.act-note{font-size:13px;text-align:center;color:var(--dim);line-height:1.55;animation:fadeIn 0.5s 0.18s ease both;}
+@media(max-width:520px){
+  #hdr{padding:0 14px;}.hdr-tool{display:none;}
+  #app{padding:70px 14px 56px;}
+  .q-card,#share-card,.story-card,.diag-card,.spectrum-card{padding:18px 14px;}
+  .action-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<header id="hdr">
+  <div class="hdr-brand">
+    <span class="hdr-logo">CTO</span>
+    <span class="hdr-name">FIT 40 Inner Circle</span>
+  </div>
+  <div class="hdr-tool">The Reframe</div>
+  <div class="hdr-pill">Members Only</div>
+</header>
+<div id="app">
+
+  <div id="s-intro" class="screen active">
+    <div class="intro-orb"></div>
+    <div class="intro-overline">FIT 40 Inner Circle · Mindset Module</div>
+    <h1 class="intro-title"><span class="l1">THE</span><span class="l2">REFRAME</span></h1>
+    <p class="intro-sub">Three honest questions. One pattern to watch for. A personalized reframe to share with your community.</p>
+    <div class="intro-steps">
+      <div class="intro-step"><div class="step-num">1</div><div class="step-text">Answer 3 honest questions — no right or wrong answers</div></div>
+      <div class="intro-step"><div class="step-num">2</div><div class="step-text">See where you land on the mindset spectrum and get your reframe</div></div>
+      <div class="intro-step"><div class="step-num">3</div><div class="step-text">Write it in your own words and share your story in the community</div></div>
+    </div>
+    <div class="intro-cta">
+      <button class="btn-start" onclick="startQuiz()">Start The Reframe <span class="btn-arrow">→</span></button>
+      <span class="intro-note">Complete after watching the Mindset Module lessons</span>
+    </div>
+  </div>
+
+  <div id="s-quiz" class="screen">
+    <div class="prog-wrap">
+      <div class="prog-top"><span class="prog-label">The Reframe</span><span class="prog-count" id="prog-count">1 / 3</span></div>
+      <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+    </div>
+    <div class="q-card" id="q-card"></div>
+    <div class="q-nav">
+      <button class="btn-back" id="btn-back" onclick="prevQ()">← Back</button>
+      <button class="btn-next off" id="btn-next" onclick="nextQ()">Next →</button>
+    </div>
+  </div>
+
+  <div id="s-pattern" class="screen">
+    <div class="pattern-hero">
+      <span class="pattern-overline">Your Mindset Spectrum</span>
+      <div class="pattern-badge" id="p-pill"></div>
+      <h2 class="pattern-name" id="p-name"></h2>
+    </div>
+    <div class="spectrum-card">
+      <div class="spectrum-labels"><span>Still developing</span><span>Already growing</span></div>
+      <div class="spectrum-track"><div class="spectrum-fill" id="spectrum-fill"></div></div>
+      <div class="spectrum-note" id="spectrum-note"></div>
+    </div>
+    <div class="diag-card">
+      <div class="diag-lbl"><div class="diag-dot"></div>Coach Tony O Says</div>
+      <p class="diag-text" id="p-diag"></p>
+    </div>
+    <button class="btn-primary" onclick="showReframe()">See Your Reframe →</button>
+  </div>
+
+  <div id="s-reframe" class="screen">
+    <div class="rf-eyebrow">Your Personalized Reframe</div>
+    <h2 class="rf-heading">Now Make It <em>Yours.</em></h2>
+    <div class="pbox fixed"><span class="pbox-lbl">The Pattern to Watch For</span><p id="rf-fixed"></p></div>
+    <div class="pbox growth"><span class="pbox-lbl" id="rf-growth-lbl">Your Reframe</span><p id="rf-growth"></p></div>
+    <div class="input-grp">
+      <span class="input-lbl">Your Name</span>
+      <input class="txt-input" id="name-input" type="text" placeholder="YOUR NAME" maxlength="24" oninput="checkReady()">
+    </div>
+    <div class="input-grp">
+      <span class="input-lbl">Write Your Personal Version</span>
+      <p class="input-hint" id="rf-hint"></p>
+      <textarea class="txt-input" id="personal-input" placeholder="Write what this means for your life right now..." oninput="checkReady()"></textarea>
+    </div>
+    <button class="btn-primary off" id="btn-generate" onclick="showResult()">Generate My Card →</button>
+  </div>
+
+  <div id="s-result" class="screen">
+    <div class="result-lbl">Your Reframe Card is Ready</div>
+    <div id="share-card">
+      <div class="sc-hdr"><span class="sc-prog">FIT 40 Inner Circle · The Reframe</span><span class="sc-logo">CTO</span></div>
+      <span class="sc-name-lbl">Completed by</span>
+      <div class="sc-name" id="c-name"></div>
+      <div class="sc-spec">
+        <div class="sc-spec-hdr"><span>Mindset Spectrum</span><span id="c-spec-lbl"></span></div>
+        <div class="sc-spec-track"><div class="sc-spec-fill" id="c-spec-fill"></div></div>
+      </div>
+      <span class="sc-pat-lbl">My Pattern to Watch For</span>
+      <div class="sc-pat" id="c-pat"></div>
+      <span class="sc-rf-lbl">My Personal Reframe</span>
+      <div class="sc-rf"><p id="c-rf"></p></div>
+      <div class="sc-footer">
+        <div class="sc-coach"><span class="sc-logo">CTO</span>Coach Tony O</div>
+        <span class="sc-url">ctofit.com/tools/reframe</span>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-dot-row"><div class="story-dot"></div>Share Your Story</div>
+      <div class="story-hdg" id="story-hdg"></div>
+      <p class="story-desc" id="story-desc"></p>
+      <div class="story-prompt"><p id="story-prompt"></p></div>
+    </div>
+    <div class="action-grid">
+      <button class="act-btn sec" id="copy-btn" onclick="copyCaption()"><span class="ico">📋</span>Copy Caption</button>
+      <a class="act-btn pri" href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank"><span class="ico">🏆</span>Post in Community</a>
+    </div>
+    <p class="act-note">Screenshot your card, copy your caption, then paste both in the FIT 40 Inner Circle community feed</p>
+    <button class="btn-ghost" style="margin-top:8px;" onclick="retake()">↩ Start Over</button>
+  </div>
+</div>
+
+<script>
+const QUESTIONS=[{text:"You know exactly what you need to do. You have known for a while. But you are still not doing it.",context:"Which of these sounds most like you?",options:[{l:"A",t:"I keep telling myself I will start when the timing is better.",score:1,type:"avoider"},{l:"B",t:"I start strong then find reasons to slow down or stop.",score:1,type:"quitter"},{l:"C",t:"I do just enough to say I tried but not enough to really see results.",score:1,type:"benchwarmer"},{l:"D",t:"I follow through even when I do not feel like it.",score:0,type:"growth"}]},{text:"You come across a program that looks like it could work. But something in you is already hesitant.",context:"What is going through your mind?",options:[{l:"A",t:"I think about all the times things have not worked out for me before.",score:1,type:"benchwarmer"},{l:"B",t:"I am open to trying it but I need to research it more first.",score:0,type:"growth"},{l:"C",t:"I wonder if I am too far gone or too old for this to really work for me.",score:1,type:"benchwarmer"},{l:"D",t:"I figure I will give it a real shot and see what happens.",score:0,type:"growth"}]},{text:"There is a version of yourself you can clearly picture. Healthier, stronger, more consistent. But that version feels far away.",context:"What do you do with that feeling?",options:[{l:"A",t:"I think about it a lot but struggle to translate it into action.",score:1,type:"avoider"},{l:"B",t:"I get motivated then talk myself out of it before I even start.",score:1,type:"avoider"},{l:"C",t:"I compare where I am to where others are and feel behind.",score:1,type:"threatened"},{l:"D",t:"I focus on the next small step rather than the whole picture.",score:0,type:"growth"}]}];
+const PATTERNS={avoider:{pill:"Your Pattern to Watch For",name:["THE","AVOIDER"],nameEm:1,fixed:"When things feel uncertain or uncomfortable, the instinct is to stay out until conditions are better.",growth:"Discomfort is the signal that growth is right here.",hint:"What does showing up before you feel ready look like for you specifically?",diag:{developing:"The gap between knowing and doing is real for you right now. You can see the version of yourself you want to be but something keeps pulling you back before you start. That gap closes one action at a time, not one plan at a time.",growing:"You have done the hard work of pushing through discomfort more often than you used to. The pattern still shows up sometimes, usually when the stakes feel higher. Keep catching it early.",mixed:"You are making real progress. The instinct to wait for better conditions still shows up under pressure, but you are getting better at recognizing it faster than before."},story:{developing:(p)=>`My pattern is The Avoider.\n\nHere is a recent moment when I caught it showing up:\n[Add your moment here]\n\nMy reframe:\n"${p}"\n\nIf this resonates with you, share your pattern below. Someone in this community needs to hear it.`,growing:(p)=>`I used to hold myself back by waiting for the right moment. I am still working on it.\n\nMy reframe:\n"${p}"\n\nHere is what helped me start moving:\n[Share what shifted for you]\n\nDrop your pattern below. We are all on the spectrum.`}},quitter:{pill:"Your Pattern to Watch For",name:["THE","QUITTER"],nameEm:1,fixed:"When things get hard or life gets in the way, the instinct is to stop and restart later.",growth:"Getting back in is the win. The gap does not erase the progress.",hint:"What does getting back in after a setback look like for you in real life?",diag:{developing:"Setbacks feel like a signal to stop rather than a signal to adjust. The restart keeps getting pushed to later. But later is just now with more distance. The people who make it are not the ones who never fall off. They are the ones who get back in faster.",growing:"You have gotten better at getting back in after setbacks. The pattern still shows up occasionally but you recover faster than you used to. That recovery time is everything.",mixed:"You are building the muscle of getting back in. It is not consistent yet but you are more self-aware than you were. That awareness is the foundation."},story:{developing:(p)=>`My pattern is The Quitter.\n\nHere is a recent moment when I caught it showing up:\n[Add your moment here]\n\nMy reframe:\n"${p}"\n\nIf this resonates, share your pattern below. We are all working through something.`,growing:(p)=>`Getting back in used to take me weeks. Now it takes days. Still working on it.\n\nMy reframe:\n"${p}"\n\nHere is what helped me bounce back faster:\n[Share what worked for you]\n\nDrop your pattern below.`}},benchwarmer:{pill:"Your Pattern to Watch For",name:["THE","BENCHWARMER"],nameEm:1,fixed:"Before really trying, the instinct is to decide it probably will not work for you specifically.",growth:"Effort applied consistently is the variable I actually control.",hint:"What would it look like to give this a real shot for 30 days without pre-deciding the outcome?",diag:{developing:"You have already decided, at least partly, that this might not work for you. Age, genetics, past attempts. But you are here, which means part of you has not given up. That part is right. The results you are looking for require giving it a real shot, not a cautious one.",growing:"You have pushed past the pre-defeat instinct more than most. You show up even when you are skeptical. That is harder than it sounds and it is paying off.",mixed:"You are further along than you give yourself credit for. The skepticism still creeps in sometimes but it is not stopping you the way it used to."},story:{developing:(p)=>`My pattern is The Benchwarmer.\n\nHere is a recent moment when I caught it showing up:\n[Add your moment here]\n\nMy reframe:\n"${p}"\n\nIf this sounds familiar, drop your pattern below. You are not alone in this.`,growing:(p)=>`I used to talk myself out of things before I even started. Getting better at it.\n\nMy reframe:\n"${p}"\n\nHere is what helped me actually commit:\n[Share what shifted for you]\n\nDrop your pattern below.`}},deflector:{pill:"Your Pattern to Watch For",name:["THE","DEFLECTOR"],nameEm:1,fixed:"When feedback comes in, the instinct is to dismiss it before it can be used.",growth:"Feedback is data. Data helps me improve.",hint:"Think of a piece of feedback you have dismissed recently. What would it look like to use it instead?",diag:{developing:"Feedback feels personal. So it gets deflected before it can land. But every piece of feedback you reject is a rep you leave on the table. The fastest-improving people in any room are not the most talented. They are the most coachable.",growing:"You have gotten more coachable over time. The instinct to deflect is still there but you catch it and use the feedback anyway. That is the skill.",mixed:"You are more open to feedback than you used to be. The defensive reaction still shows up sometimes but you are overriding it more often now."},story:{developing:(p)=>`My pattern is The Deflector.\n\nHere is a recent moment when I caught it showing up:\n[Add your moment here]\n\nMy reframe:\n"${p}"\n\nIf this resonates, drop your pattern below.`,growing:(p)=>`I used to take feedback as criticism. Working on seeing it differently now.\n\nMy reframe:\n"${p}"\n\nHere is what helped me become more coachable:\n[Share what shifted]\n\nDrop your pattern below.`}},threatened:{pill:"Your Pattern to Watch For",name:["THE","THREATENED"],nameEm:1,fixed:"When others make progress, the instinct is to feel behind rather than feel fueled.",growth:"Their results are proof that mine are possible.",hint:"Think of someone whose progress has inspired you, even slightly. What did their journey show you about yours?",diag:{developing:"Someone else's win lands like a reminder of how far you still have to go. That is a natural reaction but it is the wrong signal. Their transformation is not evidence that yours is less likely. It is the opposite. It is proof the work pays off.",growing:"You have shifted from comparison to inspiration more often than not. The threatened feeling still shows up sometimes but you redirect it faster now. That is real mindset growth.",mixed:"You are flipping comparison into fuel more consistently. The sting is still there occasionally but you are learning to use it rather than letting it stop you."},story:{developing:(p)=>`My pattern is The Threatened.\n\nHere is a recent moment when I caught it showing up:\n[Add your moment here]\n\nMy reframe:\n"${p}"\n\nIf this resonates, drop your pattern below. We are all on this journey together.`,growing:(p)=>`I used to see other people's results and feel behind. Now I try to use it as fuel.\n\nMy reframe:\n"${p}"\n\nHere is what helped me flip comparison into motivation:\n[Share what shifted]\n\nDrop your pattern below.`}},growth:{pill:"Already in Growth Mode",name:["GROWTH","MINDSET"],nameEm:1,fixed:"Your instinct is already to push through. The pattern to watch for is staying consistent when life gets hard.",growth:"Showing up when it is hard is where the real growth compounds.",hint:"What does staying consistent look like for you when life gets messy?",diag:{growing:"You are already doing the work most people talk about. Your answers show someone who pushes through discomfort, gets back up after setbacks, and uses challenges as fuel. The job now is protecting that mindset when life gets hard, because it will."},story:{growing:(p)=>`I am in growth mode right now and I want to stay there.\n\nHere is what I am committing to:\n"${p}"\n\nHere is what has helped me get here:\n[Share what is working for you]\n\nIf you are earlier in the journey, drop your pattern below. I have been there too.`}}};
+
+let cQ=0,ans=[],cPat=null,gScore=0,fScore=0;
+function startQuiz(){switchTo('s-quiz');renderQ();}
+function renderQ(){
+  const q=QUESTIONS[cQ];
+  document.getElementById('prog-fill').style.width=((cQ/QUESTIONS.length)*100)+'%';
+  document.getElementById('prog-count').textContent=`${cQ+1} / ${QUESTIONS.length}`;
+  const card=document.getElementById('q-card');
+  card.style.animation='none';void card.offsetWidth;card.style.animation='scaleIn 0.35s ease both';
+  const sel=ans[cQ]!==undefined?ans[cQ]:-1;
+  card.innerHTML=`<div class="q-eyebrow">Question ${cQ+1} of ${QUESTIONS.length}</div><div class="q-text">${q.text}</div><div class="q-context">${q.context}</div><div class="options">${q.options.map((o,i)=>`<button class="option${sel===i?' selected':''}" onclick="pick(${i})"><div class="opt-circle"${sel===i?' style="background:var(--neon);border-color:var(--neon);color:#000;box-shadow:0 0 10px rgba(0,242,97,0.35);"':''}>${o.l}</div><div class="opt-text">${o.t}</div></button>`).join('')}</div>`;
+  document.getElementById('btn-back').style.visibility=cQ===0?'hidden':'visible';
+  const nxt=document.getElementById('btn-next');
+  nxt.textContent=cQ===QUESTIONS.length-1?'See My Pattern →':'Next →';
+  nxt.classList.toggle('off',sel===-1);
+}
+function pick(i){
+  ans[cQ]=i;
+  document.querySelectorAll('.option').forEach((el,j)=>{
+    el.classList.toggle('selected',j===i);
+    const c=el.querySelector('.opt-circle');
+    c.style.background=j===i?'var(--neon)':'';c.style.borderColor=j===i?'var(--neon)':'';
+    c.style.color=j===i?'#000':'';c.style.boxShadow=j===i?'0 0 10px rgba(0,242,97,0.35)':'';
+  });
+  document.getElementById('btn-next').classList.remove('off');
+}
+function nextQ(){if(ans[cQ]===undefined)return;if(cQ<QUESTIONS.length-1){cQ++;renderQ();}else calcPat();}
+function prevQ(){if(cQ>0){cQ--;renderQ();}}
+function calcPat(){
+  const cnt={avoider:0,quitter:0,benchwarmer:0,deflector:0,threatened:0,growth:0};
+  gScore=0;fScore=0;
+  QUESTIONS.forEach((q,i)=>{if(ans[i]!==undefined){const o=q.options[ans[i]];cnt[o.type]++;if(o.score===0)gScore++;else fScore++;}});
+  if(gScore>=2){cPat='growth';}else{delete cnt.growth;cPat=Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0][0];}
+  showPat();
+}
+function getLevel(){if(gScore===0)return'developing';if(gScore===QUESTIONS.length)return'growing';return'mixed';}
+function getPct(){return Math.round((gScore/QUESTIONS.length)*100);}
+function showPat(){
+  const p=PATTERNS[cPat],level=getLevel(),pct=getPct();
+  switchTo('s-pattern');
+  document.getElementById('p-pill').textContent=p.pill;
+  document.getElementById('p-name').innerHTML=p.name.map((w,i)=>i===p.nameEm?`<em>${w}</em>`:w).join(' ');
+  setTimeout(()=>{document.getElementById('spectrum-fill').style.width=Math.max(6,pct)+'%';},120);
+  const notes={developing:'This pattern shows up regularly for you right now. That is exactly why you are here.',growing:'You are already in growth mode. The goal now is to protect it.',mixed:'You are making real progress. This pattern still shows up under pressure.'};
+  document.getElementById('spectrum-note').textContent=notes[level];
+  document.getElementById('p-diag').textContent=p.diag[level]||p.diag.growing||p.diag.developing;
+}
+function showReframe(){
+  const p=PATTERNS[cPat],level=getLevel();
+  switchTo('s-reframe');
+  document.getElementById('rf-fixed').textContent=p.fixed;
+  document.getElementById('rf-growth').textContent=p.growth;
+  document.getElementById('rf-growth-lbl').textContent=level==='growing'?'Keep This Close':'Your Reframe';
+  document.getElementById('rf-hint').textContent=p.hint;
+}
+function checkReady(){
+  const n=document.getElementById('name-input').value.trim();
+  const t=document.getElementById('personal-input').value.trim();
+  document.getElementById('btn-generate').classList.toggle('off',!(n.length>0&&t.length>8));
+}
+function showResult(){
+  const p=PATTERNS[cPat],level=getLevel();
+  const name=document.getElementById('name-input').value.trim();
+  const personal=document.getElementById('personal-input').value.trim();
+  const pct=getPct();
+  switchTo('s-result');
+  document.getElementById('c-name').textContent=name.toUpperCase();
+  document.getElementById('c-pat').textContent=p.name.join(' ');
+  document.getElementById('c-rf').textContent=`"${personal}"`;
+  document.getElementById('c-spec-fill').style.width=Math.max(6,pct)+'%';
+  document.getElementById('c-spec-lbl').textContent={developing:'Still developing',growing:'Already growing',mixed:'Making progress'}[level];
+  document.getElementById('story-hdg').textContent={developing:'Help Someone Who Is Where You Were',growing:'Share What Is Working',mixed:'Share Your Progress'}[level];
+  document.getElementById('story-desc').textContent={developing:'The most powerful posts in this community are the honest ones. Share your pattern, your reframe, and a real moment when you caught it showing up. Someone reading this needs to hear it.',growing:'You are ahead of where most people start. Share what is working so others can learn from it.',mixed:'You are making real progress. Sharing where you are helps others see what the journey actually looks like.'}[level];
+  const fn=p.story[level]||p.story.developing||p.story.growing;
+  document.getElementById('story-prompt').innerHTML=fn(personal).split('\n').map(l=>l?`<span>${l}</span>`:'<br>').join('');
+}
+function copyCaption(){
+  const p=PATTERNS[cPat],level=getLevel();
+  const personal=document.getElementById('personal-input').value.trim();
+  const fn=p.story[level]||p.story.developing||p.story.growing;
+  navigator.clipboard.writeText(fn(personal)+'\n\nFIT 40 Inner Circle · Coach Tony O\nctofit.com/tools/reframe').then(()=>{
+    const btn=document.getElementById('copy-btn');
+    btn.classList.add('copied');btn.innerHTML='<span class="ico">✓</span>Copied!';
+    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<span class="ico">📋</span>Copy Caption';},2500);
+  });
+}
+function retake(){
+  cQ=0;ans=[];cPat=null;gScore=0;fScore=0;
+  document.getElementById('name-input').value='';
+  document.getElementById('personal-input').value='';
+  switchTo('s-intro');
+}
+function switchTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('s-quiz').classList.contains('active'))return;
+  if(['1','2','3','4'].includes(e.key))pick(parseInt(e.key)-1);
+  if((e.key==='ArrowRight'||e.key==='Enter')&&!document.getElementById('btn-next').classList.contains('off'))nextQ();
+  if(e.key==='ArrowLeft')prevQ();
+});
+</script>
+</body>
+</html>
