@@ -220,17 +220,17 @@ body{background:var(--black);color:var(--white);font-family:'Sora',sans-serif;fo
     <!-- SHARE SECTION -->
     <div class="badge-section">
       <div class="result-prompt" style="margin-bottom:16px;">
-        <div class="result-prompt-label">
-          Post Your Result
-          <button id="copy-prompt-btn" onclick="copyPrompt()" style="margin-left:auto;display:flex;align-items:center;gap:7px;background:rgba(0,242,97,0.1);border:1px solid rgba(0,242,97,0.3);border-radius:2px;color:var(--neon);font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;padding:6px 14px;cursor:pointer;transition:all 0.2s;flex-shrink:0;">
-            <span id="copy-prompt-icon">📋</span><span id="copy-prompt-text">Copy</span>
-          </button>
-        </div>
+        <div class="result-prompt-label">What This Means</div>
         <p id="r-prompt"></p>
       </div>
 
-      <a class="btn-community" href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank">
-        Post Your Result in the Community →
+      <div style="background:var(--graphite);border:1px solid rgba(0,242,97,0.15);border-top:2px solid var(--neon);padding:24px 28px;margin-bottom:16px;">
+        <p style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:var(--neon);margin-bottom:8px;">Want to go deeper?</p>
+        <p style="font-size:16px;line-height:1.7;color:rgba(255,255,255,0.82);margin-bottom:0;">The FIT 40 Inner Circle is a free community of adults over 40 working on exactly this. Inside you will find the full Mindset Module, the interactive Reframe tool, and a community that gets it.</p>
+      </div>
+
+      <a class="btn-community" href="https://www.skool.com/fit-40-inner-circle-1807/about" target="_blank">
+        Join FIT 40 Inner Circle — Free →
       </a>
 
       <button class="btn-retake" onclick="retake()">Retake the Detector</button>
@@ -303,7 +303,7 @@ const RESULTS = {
     nameEm:    1,
     diagnosis: "You're not lazy. You're protecting yourself. Avoiding challenges feels safe because if you never start, you can never fail. But that protection is costing you everything you actually want.",
     reframe:   "I embrace challenges. They make me stronger.",
-    prompt:    "My result: I'm The Avoider. My reframe this week: \"I embrace challenges. They make me stronger.\" What did you get? Post yours below."
+    prompt:    "The Avoider pattern shows up when the stakes feel highest. It keeps you safe but it also keeps you stuck. Awareness is the first rep. You just did it."
   },
   quitter: {
     pill:      "Your Fixed Mindset Type",
@@ -311,7 +311,7 @@ const RESULTS = {
     nameEm:    1,
     diagnosis: "Life hits back and you fold. Not because you're weak. Because setbacks feel like proof it wasn't meant to be. It's not. Setbacks are the training. The ones who win are the ones who get back up.",
     reframe:   "I persist despite setbacks. This is where I grow.",
-    prompt:    "My result: I'm The Quitter. My reframe this week: \"I persist despite setbacks. This is where I grow.\" What did you get? Post yours below."
+    prompt:    "The Quitter pattern isn't about weakness. It's about how you interpret a setback. Change the interpretation and you change everything that follows."
   },
   benchwarmer: {
     pill:      "Your Fixed Mindset Type",
@@ -319,7 +319,7 @@ const RESULTS = {
     nameEm:    1,
     diagnosis: "You're watching from the sidelines of your own life. Effort feels pointless because somewhere you decided the deck is stacked against you. Genetics, age, circumstance. It's not. Effort is exactly how you get better.",
     reframe:   "Effort is how I get better. Every rep, every lesson counts.",
-    prompt:    "My result: I'm The Benchwarmer. My reframe this week: \"Effort is how I get better. Every rep counts.\" What did you get? Post yours below."
+    prompt:    "The Benchwarmer pattern is sneaky because it feels like realism. It isn't. It's a story you're telling yourself before the game even starts."
   },
   deflector: {
     pill:      "Your Fixed Mindset Type",
@@ -327,7 +327,7 @@ const RESULTS = {
     nameEm:    1,
     diagnosis: "Feedback lands like an attack. So you deflect it. Dismiss it, ignore it, argue with it. But every piece of feedback you reject is a rep you're leaving on the table. The people improving fastest are the ones who collect it.",
     reframe:   "Feedback helps me improve. I use it to level up.",
-    prompt:    "My result: I'm The Deflector. My reframe this week: \"Feedback helps me improve. I use it to level up.\" What did you get? Post yours below."
+    prompt:    "The Deflector pattern costs you the reps that matter most. The fastest-improving people aren't the most talented. They're the most coachable."
   },
   threatened: {
     pill:      "Your Fixed Mindset Type",
@@ -335,7 +335,7 @@ const RESULTS = {
     nameEm:    1,
     diagnosis: "Someone else's win makes you feel behind. Like there's a limited supply of success and they just took yours. There isn't. Their results are proof that yours are possible.",
     reframe:   "I get inspired by others and learn from their wins.",
-    prompt:    "My result: I'm The Threatened. My reframe this week: \"I get inspired by others and learn from their wins.\" What did you get? Post yours below."
+    prompt:    "The Threatened pattern turns other people's wins into evidence against you. Flip it and those same wins become proof that yours is possible."
   }
 };
 
