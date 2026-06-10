@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">FIT 40 Inner Circle</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 
 <!-- ════════════════════════════════════════════════════════════
      ██████████████████████████████████████████████████████████
@@ -19,7 +19,7 @@ const MODULE = {
   /* ── Module identity ───────────────────────────────────── */
   num:        "01",
   title:      "Mindset",
-  color:      "#00F261",   // neon green — swap for each module
+  color:      "#00F261",
 
   /* ── Program header ─────────────────────────────────────── */
   program:    "FIT 40 Inner Circle",
@@ -32,35 +32,31 @@ const MODULE = {
     subtitle: "The foundation for everything that follows. Before the workouts. Before the nutrition. Before the results. It starts here.",
     stats: [
       { num: "3",  label: "Lessons" },
-      { num: "1",  label: "Worksheet" },
+      { num: "1",  label: "Reframe" },
       { num: "1",  label: "Community\nCommitment" }
     ]
   },
 
   /* ── How it works (expandable block) ───────────────────── */
   howItWorks: {
-    title:  "How the",
-    titleEm: "Mindset Module",
+    title:    "How the",
+    titleEm:  "Mindset Module",
     titleEnd: "works.",
     body: [
-      "This module is the first step in FIT 40 Inner Circle — and it's the most important one. <strong>Mindset isn't a soft concept. It's the operating system for everything else.</strong> Without it locked in, even the best training plan falls apart under real-life pressure.",
-      "Three short lessons. Each one builds directly on the last. By the end you'll have a clear framework for how to think when things get hard — and a community of people doing the same work alongside you.",
-      "Complete all three lessons, download the worksheet, and post your commitment using <strong style='color:var(--accent);'>#MindsetRound1</strong>. When all three are done, you're ready for Module 02: Movement."
+      "This module is the first step in FIT 40 Inner Circle and it's the most important one. <strong>Mindset isn't a soft concept. It's the operating system for everything else.</strong> Without it locked in, even the best training plan falls apart under real-life pressure.",
+      "Three short lessons. Each one builds directly on the last. By the end you'll have a clear framework for how to think when things get hard and a community of people doing the same work alongside you.",
+      "Complete all three lessons, finish The Reframe, and post your commitment in the community. When all three are done, you're ready for Module 02: Movement."
     ],
     steps: [
-      { num:"1", heading:"Watch the lessons",    body:"Three short lessons. Watch each one in order — they build on each other." },
-      { num:"2", heading:"Do the work",          body:"Download the Mindset Shift Worksheet and complete all four steps." },
-      { num:"3", heading:"Post your commitment", body:"Drop your #MindsetRound1 post in the Skool community feed. Tag a member." }
+      { num:"1", heading:"Watch the lessons",    body:"Three short lessons. Watch each one in order. They build on each other." },
+      { num:"2", heading:"Complete The Reframe", body:"Open The Reframe tool. Identify your pattern. Write your personal version. Or download the PDF worksheet if you prefer paper." },
+      { num:"3", heading:"Post your commitment", body:"Drop your post in the FIT 40 Inner Circle community feed. Tag a member." }
     ]
   },
 
   /* ── Next module teaser ─────────────────────────────────── */
   nextModule: "02: Movement",
 
-  /* ══════════════════════════════════════════════════════════
-     LESSONS — add / remove lessons freely
-     Each lesson has: id, tab, eyebrow, title, subtitle, teachings[], skoolPrompt, homework{}
-     ══════════════════════════════════════════════════════════ */
   lessons: [
 
     /* ── LESSON 1 ─────────────────────────────────────────── */
@@ -68,77 +64,80 @@ const MODULE = {
       id:       "lesson-1",
       tab:      "Lesson 1",
       eyebrow:  "Lesson 1 of 3",
-      title:    "What Is Mindset — And Why It's",
+      title:    "What Is Mindset and Why It's",
       titleEm:  "Blocking You",
-      subtitle: "Your mindset is the foundation for everything — how you approach challenges, how you grow, how you stick with your goals. Without it, even the best plan falls apart.",
+      subtitle: "Your mindset is the foundation for everything. How you approach challenges. How you grow. How you stick with your goals. Without it, even the best plan falls apart.",
 
       teachings: [
 
         {
-          label:   "Core Teaching 01",
-          tagline: "Your lens shapes everything",
-          heading: "Your Mindset Is a",
+          label:     "Core Teaching 01",
+          tagline:   "Your lens shapes everything",
+          heading:   "Your Mindset Is a",
           headingEm: "Filter.",
-          accent:  "neon",   // neon | volt | red
+          accent:    "neon",
           body: [
-            "Mindset isn't just a collection of thoughts. It's the lens through which you experience everything — the filter that determines whether you see an obstacle as a wall you'll never get over, or a stepping stone on your path to growth.",
-            "Same situation. Two completely different outcomes. Based entirely on how you're looking at it."
+            "Mindset isn't just a collection of thoughts. It's how we perceive the world around us. It's the lens through which we experience life.",
+            "That lens determines whether you see an obstacle as an unscalable wall or simply a stepping stone on your unique path to growth. Same situation. Two completely different outcomes. Based entirely on the filter you're using."
           ],
           component: "filter-diagram",
           callout: { text: "The outcome depends entirely on the filter you use.", style: "neon" }
         },
 
         {
-          label:   "Core Teaching 02",
-          tagline: "The trap",
-          heading: "The Fixed",
+          label:     "Core Teaching 02",
+          tagline:   "The trap",
+          heading:   "The Fixed",
           headingEm: "Mindset.",
-          accent:  "red",
+          accent:    "red",
           body: [
-            "A fixed mindset is marked by a fear of failure, an avoidance of challenges, and the belief that your abilities are set — unchangeable. The impact is stagnation, a lack of resilience, and consistently falling short of what you're actually capable of.",
-            "I know this because I've been there. When I first started tracking macros, it felt overwhelming. But then I recognized what was happening — that was my fixed mindset talking. Not reality. Just fear. I chose to lean into it. And it changed everything."
+            "A fixed mindset is marked by a fear of failure, an avoidance of challenges, and the belief that your intelligence and abilities are set. Unchangeable. The impact is significant. It leads to stagnation, a lack of resilience, and consistently falling short of what you're actually capable of.",
+            "Someone with a fixed mindset might resist tracking macros because it's unfamiliar and outside their comfort zone. They think: I've never done this before, so I won't be good at it. That belief keeps them stuck.",
+            "I know this because I've been there. When I first started tracking macros, it felt overwhelming and honestly, I didn't think I could do it. But then I realized what was happening. That was my fixed mindset talking. Not reality. Just fear. I chose to lean into the challenge. And it became a total game-changer."
           ],
           tags: [
-            { text:"Fear of Failure",    style:"red" },
-            { text:"Avoids Challenges",  style:"red" },
-            { text:"Fixed Abilities",    style:"red" },
-            { text:"Stagnation",         style:"red" }
+            { text:"Fear of Failure",   style:"red" },
+            { text:"Avoids Challenges", style:"red" },
+            { text:"Fixed Abilities",   style:"red" },
+            { text:"Stagnation",        style:"red" }
           ],
-          callout: { text: "\"I've never done this before, so I probably won't be good at it.\" — That one thought keeps you stuck.", style: "quote" }
+          callout: { text: "\"I've never done this before, so I won't be good at it.\" That one thought keeps you stuck.", style: "quote" }
         },
 
         {
-          label:   "Core Teaching 03",
-          tagline: "The edge",
-          heading: "The Growth",
+          label:     "Core Teaching 03",
+          tagline:   "The edge",
+          heading:   "The Growth",
           headingEm: "Mindset.",
-          accent:  "neon",
+          accent:    "neon",
           body: [
-            "A growth mindset embraces challenges. It sees failure as data, not defeat. It gets genuinely excited about learning new skills — even when they're hard. The result: more resilience, a more positive outlook, and continuous improvement."
+            "A growth mindset embraces challenges. It views failure as an opportunity to learn. It gets excited about acquiring new skills. The benefits: you become more resilient in the face of obstacles, develop a more positive outlook on life, and experience continuous growth and improvement.",
+            "Imagine a tough workout. Someone with a growth mindset thinks: this is really hard right now, but if I keep working at it and get stronger, it will get easier. That's the power of a growth mindset. It keeps you moving forward.",
+            "And it doesn't just help you with fitness. It impacts every part of your life. Career. Relationships. Health. This shift will unlock potential you didn't even know you had."
           ],
           cards: {
             cols: 3,
             accent: "neon",
             items: [
-              { heading:"Embraces Challenges", body:"Sees failure as data, not defeat. Excited about learning new skills." },
-              { heading:"Resilient by Default", body:"Obstacles inform you. Adjust, adapt, keep moving. That's the edge." },
-              { heading:"Continuous Growth",    body:"Career. Relationships. Health. Not just fitness — everywhere." }
+              { heading:"Embraces Challenges",  body:"Sees failure as data, not defeat. Gets excited about learning new skills." },
+              { heading:"Resilient by Default", body:"Obstacles don't stop you. They inform you. Adjust, adapt, keep moving." },
+              { heading:"Continuous Growth",    body:"Career. Relationships. Health. Not just fitness. Everywhere." }
             ]
           },
-          callout: { text: "\"This is hard right now. But if I keep showing up and getting stronger, it's going to get easier.\"", style: "neon" }
+          callout: { text: "\"This is really hard right now. But if I keep working at it and get stronger, it will get easier.\"", style: "neon" }
         }
 
       ],
 
-      skoolPrompt: "\"Drop one fixed mindset thought you've caught yourself saying — even recently. No judgment. Just awareness. That's where we start.\"",
+      skoolPrompt: "\"Drop one fixed mindset thought you've caught yourself saying recently. No judgment. Just awareness. That's where we start.\"",
 
       homework: {
         eyebrow: "Lesson 1 Homework",
         title:   "Your First Reps",
         items: [
           "Watch the lesson and take notes on your fixed mindset moments",
-          "Download the Mindset Shift Worksheet (below this video)",
-          "Drop your comment in Skool using the prompt above"
+          "Open The Reframe tool at ctofit.com/tools/reframe",
+          "Drop your comment in the community using the prompt above"
         ]
       }
     },
@@ -148,82 +147,82 @@ const MODULE = {
       id:       "lesson-2",
       tab:      "Lesson 2",
       eyebrow:  "Lesson 2 of 3",
-      title:    "The Fighter's Edge — Mental Toughness",
-      titleEm:  "Over 40",
-      subtitle: "The mental framework that keeps men and women over 40 in the game when everything else is pushing them out.",
+      title:    "The Fighter's Edge",
+      titleEm:  "Mental Toughness Over 40",
+      subtitle: "The mental framework that keeps busy adults over 40 in the game when everything else is pushing them out.",
 
       teachings: [
 
         {
-          label:   "Core Teaching 01",
-          tagline: "The real test",
-          heading: "When Things",
+          label:     "Core Teaching 01",
+          tagline:   "The real test",
+          heading:   "When Things",
           headingEm: "Get Messy.",
-          accent:  "volt",
+          accent:    "volt",
           body: [
-            "When life is running smoothly, staying consistent is easy. The real test is what happens when things get messy — the schedule gets packed, something breaks, you're tired, you're stressed.",
+            "When life is running smoothly, staying consistent is easy. The real test is what happens when things get messy. The schedule gets packed. Something breaks. You're tired. You're stressed.",
             "Most people fold at that point. They tell themselves they'll get back on track when things calm down."
           ],
           callout: { text: "Things don't calm down. That's why you need the Fighter's Edge.", style: "volt" }
         },
 
         {
-          label:   "Core Teaching 02",
-          tagline: "Four pillars",
-          heading: "The Fighter's",
+          label:     "Core Teaching 02",
+          tagline:   "Four pillars",
+          heading:   "The Fighter's",
           headingEm: "Edge.",
-          accent:  "neon",
+          accent:    "neon",
           body: [
-            "This isn't about being the toughest person in the room. It's the mindset that helps you keep swinging when you've already taken a hit. Built on four pillars — with one central goal."
+            "This isn't about being the toughest person in the room. It's the mindset that helps you keep swinging when you've already taken a hit. Built on four pillars. With one central goal."
           ],
           component: "quad-diagram"
         },
 
         {
-          label:   "Core Teaching 03",
-          tagline: "Why it hits different after 40",
-          heading: "Go Smarter.",
+          label:     "Core Teaching 03",
+          tagline:   "Why it hits different after 40",
+          heading:   "Go Smarter.",
           headingEm: "Not Harder.",
-          accent:  "volt",
+          accent:    "volt",
           body: [
-            "Brute force stops working after 40. Recovery slows, responsibilities grow, your time and energy get pulled in more directions than ever. The people who try to out-hustle all of that burn out. Every time."
+            "Brute force stops working after 40. Recovery slows. Responsibilities grow. Your time and energy get pulled in more directions than ever. The people who try to out-hustle all of that burn out. Every time."
           ],
           cards: {
             cols: 2,
             items: [
-              { accent:"red",  heading:"The Old Way",         body:"Go all-in for two weeks. Burn out. Disappear. Repeat. This cycle never builds anything lasting." },
-              { accent:"neon", heading:"The Fighter's Edge",  body:"Stay in the game. Consistency over intensity. Win the round in front of you and stack them." }
+              { accent:"red",  heading:"The Old Way",        body:"Go all-in for two weeks. Burn out. Disappear. Repeat. This cycle never builds anything lasting." },
+              { accent:"neon", heading:"The Fighter's Edge", body:"Stay in the game. Consistency over intensity. Win the round in front of you and stack them." }
             ]
           },
           callout: { text: "At this stage, consistency isn't optional. It's everything.", style: "volt" }
         },
 
         {
-          label:   "Core Teaching 04",
-          tagline: "Your mental training protocol",
-          heading: "Five Moves to",
+          label:     "Core Teaching 04",
+          tagline:   "Your mental training protocol",
+          heading:   "Five Moves to",
           headingEm: "Regain Control.",
-          accent:  "neon",
+          accent:    "neon",
           body: [
             "Mindset is a mechanical, trainable skill. When life derails your plan, run this exact sequence."
           ],
           sequence: [
-            { heading:"Breathe",                         body:"Four counts in, four counts out. Calm the body, sharpen the mind. Use it before every stressor." },
-            { heading:"Get Comfortable Being Uncomfortable", body:"That feeling isn't a stop sign. That's where growth lives. Lean into it on purpose." },
-            { heading:"Coach Yourself Through It",       body:"Talk to yourself like a fighter in your own corner. Focused, not harsh." },
-            { heading:"Win the Round You're In",         body:"Don't overthink the whole fight. Just win this one moment right in front of you." },
-            { heading:"Reflect, Don't Retreat",          body:"Miss a workout or a meal? Don't fold. Analyze the data, adjust the strategy, get back in." }
+            { heading:"Breathe",                              body:"Four counts in, four counts out. Calm the body, sharpen the mind. Use it before every stressor." },
+            { heading:"Get Comfortable Being Uncomfortable",  body:"That feeling isn't a stop sign. That's where growth lives. Lean into it on purpose." },
+            { heading:"Coach Yourself Through It",            body:"Talk to yourself like a fighter in your own corner. Focused, not harsh." },
+            { heading:"Win the Round You're In",              body:"Don't overthink the whole fight. Just win this one moment right in front of you." },
+            { heading:"Reflect, Don't Retreat",               body:"Miss a workout or a meal? Don't fold. Analyze the data, adjust the strategy, get back in." }
           ]
         },
 
         {
-          label:   "Core Teaching 05",
-          tagline: "Where it shows up in real life",
-          heading: "Every Decision",
+          label:     "Core Teaching 05",
+          tagline:   "Where it shows up in real life",
+          heading:   "Every Decision",
           headingEm: "Is a Round.",
-          accent:  "neon",
+          accent:    "neon",
           body: [
-            "This isn't just gym talk. The real fight is in your daily decisions. Every time you choose to show up — you win the round. Stack them to win the fight."
+            "This isn't just gym talk. The real fight is in your daily decisions. Every time you choose to show up you win the round. Stack them to win the fight."
           ],
           roundWon: [
             "Choosing to skip the takeout and make the better meal.",
@@ -233,11 +232,11 @@ const MODULE = {
         },
 
         {
-          label:   "Core Teaching 06",
-          tagline: "Personal story — on camera",
-          heading: "What Muay Thai",
+          label:     "Core Teaching 06",
+          tagline:   "Lessons from the ring",
+          heading:   "What Muay Thai",
           headingEm: "Taught Me.",
-          accent:  "neon",
+          accent:    "neon",
           body: [
             "I trained in combat sports for years. And the biggest lesson I took from it had nothing to do with power."
           ],
@@ -246,28 +245,28 @@ const MODULE = {
               trigger: "Winning isn't about how hard you hit",
               body: [
                 "It was about staying sharp. Keep your breath when you're completely gassed. Stay calm while you're being hit. Get back up sharper than before.",
-                "And I realized that mindset applies everywhere — fatherhood, business, health. You can't control the punches. You can only control your response."
+                "And I realized that mindset applies everywhere. Fatherhood. Business. Health. You can't control the punches. You can only control your response."
               ]
             },
             {
               trigger: "Breathe. Reset. Stay sharp. Don't retreat.",
-              body: [ "When the fight gets messy, use the Corner Man cues: Breathe. Reset. Stay sharp. Don't retreat. This is your mental gym. Show up here too." ]
+              body: [ "When the fight gets messy, use the Corner Man cues. Breathe. Reset. Stay sharp. Don't retreat. This is your mental gym. Show up here too." ]
             }
           ],
-          callout: { text: "\"You don't need to hit harder. You need to last longer.\"", style: "neon" }
+          callout: { text: "You don't need to hit harder. You need to last longer.", style: "neon" }
         }
 
       ],
 
-      skoolPrompt: "\"What round are you in right now — in your training, your health, your life? Be honest. No highlight reel. Just real.\"",
+      skoolPrompt: "\"What round are you in right now in your training, your health, your life? Be honest. No highlight reel. Just real.\"",
 
       homework: {
         eyebrow: "Lesson 2 Homework",
         title:   "Build Your Edge",
         items: [
-          "Watch the lesson — identify your most common fold point",
+          "Watch the lesson and identify your most common fold point",
           "Practice the 4-count breathwork before your next stressor",
-          "Drop your 'what round are you in' comment in Skool"
+          "Drop your comment in the community using the prompt above"
         ]
       }
     },
@@ -277,59 +276,61 @@ const MODULE = {
       id:       "lesson-3",
       tab:      "Lesson 3",
       eyebrow:  "Lesson 3 of 3",
-      title:    "Rewire Your Thinking —",
-      titleEm:  "The Mindset Shift Worksheet",
-      subtitle: "Understanding fixed vs. growth thinking is step one. Understanding it doesn't change it. Practicing it does.",
+      title:    "Rewire Your Thinking with",
+      titleEm:  "The Reframe",
+      subtitle: "Understanding fixed vs. growth thinking is step one. Understanding it doesn't change it. Practicing it does. The Reframe is the interactive tool that locks the lesson in.",
 
       teachings: [
 
         {
-          label:   "Core Teaching 01",
-          tagline: "Steps 1 & 2",
-          heading: "Reframe the",
+          label:     "Core Teaching 01",
+          tagline:   "Steps 1 and 2",
+          heading:   "Reframe the",
           headingEm: "Circuit.",
-          accent:  "neon",
+          accent:    "neon",
           body: [
-            "Look at the fixed mindset thoughts on the left. Read through them and ask yourself: do I ever think this way? When does it show up? How has it held me back? Then use the right column to reframe into growth mindset thinking."
+            "Read through the fixed mindset thoughts on the left. Ask yourself: do I ever think this way? When does it show up in my life? How has it held me back? Then use the right column to reframe into growth mindset thinking."
           ],
           reframeTable: [
-            { fixed: "\"I avoid challenges because I don't want to fail.\"",      growth: "\"I embrace challenges — they make me stronger.\"" },
-            { fixed: "\"I give up when things don't go my way.\"",                 growth: "\"I persist despite setbacks — this is where I grow.\"" },
-            { fixed: "\"Effort is pointless if I was naturally good.\"",           growth: "\"Effort is how I get better — every rep counts.\"" },
-            { fixed: "\"Feedback feels like criticism.\"",                          growth: "\"Feedback helps me improve — I use it to level up.\"" },
-            { fixed: "\"Other people's success threatens me.\"",                    growth: "\"I get inspired by others and learn from their wins.\"" }
+            { fixed: "\"I avoid challenges because I don't want to fail.\"",     growth: "\"I embrace challenges because they make me stronger.\"" },
+            { fixed: "\"I give up when things don't go my way.\"",                growth: "\"I persist despite setbacks. This is where I grow.\"" },
+            { fixed: "\"Effort is pointless if I was naturally good.\"",          growth: "\"Effort is how I get better. Every rep counts.\"" },
+            { fixed: "\"Feedback feels like criticism.\"",                         growth: "\"Feedback helps me improve. I use it to level up.\"" },
+            { fixed: "\"Other people's success threatens me.\"",                   growth: "\"I get inspired by others and learn from their wins.\"" }
           ]
         },
 
         {
-          label:   "Step 2",
-          tagline: "Personalize it",
-          heading: "Make It",
-          headingEm: "Personal.",
-          accent:  "neon",
-          body: [],
+          label:     "Core Teaching 02",
+          tagline:   "Make it yours",
+          heading:   "Find Your",
+          headingEm: "Own Patterns.",
+          accent:    "neon",
+          body: [
+            "Now it's time to personalize this. Think about where a fixed mindset has been showing up in your journey. What's something you've told yourself that's held you back? How can you reframe that thought into a growth approach?"
+          ],
           cards: {
             cols: 2,
             items: [
-              { accent:"neon", heading:"Step 3 — Find Your Patterns",    body:"Fill out the blank table. Where has a fixed mindset shown up in your fitness journey? Write it down. Then reframe it. Even one rep changes how you respond next time." },
-              { accent:"volt", heading:"Step 4 — Put It Into Action",    body:"Write down ONE action this week. Not five. One. Post it using #MindsetRound1. When you say it out loud — it becomes real." }
+              { accent:"neon", heading:"Step 1 — Take The Reframe",   body:"Open ctofit.com/tools/reframe. The 3-question audit identifies your dominant pattern in under 2 minutes." },
+              { accent:"volt", heading:"Step 2 — Make It Yours",      body:"Write your personal reframe in your own words. Generate your card. Share your story in the community." }
             ]
           },
-          callout: { text: "Success isn't about being perfect. It's about staying in the game.", style: "neon" }
+          callout: { text: "Growth isn't about being perfect. It's about progress. Every challenge you face is an opportunity to grow stronger.", style: "neon" }
         }
 
       ],
 
-      skoolPrompt: "\"Post your reframe using #MindsetRound1. One fixed thought → one growth thought. Keep it short. Make it real.\"",
+      skoolPrompt: "\"Post your reframe in the community. One fixed thought and one growth thought. Keep it short. Make it real.\"",
 
       homework: {
         eyebrow: "Lesson 3 Homework",
-        title:   "Complete the Worksheet",
+        title:   "Complete The Reframe",
         items: [
-          "Download the Mindset Shift Worksheet PDF",
-          "Complete Steps 1 & 2 — identify and reframe from the pre-built table",
-          "Complete Step 3 — write your own fixed → growth reframes",
-          "Post your #MindsetRound1 commitment in Skool"
+          "Open The Reframe tool at ctofit.com/tools/reframe",
+          "Take the 3-question audit to identify your dominant pattern",
+          "Write your personal reframe in your own words",
+          "Or download the PDF worksheet if you prefer paper"
         ]
       }
     },
@@ -346,20 +347,21 @@ const MODULE = {
       teachings: [
 
         {
-          label:   "Module 01 Complete",
-          tagline: "Now lock it in",
-          heading: "Three Things.",
-          headingEm: "Right Now.",
-          accent:  "neon",
+          label:     "Module 01 Complete",
+          tagline:   "Now lock it in",
+          heading:   "It All Starts",
+          headingEm: "With Mindset.",
+          accent:    "neon",
           body: [
-            "You just completed the Mindset Module. Three lessons. One shift. The foundation is set. Here's what you do before you move on."
+            "You've taken the first step by showing up today. Now here's how we put it into action.",
+            "Remember: mindset isn't something you master overnight. It's something you bring into your everyday life, especially when challenges arise or when self-doubt creeps in."
           ],
           sequence: [
-            { heading:"Download the Mindset Shift Worksheet",  body:"Complete all four steps if you haven't already. This is the rep that makes the teaching stick." },
-            { heading:"Write Down Your Goals",                  body:"What do you actually want from this program? Be specific. You're going to look back at this when results start showing up." },
-            { heading:"Pick One Growth Mindset Practice",       body:"One practice you're committing to this week. Not five. One. Post it in the community feed using #MindsetRound1 — tag someone who needs to see it." }
+            { heading:"Complete The Reframe",                   body:"Open ctofit.com/tools/reframe. Take the audit. Write your personal reframe. This is the rep that makes the teaching stick." },
+            { heading:"Write Down Your Goals",                   body:"What do you want to achieve through this program? Be specific. You're going to look back at this when results start showing up." },
+            { heading:"Commit to One Growth Mindset Practice",   body:"One practice you're committing to this week. Not five. One. Post it in the community feed and tag someone who needs to see it." }
           ],
-          callout: { text: "This is not a solo journey. You're in a community of people in the exact same fight.", style: "neon" }
+          callout: { text: "Growth isn't about being perfect. It's about progress. Let's start growing.", style: "neon" }
         }
 
       ],
@@ -371,9 +373,9 @@ const MODULE = {
         title:   "Before You Move On",
         items: [
           "Complete all three lessons",
-          "Complete the Mindset Shift Worksheet (all 4 steps)",
+          "Complete The Reframe tool at ctofit.com/tools/reframe",
           "Write down your specific goals for this program",
-          "Post your #MindsetRound1 commitment in Skool and tag a member"
+          "Post your commitment in the FIT 40 Inner Circle community and tag a member"
         ]
       }
     }
@@ -442,7 +444,7 @@ body{background:var(--black);color:var(--white);font-family:'Sora',sans-serif;fo
 .eyebrow-sep{color:var(--border);font-size:14px;}
 .eyebrow-label{font-family:'Sora',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-dim);}
 .lesson-hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(36px,5vw,56px);text-transform:uppercase;letter-spacing:0.02em;line-height:1;color:var(--white);}
-.lesson-hero h1 em{color:var(--accent);font-style:normal;}
+.lesson-hero h1 em{font-family:'Caveat',cursive;font-style:normal;font-weight:600;color:var(--accent);text-shadow:0 0 40px rgba(0,242,97,0.4);font-size:1.45em;text-transform:lowercase;letter-spacing:0;line-height:0.95;display:inline-block;vertical-align:baseline;}
 .hero-sub{font-size:19px;line-height:1.65;color:var(--text);max-width:620px;}
 .hero-meta{display:flex;align-items:center;gap:20px;padding-top:8px;border-top:1px solid var(--border);flex-wrap:wrap;}
 .hero-meta-item{display:flex;align-items:center;gap:6px;font-family:'Sora',sans-serif;font-size:12px;color:var(--text-dim);}
@@ -458,10 +460,10 @@ body{background:var(--black);color:var(--white);font-family:'Sora',sans-serif;fo
 .core-num{font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);background:rgba(0,242,97,0.1);border:1px solid rgba(0,242,97,0.2);border-radius:2px;padding:3px 8px;}
 .core-tagline{font-family:'Sora',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-dim);}
 .core-teaching h2{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(26px,3.5vw,38px);text-transform:uppercase;letter-spacing:0.02em;line-height:1.05;color:var(--white);margin-bottom:16px;}
-.core-teaching h2 em{font-style:normal;}
-.core-teaching h2 em.neon{color:var(--accent);}
-.core-teaching h2 em.volt{color:var(--volt);}
-.core-teaching h2 em.red{color:var(--red);}
+.core-teaching h2 em{font-family:'Caveat',cursive;font-style:normal;font-weight:600;font-size:1.45em;text-transform:lowercase;letter-spacing:0;line-height:0.95;display:inline-block;vertical-align:baseline;}
+.core-teaching h2 em.neon{color:var(--accent);text-shadow:0 0 40px rgba(0,242,97,0.4);}
+.core-teaching h2 em.volt{color:var(--volt);text-shadow:0 0 40px rgba(228,242,34,0.4);}
+.core-teaching h2 em.red{color:var(--red);text-shadow:0 0 40px rgba(255,68,68,0.4);}
 .nbar{width:40px;height:3px;background:var(--accent);display:block;margin-bottom:20px;}
 .nbar.volt{background:var(--volt);}
 .nbar.red{background:var(--red);}
@@ -542,16 +544,16 @@ body{background:var(--black);color:var(--white);font-family:'Sora',sans-serif;fo
 .accordion-inner p:last-child{margin-bottom:0;}
 
 /* ── Quad diagram ── */
-.quad-diagram{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;background:var(--border);margin:28px 0;border:1px solid var(--border);min-height:400px;}
+.quad-diagram{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;background:var(--border);margin:28px 0;border:1px solid var(--border);min-height:460px;}
 .quad-cell{background:var(--graphite);display:flex;flex-direction:column;gap:8px;}
-.quad-cell:nth-child(1){padding:28px 90px 90px 28px;justify-content:flex-start;}
-.quad-cell:nth-child(2){padding:28px 28px 90px 90px;justify-content:flex-start;}
-.quad-cell:nth-child(3){padding:90px 90px 28px 28px;justify-content:flex-end;}
-.quad-cell:nth-child(4){padding:90px 28px 28px 90px;justify-content:flex-end;}
+.quad-cell:nth-child(1){padding:32px 120px 120px 32px;justify-content:flex-start;}
+.quad-cell:nth-child(2){padding:32px 32px 120px 120px;justify-content:flex-start;}
+.quad-cell:nth-child(3){padding:120px 120px 32px 32px;justify-content:flex-end;}
+.quad-cell:nth-child(4){padding:120px 32px 32px 120px;justify-content:flex-end;}
 .quad-cell h4{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);}
 .quad-cell p{font-size:13px;line-height:1.6;color:rgba(255,255,255,0.55);margin:0;}
-.quad-center-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:152px;height:152px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;text-align:center;z-index:5;box-shadow:0 0 40px rgba(0,242,97,0.6),0 0 80px rgba(0,242,97,0.25);animation:qglow 2.5s ease-in-out infinite;pointer-events:none;}
-.quad-center-badge p{font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;color:#000;line-height:1.25;padding:0 12px;margin:0;}
+.quad-center-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:210px;height:210px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;text-align:center;z-index:5;box-shadow:0 0 60px rgba(0,242,97,0.7),0 0 120px rgba(0,242,97,0.35),inset 0 -10px 30px rgba(0,0,0,0.15);animation:qglow 2.5s ease-in-out infinite;pointer-events:none;}
+.quad-center-badge p{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:#000;line-height:1.1;padding:0 18px;margin:0;}
 @keyframes qglow{0%,100%{box-shadow:0 0 30px rgba(0,242,97,0.55),0 0 60px rgba(0,242,97,0.2);}50%{box-shadow:0 0 50px rgba(0,242,97,0.8),0 0 100px rgba(0,242,97,0.35);}}
 
 /* ── Skool prompt ── */
@@ -590,7 +592,7 @@ body{background:var(--black);color:var(--white);font-family:'Sora',sans-serif;fo
 .intro-exclusive{display:inline-flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-dim);margin-bottom:28px;}
 .intro-exclusive::before,.intro-exclusive::after{content:'';height:1px;width:32px;background:var(--border);}
 .intro-hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(40px,6vw,72px);text-transform:uppercase;letter-spacing:0.01em;line-height:0.95;color:var(--white);margin-bottom:10px;}
-.intro-hero h1 em{display:block;font-style:normal;color:var(--accent);text-shadow:0 0 40px rgba(0,242,97,0.4);font-size:0.85em;letter-spacing:0.03em;}
+.intro-hero h1 em{display:block;font-family:'Caveat',cursive;font-style:normal;font-weight:600;color:var(--accent);text-shadow:0 0 50px rgba(0,242,97,0.5),0 0 100px rgba(0,242,97,0.2);font-size:1.4em;letter-spacing:0;text-transform:lowercase;line-height:0.95;margin-top:6px;}
 .intro-hero-sub{font-size:17px;line-height:1.7;color:var(--text);max-width:540px;margin:16px auto 0;}
 .intro-stat-row{display:flex;align-items:stretch;justify-content:center;margin:40px auto 0;border:1px solid var(--border);background:rgba(0,0,0,0.4);max-width:540px;}
 .intro-stat{flex:1;padding:20px 16px;text-align:center;border-right:1px solid var(--border);}
@@ -603,7 +605,7 @@ body{background:var(--black);color:var(--white);font-family:'Sora',sans-serif;fo
 .intro-how-inner{max-width:var(--content-w);margin:0 auto;padding:40px 32px;}
 .intro-how-header{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;}
 .intro-how-title{font-family:'Oswald',sans-serif;font-size:clamp(20px,2.5vw,26px);font-weight:700;text-transform:uppercase;letter-spacing:0.03em;color:var(--white);}
-.intro-how-title em{color:var(--accent);font-style:normal;}
+.intro-how-title em{font-family:'Caveat',cursive;color:var(--accent);font-style:normal;font-weight:600;font-size:1.4em;text-transform:lowercase;letter-spacing:0;line-height:0.95;display:inline-block;vertical-align:baseline;text-shadow:0 0 30px rgba(0,242,97,0.35);}
 .intro-toggle-btn{font-family:'Sora',sans-serif;font-size:11px;color:var(--text-dim);background:none;border:1px solid var(--border);border-radius:2px;padding:6px 14px;cursor:pointer;letter-spacing:0.08em;transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
 .intro-toggle-btn:hover{border-color:var(--accent);color:var(--accent);}
 .intro-how-body{overflow:hidden;max-height:0;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);}
@@ -651,8 +653,18 @@ body{background:var(--black);color:var(--white);font-family:'Sora',sans-serif;fo
 
 /* ── Module closer ── */
 .module-closer{background:linear-gradient(135deg,#000 0%,#051205 50%,#000 100%);border-top:1px solid var(--border);padding:80px 0;text-align:center;}
+
+/* ── Marquee ticker ── */
+.marquee{background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;overflow:hidden;position:relative;}
+.marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+.marquee::before{left:0;background:linear-gradient(to right,var(--black),transparent);}
+.marquee::after{right:0;background:linear-gradient(to left,var(--black),transparent);}
+.marquee-track{display:flex;gap:48px;animation:marqueeScroll 30s linear infinite;white-space:nowrap;width:max-content;}
+.marquee-item{display:flex;align-items:center;gap:48px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.2em;color:var(--text);flex-shrink:0;}
+.marquee-item::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);flex-shrink:0;}
+@keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .module-closer h2{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(32px,5vw,56px);text-transform:uppercase;letter-spacing:0.02em;line-height:1;color:var(--white);margin-bottom:8px;}
-.module-closer h2 em{color:var(--accent);font-style:normal;}
+.module-closer h2 em{font-family:'Caveat',cursive;color:var(--accent);font-style:normal;font-weight:600;font-size:1.45em;text-transform:lowercase;letter-spacing:0;line-height:0.95;display:inline-block;vertical-align:baseline;text-shadow:0 0 40px rgba(0,242,97,0.4);}
 .module-closer p{font-size:17px;color:var(--text);max-width:500px;margin:16px auto 32px;line-height:1.7;}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;height:48px;padding:0 32px;border:none;border-radius:4px;cursor:pointer;text-decoration:none;transition:opacity 0.2s;}
 .btn-primary:hover{opacity:0.85;}
@@ -674,8 +686,8 @@ footer p{font-size:11px;color:var(--text-dim);letter-spacing:0.06em;text-transfo
   .quad-cell:nth-child(2){padding:16px 16px 60px 60px;}
   .quad-cell:nth-child(3){padding:60px 60px 16px 16px;}
   .quad-cell:nth-child(4){padding:60px 16px 16px 60px;}
-  .quad-center-badge{width:100px;height:100px;}
-  .quad-center-badge p{font-size:10px;}
+  .quad-center-badge{width:140px;height:140px;}
+  .quad-center-badge p{font-size:14px;}
   .intro-steps{grid-template-columns:1fr;}
   .intro-stat-row{flex-direction:column;}
   .intro-stat{border-right:none;border-bottom:1px solid var(--border);}
@@ -703,6 +715,27 @@ footer p{font-size:11px;color:var(--text-dim);letter-spacing:0.06em;text-transfo
 
 <div id="intro"></div>
 <main id="page-body"></main>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">Win the Round</div>
+    <div class="marquee-item">Stack the Reps</div>
+    <div class="marquee-item">Show Up</div>
+    <div class="marquee-item">Adapt</div>
+    <div class="marquee-item">Breathe</div>
+    <div class="marquee-item">Reset</div>
+    <div class="marquee-item">Stay Sharp</div>
+    <div class="marquee-item">Made to Overcome</div>
+    <div class="marquee-item">Win the Round</div>
+    <div class="marquee-item">Stack the Reps</div>
+    <div class="marquee-item">Show Up</div>
+    <div class="marquee-item">Adapt</div>
+    <div class="marquee-item">Breathe</div>
+    <div class="marquee-item">Reset</div>
+    <div class="marquee-item">Stay Sharp</div>
+    <div class="marquee-item">Made to Overcome</div>
+  </div>
+</div>
 
 <div class="module-closer" id="module-closer"></div>
 <footer><p id="footer-text"></p></footer>
