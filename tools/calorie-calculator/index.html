@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calorie Target Calculator | CTO FIT</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-size:18px}
+:root{--y:#C8F400;--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--text:#fff;--text2:#aaa;--border:#2a2a2a;--r:8px}
+body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,sans-serif;line-height:1.7}
+.wrap{max-width:720px;margin:0 auto;padding:40px 20px 60px}
+
+/* HEADER */
+.site-hdr{background:#000;border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:12px}
+.logo-img{height:32px;width:auto}
+.logo-text{font-size:18px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--y)}
+
+/* HERO  -  serif italic accent from AI Coach Cert */
+.hdr{text-align:center;margin-bottom:40px;padding-top:8px}
+.badge{display:inline-block;background:var(--y);color:#000;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:14px}
+.hdr h1{font-size:clamp(28px,6vw,46px);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:10px}
+.hdr h1 em{font-style:italic;color:var(--y);font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-1px}
+.hdr p{color:var(--text2);font-size:15px;max-width:500px;margin:0 auto}
+
+/* STEP PROGRESS NAV */
+.steps-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:32px}
+.snav{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px 6px;text-align:center;opacity:.4}
+.snav.active{opacity:1;border-color:var(--y)}
+.snav.done{opacity:.7;border-color:#2a3a00}
+.snav .sn-icon{font-size:20px;display:block;margin-bottom:3px}
+.snav .sn-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text2);display:block}
+.snav.active .sn-label{color:var(--y)}
+.snav .sn-check{font-size:10px;color:var(--y);display:none}
+.snav.done .sn-check{display:block}
+
+/* FORM STEPS */
+.step{display:none}
+.step.active{display:block;animation:fadeUp .4s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.step-tag{font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--y);margin-bottom:6px}
+.step-hdr{margin-bottom:24px}
+.step-hdr h2{font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-1px;line-height:1.1;margin-bottom:6px}
+.step-hdr p{color:var(--text2);font-size:14px}
+
+/* SEX TOGGLE */
+.toggle-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.tog-btn{padding:18px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-size:15px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .18s;text-align:center}
+.tog-btn.active{background:rgba(200,244,0,.08);border-color:var(--y);color:var(--y)}
+.tog-btn:hover:not(.active){border-color:var(--text2);color:var(--text)}
+
+/* FIELD GRID */
+.field-grid{display:grid;gap:12px;margin-bottom:8px}
+.field-grid.g2{grid-template-columns:1fr 1fr}
+.field-grid.g3{grid-template-columns:1fr 1fr 1fr}
+.field-grid.g4{grid-template-columns:1fr 1fr 1fr 1fr}
+.fgroup{display:flex;flex-direction:column;gap:6px}
+.fgroup label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text2)}
+.fgroup input{height:52px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:16px;padding:0 14px;transition:border-color .18s;width:100%;font-family:'Helvetica Neue',Arial,sans-serif}
+.fgroup input:focus{outline:none;border-color:var(--y)}
+.fgroup input::placeholder{color:#444}
+
+/* ACTIVITY OPTIONS */
+.option-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.opt-item{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all .18s}
+.opt-item.active{background:rgba(200,244,0,.06);border-color:var(--y)}
+.opt-item:hover:not(.active){border-color:var(--text2)}
+.opt-dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;margin-top:3px;transition:all .18s;display:flex;align-items:center;justify-content:center}
+.opt-item.active .opt-dot{border-color:var(--y);background:var(--y)}
+.opt-item.active .opt-dot::after{content:'';width:7px;height:7px;background:#000;border-radius:50%}
+.opt-name{font-size:15px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text);margin-bottom:3px}
+.opt-desc{font-size:13px;color:var(--text2);line-height:1.45}
+
+/* GOAL BUTTONS */
+.goal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:24px}
+.goal-btn{padding:20px 10px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;text-align:center;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif}
+.goal-btn.active{background:rgba(200,244,0,.08);border-color:var(--y)}
+.goal-btn:hover:not(.active){border-color:var(--text2);color:var(--text)}
+.goal-icon{font-size:24px;display:block;margin-bottom:8px}
+.goal-name{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text2);display:block}
+.goal-btn.active .goal-name{color:var(--y)}
+.goal-sub{font-size:11px;color:var(--text2);display:block;margin-top:3px;line-height:1.3}
+
+/* NAV BUTTONS */
+.nav-row{display:flex;gap:10px;margin-top:24px}
+.btn-next{flex:1;height:54px;background:var(--y);color:#000;border:none;border-radius:6px;font-size:15px;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif}
+.btn-next:hover{background:#d4f000;box-shadow:0 0 20px rgba(200,244,0,.3);transform:translateY(-1px)}
+.btn-back{height:54px;padding:0 20px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text2);font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif}
+.btn-back:hover{border-color:var(--text2);color:var(--text)}
+
+/* ERROR */
+.err{display:none;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.4);color:#ff7070;padding:10px 14px;font-size:13px;border-radius:6px;margin-top:12px}
+
+/* ── RESULTS ── */
+#results{display:none;animation:fadeUp .5s ease forwards}
+
+/* TDEE CALLOUT */
+.tdee-callout{background:#000;border:2px solid var(--y);border-radius:8px;padding:28px 24px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden}
+.tdee-callout::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(200,244,0,.07) 0%,transparent 70%);pointer-events:none}
+.tdee-eyebrow{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--y);margin-bottom:8px}
+.tdee-num{font-size:clamp(52px,14vw,80px);font-weight:900;color:var(--y);line-height:1;letter-spacing:-3px}
+.tdee-unit{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-top:6px}
+.tdee-note{margin-top:14px;font-size:13px;color:var(--y);font-weight:700;letter-spacing:.5px}
+
+/* TARGET CARDS */
+.target-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:20px 20px 18px;margin-bottom:10px;transition:all .2s;cursor:pointer;position:relative}
+.target-card:hover{border-color:rgba(200,244,0,.4)}
+.target-card.selected{border-color:var(--y);box-shadow:0 0 0 1px rgba(200,244,0,.15);background:rgba(200,244,0,.04)}
+.target-card.caution{border-color:var(--border)}
+.target-card.caution:hover{border-color:#ff9900}
+.target-card.caution.selected{border-color:#ff9900;box-shadow:0 0 0 1px rgba(255,153,0,.15);background:rgba(255,153,0,.04)}
+.tc-select-ring{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.target-card.selected .tc-select-ring{border-color:var(--y);background:var(--y)}
+.target-card.selected .tc-select-ring::after{content:'';width:6px;height:6px;background:#000;border-radius:50%}
+.target-card.caution.selected .tc-select-ring{border-color:#ff9900;background:#ff9900}
+.tc-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.tc-left{display:flex;gap:12px;align-items:flex-start;flex:1}
+.tc-tag{display:inline-block;background:var(--y);color:#000;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:6px}
+.tc-tag.caution-tag{background:#ff9900;color:#000}
+.tc-name{font-size:15px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text);margin-bottom:4px}
+.tc-desc{font-size:13px;color:var(--text2);line-height:1.45}
+.tc-warn{font-size:12px;color:#ff9900;font-weight:700;margin-top:6px;line-height:1.4}
+.tc-cals{font-size:36px;font-weight:900;color:var(--text2);white-space:nowrap;letter-spacing:-1px;line-height:1;transition:color .2s}
+.tc-cals-unit{font-size:12px;color:var(--text2);font-weight:400;letter-spacing:1px;text-transform:uppercase;margin-top:4px;text-align:right}
+.target-card.selected .tc-cals{color:var(--y)}
+.target-card.caution.selected .tc-cals{color:#ff9900}
+.deficit-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:12px;margin-top:4px}
+/* Updated macros live */
+.macro-updating{animation:flash .3s ease}
+@keyframes flash{0%{opacity:.4}100%{opacity:1}}
+
+/* MACRO GRID */
+.section-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:10px;position:relative}
+.section-title{font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--y);margin-bottom:16px}
+/* Numbered section labels  -  AI Coach Cert style */
+.section-num{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--border);position:absolute;top:20px;right:20px;font-family:Georgia,serif}
+.macro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.macro-item{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 10px;text-align:center}
+.macro-num{font-size:26px;font-weight:900;color:var(--text);letter-spacing:-1px;line-height:1}
+.macro-unit{font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.macro-label{font-size:11px;color:var(--text2);margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+
+/* PORTIONS */
+.portions-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.portion-item{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 16px}
+.portion-icon{font-size:28px;flex-shrink:0;line-height:1}
+.portion-count{font-size:24px;font-weight:900;color:var(--y);line-height:1}
+.portion-name{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-top:3px}
+.portion-what{font-size:12px;color:var(--text);margin-top:2px}
+
+/* COACH TONY */
+.tony-hdr{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.tony-avatar{width:48px;height:48px;border-radius:50%;background:var(--bg2);border:2px solid var(--y);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.tony-name{font-size:15px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--text)}
+.tony-role{font-size:12px;color:var(--text2);margin-top:2px}
+.tip-item{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.tip-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.tip-hl{font-size:14px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--y);margin-bottom:6px}
+.tip-body{font-size:14px;color:var(--text2);line-height:1.65}
+.tip-body strong{color:var(--text);font-weight:700}
+.tip-50{margin-top:8px;font-size:13px;color:#E4F222;font-weight:600;line-height:1.5}
+
+/* NEXT STEPS */
+.next-list{list-style:none;padding:0}
+.next-list li{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text2);line-height:1.55}
+.next-list li:last-child{border-bottom:none}
+.next-list li strong{color:var(--text)}
+.next-num{font-size:22px;font-weight:900;color:var(--y);flex-shrink:0;min-width:24px;line-height:1.2}
+
+/* Diamond separator  -  AI Coach Cert style */
+.diamond-row{display:flex;align-items:center;justify-content:center;gap:10px;margin:10px 0 6px;color:var(--y);font-size:10px;letter-spacing:4px}
+.diamond-row span{opacity:.5}
+
+/* CTA STRIP */
+.cta-strip{background:#000;border:1px solid var(--border);border-top:2px solid var(--y);border-radius:8px;padding:36px 28px;text-align:center;margin-top:16px}
+.cta-eyebrow{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--y);margin-bottom:12px}
+.cta-strip h2{font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:-1px;line-height:1.1;margin-bottom:12px}
+.cta-strip h2 em{font-style:normal;color:var(--y)}
+.cta-strip p{color:var(--text2);font-size:14px;max-width:460px;margin:0 auto 20px;line-height:1.6}
+.cta-btn{display:inline-block;background:var(--y);color:#000;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:16px 36px;border-radius:6px;transition:all .18s}
+.cta-btn:hover{background:#d4f000;box-shadow:0 0 24px rgba(200,244,0,.4);transform:translateY(-2px)}
+.cta-note{margin-top:12px;font-size:12px;color:var(--text2)}
+
+/* RESET */
+.reset-btn{display:block;margin:20px auto 0;background:transparent;border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 24px;border-radius:6px;cursor:pointer;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif}
+.reset-btn:hover{border-color:var(--text);color:var(--text)}
+
+/* FOOTER */
+.site-footer{background:#000;border-top:1px solid var(--border);padding:56px 24px 32px;margin-top:0}
+.footer-inner{max-width:720px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand-col{}
+.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.footer-logo-img{height:28px;width:auto;opacity:.9}
+.footer-logo-text{font-size:16px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--y)}
+.footer-tagline{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px}
+.footer-tagline em{font-style:italic;font-family:Georgia,serif;color:var(--text);font-size:13px}
+.footer-social{display:flex;gap:12px;margin-top:8px}
+.footer-social a{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .15s}
+.footer-social a:hover{color:var(--y)}
+.footer-col-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:14px}
+.footer-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .15s;line-height:1.4}
+.footer-col ul li a:hover{color:var(--y)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;flex-direction:column;gap:8px}
+.footer-copy{font-size:11px;color:#555;line-height:1.6}
+.footer-copy a{color:#666;text-decoration:underline;text-underline-offset:2px;transition:color .15s}
+.footer-copy a:hover{color:var(--text2)}
+.footer-made{font-size:11px;color:#333;font-style:italic;font-family:Georgia,serif}
+@media(max-width:600px){
+  .footer-top{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-brand-col{grid-column:1/-1}
+}
+
+/* RESPONSIVE */
+@media(max-width:520px){
+  .goal-grid{grid-template-columns:1fr}
+  .macro-grid{grid-template-columns:repeat(2,1fr)}
+  .portions-grid{grid-template-columns:1fr 1fr}
+  .field-grid.g4{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-hdr">
+  <img class="logo-img" src="https://ctofit.com/logo_white_new.png"
+       alt="CTO FIT" onerror="this.style.display='none';document.getElementById('lf').style.display='block'">
+  <span class="logo-text" id="lf" style="display:none">CTO FIT</span>
+</header>
+
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hdr">
+    <div class="badge">Step 1 in Nutrition Mastery  -  FIT 40 Method™</div>
+    <h1>The <em>#1 Needle Mover</em><br>to Rocket-Ship<br>Your Goals</h1>
+    <p>Find your daily calorie target in 60 seconds. This is where nutrition mastery starts  -  built on the same formula taught inside FIT 40.</p>
+  </div>
+
+  <!-- STEP PROGRESS NAV -->
+  <div class="steps-nav" style="grid-template-columns:repeat(3,1fr)">
+    <div class="snav active" id="sn0">
+      <span class="sn-icon">👤</span>
+      <span class="sn-label">You &amp; Stats</span>
+      <span class="sn-check">✓</span>
+    </div>
+    <div class="snav" id="sn1">
+      <span class="sn-icon">⚡</span>
+      <span class="sn-label">Activity</span>
+      <span class="sn-check">✓</span>
+    </div>
+    <div class="snav" id="sn2">
+      <span class="sn-icon">🎯</span>
+      <span class="sn-label">Goal</span>
+      <span class="sn-check">✓</span>
+    </div>
+  </div>
+
+  <!-- STEP 0: YOU + STATS (combined) -->
+  <div class="step active" id="step-0">
+    <div class="step-tag">Step 1 of 3</div>
+    <div class="step-hdr">
+      <h2>Tell Us About You</h2>
+      <p>Sex, age, and body stats are used to calculate your BMR  -  the same Mifflin-St Jeor formula from Module 3.</p>
+    </div>
+
+    <div class="toggle-row">
+      <button class="tog-btn active" id="btn-male" onclick="setSex('male')">♂ Male</button>
+      <button class="tog-btn" id="btn-female" onclick="setSex('female')">♀ Female</button>
+    </div>
+
+    <div class="field-grid g4" style="margin-bottom:0">
+      <div class="fgroup">
+        <label>Age</label>
+        <input type="number" id="age" placeholder="e.g. 47" min="18" max="90"
+               oninput="if(this.value.length>=2)document.getElementById('weight').focus()">
+      </div>
+      <div class="fgroup">
+        <label>Weight (lbs)</label>
+        <input type="number" id="weight" placeholder="185" min="80" max="500"
+               oninput="if(this.value.length>=3)document.getElementById('ht-ft').focus()">
+      </div>
+      <div class="fgroup">
+        <label>Height (ft)</label>
+        <input type="number" id="ht-ft" placeholder="5" min="4" max="7"
+               oninput="if(this.value.length>=1)document.getElementById('ht-in').focus()">
+      </div>
+      <div class="fgroup">
+        <label>Height (in)</label>
+        <input type="number" id="ht-in" placeholder="10" min="0" max="11">
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-next" onclick="goStep(1)">Next: Activity Level →</button>
+    </div>
+    <div class="err" id="err-0"></div>
+  </div>
+
+  <!-- STEP 1: ACTIVITY -->
+  <div class="step" id="step-1">
+    <div class="step-tag">Step 2 of 3</div>
+    <div class="step-hdr">
+      <h2>Activity Level</h2>
+      <p>Be honest  -  overestimating activity is the #1 reason calorie targets miss. When in doubt, go one level lower.</p>
+    </div>
+
+    <div class="option-list">
+      <div class="opt-item active" id="act-0" onclick="setActivity(0)">
+        <div class="opt-dot"></div>
+        <div>
+          <div class="opt-name">Sedentary</div>
+          <div class="opt-desc">Little or no exercise. Desk job. Mostly sitting throughout the day. Multiplier: 1.2×</div>
+        </div>
+      </div>
+      <div class="opt-item" id="act-1" onclick="setActivity(1)">
+        <div class="opt-dot"></div>
+        <div>
+          <div class="opt-name">Lightly Active</div>
+          <div class="opt-desc">Light exercise 1–3 days/week. Casual walks, some gym time. Multiplier: 1.375×</div>
+        </div>
+      </div>
+      <div class="opt-item" id="act-2" onclick="setActivity(2)">
+        <div class="opt-dot"></div>
+        <div>
+          <div class="opt-name">Moderately Active</div>
+          <div class="opt-desc">Structured training 3–5 days/week. This is most FIT 40 members. Multiplier: 1.55×</div>
+        </div>
+      </div>
+      <div class="opt-item" id="act-3" onclick="setActivity(3)">
+        <div class="opt-dot"></div>
+        <div>
+          <div class="opt-name">Very Active</div>
+          <div class="opt-desc">Hard training 6–7 days/week or a physical job. High daily output. Multiplier: 1.725×</div>
+        </div>
+      </div>
+      <div class="opt-item" id="act-4" onclick="setActivity(4)">
+        <div class="opt-dot"></div>
+        <div>
+          <div class="opt-name">Super Active</div>
+          <div class="opt-desc">Intense daily training plus a very physical job. Athlete-level output. Multiplier: 1.9×</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goStep(0)">← Back</button>
+      <button class="btn-next" onclick="goStep(2)">Next: Your Goal →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: GOAL -->
+  <div class="step" id="step-2">
+    <div class="step-tag">Step 3 of 3</div>
+    <div class="step-hdr">
+      <h2>What's Your Goal?</h2>
+      <p>Pick one. You can always recalculate. Chasing two goals at once usually means making progress on none.</p>
+    </div>
+
+    <div class="goal-grid">
+      <button class="goal-btn active" id="goal-fat" onclick="setGoal('fat')">
+        <span class="goal-icon">🔥</span>
+        <span class="goal-name">Fat Loss</span>
+        <span class="goal-sub">Controlled deficit  -  protect muscle</span>
+      </button>
+      <button class="goal-btn" id="goal-muscle" onclick="setGoal('muscle')">
+        <span class="goal-icon">💪</span>
+        <span class="goal-name">Muscle Gain</span>
+        <span class="goal-sub">Lean surplus  -  train hard or it's fat</span>
+      </button>
+      <button class="goal-btn" id="goal-recomp" onclick="setGoal('recomp')">
+        <span class="goal-icon">⚖️</span>
+        <span class="goal-name">Recomposition</span>
+        <span class="goal-sub">Maintenance  -  lose fat, build muscle</span>
+      </button>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goStep(1)">← Back</button>
+      <button class="btn-next" onclick="calculate()">Calculate My Target →</button>
+    </div>
+    <div class="err" id="err-2"></div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results">
+
+    <!-- TDEE -->
+    <div class="tdee-callout">
+      <div class="tdee-eyebrow">Your Maintenance Calories (TDEE)</div>
+      <div class="tdee-num" id="tdee-num"> - </div>
+      <div class="tdee-unit">Calories per Day</div>
+      <div class="tdee-note">✎ Write this number down  -  this is your metabolic baseline.</div>
+      <div class="diamond-row"><span>◆</span><span>◆</span><span>◆</span></div>
+    </div>
+
+    <!-- TARGET CARDS -->
+    <div id="target-cards"></div>
+
+    <!-- MACROS -->
+    <div class="section-card">
+      <span class="section-num">01</span>
+      <div class="section-title">Daily Macro Breakdown</div>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.5"><strong style="color:var(--text)">Protein is set first at 1g per lb of bodyweight</strong>  -  non-negotiable for muscle retention over 40. Fat stays fixed at 30% to support hormones and joints. <strong style="color:var(--text)">Carbs are your lever</strong>  -  they go up when you need more energy and performance, down when you're cutting. That's it. That's the system.</p>
+      <div id="macro-content"></div>
+    </div>
+
+    <!-- COACH TONY -->
+    <div class="section-card">
+      <span class="section-num">02</span>
+      <div class="section-title">Coach Tony's Take</div>
+      <div class="tony-hdr">
+        <div class="tony-avatar">🏋️</div>
+        <div>
+          <div class="tony-name">Coach Tony O</div>
+          <div class="tony-role">FIT 40 Performance Coach</div>
+        </div>
+      </div>
+      <div id="tony-tips"></div>
+    </div>
+
+    <!-- WHAT TO DO NEXT -->
+    <div class="section-card">
+      <span class="section-num">03</span>
+      <div class="section-title">Your Action Plan</div>
+      <ol class="next-list" id="next-steps"></ol>
+    </div>
+
+    <!-- SKOOL CTA -->
+    <div class="cta-strip">
+      <div class="cta-eyebrow">FIT 40 Inner Circle</div>
+      <h2>Now Share It<br><em style="font-style:italic;font-family:Georgia,serif;font-weight:400;color:var(--y)">With the Community</em></h2>
+      <p>Post your calorie target and macro breakdown in the community feed. Tag Coach Tony  -  he reads every post. Your number is only as powerful as your commitment to it.</p>
+      <a class="cta-btn" href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">Post My Results in the Community →</a>
+    </div>
+
+    <button class="reset-btn" onclick="resetCalc()">← Recalculate</button>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+
+      <!-- Brand col -->
+      <div class="footer-brand-col">
+        <div class="footer-logo-wrap">
+          <img class="footer-logo-img" src="https://ctofit.com/logo_white_new.png"
+               alt="CTO FIT" onerror="this.style.display='none';document.getElementById('flf').style.display='block'">
+          <span class="footer-logo-text" id="flf" style="display:none">CTO FIT</span>
+        </div>
+        <div class="footer-tagline">A purposeful training system for busy adults over 40 who refuse to quit.<br><em>Made to Overcome.</em></div>
+        <div class="footer-social">
+          <a href="https://www.youtube.com/@CoachTonyOmo" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">Skool</a>
+          <a href="mailto:tony.o@ctofit.com">Email</a>
+        </div>
+      </div>
+
+      <!-- Train col -->
+      <div class="footer-col">
+        <div class="footer-col-title">Train</div>
+        <ul>
+          <li><a href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">FIT 40 Kickstart Challenge</a></li>
+          <li><a href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">FIT 40 Inner Circle™</a></li>
+          <li><a href="https://ctofit.com/#method" target="_blank" rel="noopener">The 4M Framework</a></li>
+          <li><a href="https://ctofit.com/tracker" target="_blank" rel="noopener">14-Day Tracker</a></li>
+        </ul>
+      </div>
+
+      <!-- Connect col -->
+      <div class="footer-col">
+        <div class="footer-col-title">Connect</div>
+        <ul>
+          <li><a href="https://www.youtube.com/@CoachTonyOmo" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">Community</a></li>
+          <li><a href="mailto:tony.o@ctofit.com">Contact Coach Tony</a></li>
+          <li><a href="mailto:support@ctofit.com">Support</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal col -->
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="https://ctofit.com/legal" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
+          <li><a href="https://ctofit.com/legal#privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a href="https://ctofit.com/legal#disclaimer" target="_blank" rel="noopener">Disclaimer</a></li>
+          <li><a href="https://ctofit.com/legal#purchase" target="_blank" rel="noopener">Terms of Purchase</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; 2025 CTO Health LLC. All rights reserved. &nbsp;·&nbsp;
+        <a href="https://ctofit.com/legal" target="_blank" rel="noopener">Legal</a> &nbsp;·&nbsp;
+        <a href="https://ctofit.com/legal#privacy" target="_blank" rel="noopener">Privacy</a><br>
+        This calculator is for informational and educational purposes only. It does not constitute medical or nutritional advice. Results may vary. Consult a qualified healthcare professional before making significant changes to your diet or exercise program.
+      </div>
+      <div class="footer-made">Made to Overcome.</div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+// ── STATE ──
+var sex = 'male';
+var activityIndex = 0;
+var goal = 'fat';
+var currentStep = 0;
+
+var actMultipliers = [1.2, 1.375, 1.55, 1.725, 1.9];
+var proteinScale = [0.8, 0.85, 0.9, 1.0, 1.1];
+
+// ── STEP NAV ──
+function goStep(n) {
+  // Validate before advancing
+  if (n > currentStep) {
+    if (currentStep === 0) {
+      var age = parseFloat(document.getElementById('age').value);
+      var w   = parseFloat(document.getElementById('weight').value);
+      var ft  = parseFloat(document.getElementById('ht-ft').value);
+      var err = document.getElementById('err-0');
+      if (isNaN(age) || age < 18 || age > 90) {
+        err.style.display = 'block';
+        err.textContent = 'Please enter a valid age (18–90).';
+        return;
+      }
+      if (isNaN(w) || w < 80) {
+        err.style.display = 'block';
+        err.textContent = 'Please enter your weight.';
+        return;
+      }
+      if (isNaN(ft) || ft < 4) {
+        err.style.display = 'block';
+        err.textContent = 'Please enter your height.';
+        return;
+      }
+      err.style.display = 'none';
+    }
+  }
+
+  // Mark old step done
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  var oldNav = document.getElementById('sn' + currentStep);
+  oldNav.classList.remove('active');
+  if (n > currentStep) { oldNav.classList.add('done'); oldNav.querySelector('.sn-check').style.display = 'block'; }
+
+  currentStep = n;
+  document.getElementById('step-' + currentStep).classList.add('active');
+
+  var newNav = document.getElementById('sn' + currentStep);
+  newNav.classList.add('active');
+  newNav.classList.remove('done');
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function setSex(s) {
+  sex = s;
+  document.getElementById('btn-male').className = s === 'male' ? 'tog-btn active' : 'tog-btn';
+  document.getElementById('btn-female').className = s === 'female' ? 'tog-btn active' : 'tog-btn';
+}
+
+function setActivity(i) {
+  activityIndex = i;
+  var items = document.querySelectorAll('.opt-item');
+  for (var x = 0; x < items.length; x++) {
+    items[x].className = x === i ? 'opt-item active' : 'opt-item';
+  }
+}
+
+function setGoal(g) {
+  goal = g;
+  document.getElementById('goal-fat').className = g === 'fat' ? 'goal-btn active' : 'goal-btn';
+  document.getElementById('goal-muscle').className = g === 'muscle' ? 'goal-btn active' : 'goal-btn';
+  document.getElementById('goal-recomp').className = g === 'recomp' ? 'goal-btn active' : 'goal-btn';
+}
+
+function rnd(n) { return Math.round(n); }
+
+// ── CALCULATE ──
+function calculate() {
+  var age    = parseFloat(document.getElementById('age').value);
+  var weight = parseFloat(document.getElementById('weight').value);
+  var ft     = parseFloat(document.getElementById('ht-ft').value);
+  var hin    = parseFloat(document.getElementById('ht-in').value) || 0;
+
+  // Convert to metric
+  var weightKg = weight * 0.453592;
+  var heightCm = (ft * 12 + hin) * 2.54;
+
+  // BMR  -  Mifflin-St Jeor
+  var bmr;
+  if (sex === 'male') {
+    bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * age) + 5;
+  } else {
+    bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * age) - 161;
+  }
+
+  // TDEE
+  var tdee = rnd(bmr * actMultipliers[activityIndex]);
+
+  // Protein: locked at 1g/lb for 40+ macro split (muscle retention is the priority)
+  // Note: very active/super active users may target up to 1.1g/lb  -  that's still close enough
+  var proteinG = rnd(weight * 1.0);
+
+  // Goal targets
+  var primary;
+
+  if (goal === 'fat') {
+    primary = rnd(tdee * 0.90); // default to 10%
+  } else if (goal === 'muscle') {
+    primary = rnd(tdee * 1.10);
+  } else {
+    primary = tdee;
+  }
+
+  // Store tdee + weight globally so selectDeficit can reuse them
+  window._calcTdee = tdee;
+  window._calcWeight = weight;
+  window._calcProteinG = proteinG;
+
+  // Macros  -  protein-first for 40+ audience
+  // Protein: locked at 1g/lb (muscle retention priority)
+  // Fat: 30% of total calories (hormones, joints, satiety)
+  // Carbs: remainder (moderate  -  fuels training without excess)
+  function buildMacros(cals, pG) {
+    var pC = rnd(pG * 4);
+    var fC = rnd(cals * 0.30);
+    var fG = rnd(fC / 9);
+    var cC = cals - pC - fC;
+    if (cC < 0) { cC = 0; }
+    var cG = rnd(cC / 4);
+    var pPct = rnd((pC / cals) * 100);
+    var fPct = rnd((fC / cals) * 100);
+    var cPct = 100 - pPct - fPct;
+    if (cPct < 0) { cPct = 0; }
+    return {fatCals:fC, fatG:fG, proteinCals:pC, carbCals:cC, carbG:cG, pPct:pPct, fPct:fPct, cPct:cPct};
+  }
+
+  var m = buildMacros(primary, proteinG);
+
+  // Hand portions from macros
+  function buildPortions(pG, cG, fG) {
+    return {
+      palms:  Math.max(1, rnd(pG / 25)),
+      cupped: Math.max(1, rnd(cG / 25)),
+      thumbs: Math.max(1, rnd(fG / 9.5)),
+      fists:  4
+    };
+  }
+
+  var po = buildPortions(proteinG, m.carbG, m.fatG);
+
+  // ── RENDER ──
+
+  // Mark step 2 (goal) done
+  var sn2 = document.getElementById('sn2');
+  sn2.classList.remove('active');
+  sn2.classList.add('done');
+  sn2.querySelector('.sn-check').style.display = 'block';
+
+  // TDEE
+  document.getElementById('tdee-num').textContent = tdee.toLocaleString();
+
+  // Target cards
+  var tc = '';
+
+  if (goal === 'fat') {
+    var cal10 = rnd(tdee * 0.90);
+    var cal15 = rnd(tdee * 0.85);
+    var cal20 = rnd(tdee * 0.80);
+
+    tc += '<div class="deficit-label">Select your starting deficit:</div>';
+
+    // 10%
+    tc += '<div class="target-card selected" id="tc-10" onclick="selectDeficit(10)">';
+    tc += '<div class="tc-row"><div class="tc-left"><div class="tc-select-ring"></div><div>';
+    tc += '<div class="tc-tag">Recommended  -  Start Here</div>';
+    tc += '<div class="tc-name">10% Deficit</div>';
+    tc += '<div class="tc-desc">The right place to begin. Sustainable fat loss that protects muscle, maintains energy, and builds habits that stick. Earn your way to a deeper deficit  -  don\'t start there.</div>';
+    tc += '</div></div>';
+    tc += '<div><div class="tc-cals" id="tc-cals-10">' + cal10.toLocaleString() + '</div><div class="tc-cals-unit">cal/day</div></div>';
+    tc += '</div></div>';
+
+    // 15%
+    tc += '<div class="target-card" id="tc-15" onclick="selectDeficit(15)">';
+    tc += '<div class="tc-row"><div class="tc-left"><div class="tc-select-ring"></div><div>';
+    tc += '<div class="tc-tag">Accelerated</div>';
+    tc += '<div class="tc-name">15% Deficit</div>';
+    tc += '<div class="tc-desc">A more aggressive starting point. Appropriate if you have been training consistently and have a solid nutrition baseline. Monitor your energy and strength closely  -  if either drops significantly, pull back to 10%.</div>';
+    tc += '</div></div>';
+    tc += '<div><div class="tc-cals" id="tc-cals-15">' + cal15.toLocaleString() + '</div><div class="tc-cals-unit">cal/day</div></div>';
+    tc += '</div></div>';
+
+    // 20%
+    tc += '<div class="target-card caution" id="tc-20" onclick="selectDeficit(20)">';
+    tc += '<div class="tc-row"><div class="tc-left"><div class="tc-select-ring"></div><div>';
+    tc += '<div class="tc-tag caution-tag">⚠ Caution</div>';
+    tc += '<div class="tc-name">20% Deficit</div>';
+    tc += '<div class="tc-desc">An aggressive cut. Only appropriate for experienced individuals with a strong training foundation and close self-monitoring habits.</div>';
+    tc += '<div class="tc-warn">At this level: protect protein religiously, watch for strength loss, and do not sustain beyond 4–6 weeks without reassessing. A deficit this deep can cost muscle fast if training and protein slip.</div>';
+    tc += '</div></div>';
+    tc += '<div><div class="tc-cals" id="tc-cals-20">' + cal20.toLocaleString() + '</div><div class="tc-cals-unit">cal/day</div></div>';
+    tc += '</div></div>';
+
+  } else if (goal === 'muscle') {
+    tc += '<div class="target-card selected">';
+    tc += '<div class="tc-row"><div class="tc-left"><div class="tc-select-ring"></div><div>';
+    tc += '<div class="tc-tag">Lean Gain Target</div>';
+    tc += '<div class="tc-name">10% Surplus</div>';
+    tc += '<div class="tc-desc">A controlled surplus that fuels muscle growth without excessive fat gain. This only works if you\'re training with progressive overload.</div>';
+    tc += '</div></div>';
+    tc += '<div><div class="tc-cals" style="color:var(--y)">' + primary.toLocaleString() + '</div><div class="tc-cals-unit">cal/day</div></div>';
+    tc += '</div></div>';
+  } else {
+    tc += '<div class="target-card selected">';
+    tc += '<div class="tc-row"><div class="tc-left"><div class="tc-select-ring"></div><div>';
+    tc += '<div class="tc-tag">Recomposition</div>';
+    tc += '<div class="tc-name">Maintenance Calories</div>';
+    tc += '<div class="tc-desc">Eat at maintenance, train with intent. Lose fat and build muscle simultaneously. Slower process  -  but it\'s real and it works.</div>';
+    tc += '</div></div>';
+    tc += '<div><div class="tc-cals" style="color:var(--y)">' + primary.toLocaleString() + '</div><div class="tc-cals-unit">cal/day</div></div>';
+    tc += '</div></div>';
+  }
+
+  document.getElementById('target-cards').innerHTML = tc;
+
+  // Macros
+  function renderMacros(cals, pG) {
+    var mx = buildMacros(cals, pG);
+    var mc = '<div class="macro-grid">';
+    mc += '<div class="macro-item macro-updating"><div class="macro-num">' + cals.toLocaleString() + '</div><div class="macro-unit">kcal</div><div class="macro-label">Total</div></div>';
+    mc += '<div class="macro-item macro-updating"><div class="macro-num">' + pG + 'g</div><div class="macro-unit">' + mx.proteinCals + ' cal</div><div class="macro-label">Protein · ' + mx.pPct + '%</div></div>';
+    mc += '<div class="macro-item macro-updating"><div class="macro-num">' + mx.carbG + 'g</div><div class="macro-unit">' + mx.carbCals + ' cal</div><div class="macro-label">Carbs · ' + mx.cPct + '%</div></div>';
+    mc += '<div class="macro-item macro-updating"><div class="macro-num">' + mx.fatG + 'g</div><div class="macro-unit">' + mx.fatCals + ' cal</div><div class="macro-label">Fat · ' + mx.fPct + '%</div></div>';
+    mc += '</div>';
+    document.getElementById('macro-content').innerHTML = mc;
+  }
+
+  renderMacros(primary, proteinG);
+
+  // Store renderMacros globally for selectDeficit
+  window._renderMacros = renderMacros;
+  window._buildMacros = buildMacros;
+
+  // Coach Tony tips
+  document.getElementById('tony-tips').innerHTML = buildTips(age, sex, goal, activityIndex, proteinG, primary, tdee, weight);
+
+  // Next steps
+  document.getElementById('next-steps').innerHTML = buildNextSteps(goal, primary, tdee);
+
+  // Show results
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── SELECT DEFICIT (fat loss only) ──
+function selectDeficit(pct) {
+  var tdee   = window._calcTdee;
+  var pG     = window._calcProteinG;
+  var cals   = Math.round(tdee * (1 - pct / 100));
+
+  // Update card selection
+  var ids = [10, 15, 20];
+  for (var i = 0; i < ids.length; i++) {
+    var card = document.getElementById('tc-' + ids[i]);
+    if (!card) continue;
+    if (ids[i] === pct) {
+      card.classList.add('selected');
+    } else {
+      card.classList.remove('selected');
+    }
+  }
+
+  // Live-update macros + portions
+  window._renderMacros(cals, pG);
+
+  // Update action plan step 1 number
+  var actionTarget = document.getElementById('action-target-cals');
+  if (actionTarget) { actionTarget.textContent = cals.toLocaleString() + ' calories'; }
+
+  // Update Coach Tony's deficit-specific tip inline
+  var tony = document.getElementById('tony-fat-deficit-tip');
+  if (tony) {
+    if (pct === 10) {
+      tony.innerHTML = '<div class="tip-hl">Patience Is the Strategy</div><div class="tip-body">A 10% deficit is not dramatic  -  and that\'s the point. Slow, consistent fat loss while holding your strength is the FIT 40 way. <strong>Stack 8–12 weeks of this</strong> and the results speak for themselves. Earn your way to a deeper cut before jumping there.</div>';
+    } else if (pct === 15) {
+      tony.innerHTML = '<div class="tip-hl">You\'ve Earned a Deeper Cut  -  Stay Vigilant</div><div class="tip-body">A 15% deficit is appropriate if you have a solid training base and consistent nutrition habits. <strong>Watch your strength and energy weekly.</strong> If your lifts start dropping or fatigue spikes, pull back to 10%. This is a tool, not a test of willpower.</div>';
+    } else {
+      tony.innerHTML = '<div class="tip-hl">20% Is a Scalpel  -  Not a Sledgehammer</div><div class="tip-body"><strong style="color:#ff9900">This is an aggressive cut.</strong> At 20%, muscle loss risk is real  -  especially over 40. Hit your protein every single day without exception. If strength drops more than 5–10% over two weeks, reduce the deficit immediately. Limit this phase to 4–6 weeks maximum, then reassess.</div>';
+    }
+  }
+}
+
+// ── COACH TONY TIPS ──
+function buildTips(age, sex, goal, actIdx, proteinG, targetCals, tdee, weight) {
+  var html = '';
+  var is50plus = age >= 50;
+  var isFemale = sex === 'female';
+
+  // Tip 1: Protein
+  html += '<div class="tip-item">';
+  html += '<div class="tip-hl">Hit Your Protein  -  Non-Negotiable</div>';
+  if (isFemale) {
+    html += '<div class="tip-body">After 40, declining estrogen accelerates muscle loss faster than most women realize. Hitting <strong>' + proteinG + 'g of protein daily</strong> is the single most important lever you have to preserve your physique, protect bone density, and keep your metabolism from grinding down. Prioritize it at every meal  -  not as an afterthought.</div>';
+  } else {
+    html += '<div class="tip-body">After 40, the slow decline in testosterone means muscle doesn\'t build or hold the way it used to. <strong>' + proteinG + 'g of protein per day</strong> keeps muscle protein synthesis elevated and stops the gradual body composition creep most people just accept as aging. Do not accept it.</div>';
+  }
+  if (is50plus) {
+    html += '<div class="tip-50">50+ note: Prioritize leucine-rich sources  -  eggs, beef, whey, Greek yogurt  -  at each meal. After 50, your muscles need more leucine to trigger the same muscle-building signal you got at 35. Two to three high-leucine meals a day is the move.</div>';
+  }
+  html += '</div>';
+
+  // Tip 2: Goal-specific
+  html += '<div class="tip-item" id="tony-fat-deficit-tip">';
+  if (goal === 'fat') {
+    html += '<div class="tip-hl">Patience Is the Strategy</div>';
+    if (isFemale) {
+      html += '<div class="tip-body">Cortisol fluctuations and hormonal shifts mean the scale will not move in a straight line for you  -  and that is not failure, that is physiology. Trust the two-to-four week trend, not the daily number. Your <strong>' + targetCals.toLocaleString() + ' cal target</strong> creates a consistent deficit. That is all that needs to happen. Stay the course.</div>';
+    } else {
+      html += '<div class="tip-body">A 10% deficit is not dramatic  -  and that is exactly the point. Aggressive cuts over 40 tank your energy, kill your training, and cost you muscle. Slow, consistent fat loss while holding your strength is the FIT 40 way. <strong>Compound eight to twelve weeks of this</strong> and the results speak for themselves.</div>';
+    }
+  } else if (goal === 'muscle') {
+    html += '<div class="tip-hl">Surplus Only Works If You Train</div>';
+    html += '<div class="tip-body">A 10% surplus at <strong>' + targetCals.toLocaleString() + ' calories</strong> is fuel  -  not a free pass. Without progressive overload in the gym, those extra calories build fat, not muscle. Show up, lift heavy relative to where you are, and add weight or reps every week. Earn the surplus or don\'t run it.</div>';
+  } else {
+    html += '<div class="tip-hl">Recomp Is Slow  -  Trust It Anyway</div>';
+    if (isFemale) {
+      html += '<div class="tip-body">Body recomposition is real, and it works especially well for people over 40 who haven\'t been consistently strength training. It is slower than a focused cut or bulk, but you hold onto muscle, improve your body composition, and build habits that stick. <strong>Stay consistent at maintenance, train with intent</strong>, and measure body composition  -  not just weight.</div>';
+    } else {
+      html += '<div class="tip-body">Body recomposition is not a myth  -  it\'s a slow process. At maintenance calories with hard, consistent training, you can lose fat and build muscle at the same time. The scale barely moves. Your body changes anyway. <strong>Trust the process and measure what actually matters</strong>  -  body composition, not just weight.</div>';
+    }
+  }
+  html += '</div>';
+
+  // Tip 3: Tracking
+  html += '<div class="tip-item">';
+  html += '<div class="tip-hl">You Cannot Outguess Your Own Numbers</div>';
+  html += '<div class="tip-body">Research shows most people underestimate how much they eat by 30–50%. A food scale and a tracking app close that gap completely. Weigh your food and log it for two to three weeks  -  not forever, just long enough to calibrate your eye and build the habit. <strong>This is the step that separates people who get results from people who guess and wonder why nothing is changing.</strong></div>';
+  html += '</div>';
+
+  // Tip: Carbs as the lever
+  html += '<div class="tip-item">';
+  html += '<div class="tip-hl">Carbs Are Your Lever  -  Use Them That Way</div>';
+  if (goal === 'fat') {
+    html += '<div class="tip-body">Protein stays fixed. Fat stays fixed. <strong>Carbs are what we adjust</strong> when we need to create a deficit, accelerate fat loss, or pull back when things stall. That\'s the system. Not chasing different foods, not cutting fat to zero, not eliminating whole food groups  -  just dialing carbs up or down based on where you are and what your body needs. Simple. Repeatable. Sustainable.</div>';
+  } else if (goal === 'muscle') {
+    html += '<div class="tip-body">Protein stays fixed. Fat stays fixed. <strong>Carbs are what we add</strong> when we need more fuel for training and recovery. When you\'re in a building phase, carbs are your friend  -  they drive performance, support muscle glycogen, and keep training intensity where it needs to be. Don\'t fear them. Use them intentionally.</div>';
+  } else {
+    html += '<div class="tip-body">Protein stays fixed. Fat stays fixed. <strong>Carbs are the variable</strong>  -  on hard training days you may need more, on rest days slightly less. This is the foundation of how we adjust nutrition at every phase inside FIT 40. Master the lever and you\'ll never need a complicated diet plan again.</div>';
+  }
+  html += '</div>';
+
+  // Tip 4: 50+ meal timing, or scale tip for under-50
+  if (is50plus) {
+    html += '<div class="tip-item">';
+    html += '<div class="tip-hl">Distribute Your Protein  -  Do Not Stack It at Dinner</div>';
+    html += '<div class="tip-body">After 50, muscles become less efficient at using protein from a single large meal. Spread your <strong>' + proteinG + 'g across 3–4 meals</strong> throughout the day. This is one of the most underused strategies for people over 50 who want to gain or maintain muscle. Small shift. Real difference over time.</div>';
+    html += '</div>';
+  } else {
+    html += '<div class="tip-item">';
+    html += '<div class="tip-hl">The Scale Is Not Your Only Data Point</div>';
+    html += '<div class="tip-body">Weekly weigh-ins matter, but so do your energy levels, strength in training, how your clothes fit, and how you look in the mirror. <strong>Track all of it</strong>  -  because fat loss with muscle gain looks like progress everywhere except the scale sometimes.</div>';
+    html += '</div>';
+  }
+
+  return html;
+}
+
+// ── NEXT STEPS ──
+function buildNextSteps(goal, primary, tdee) {
+  var html = '';
+  html += '<li><span class="next-num">1</span><div>Lock in your daily target: <strong id="action-target-cals">' + primary.toLocaleString() + ' calories</strong>. Put it in your phone notes, on your fridge  -  wherever you will see it every day.</div></li>';
+  html += '<li><span class="next-num">2</span><div>Download a food tracking app  -  <strong>Cronometer</strong> or <strong>MyFitnessPal</strong> are the two I recommend. Enter your calorie and macro targets. Use the food scale to weigh your meals for the first 2–3 weeks. This is the step most people skip and then wonder why they\'re not getting results.</div></li>';
+  html += '<li><span class="next-num">3</span><div><strong>Hit your protein target first</strong>, every day. Build your meals around your protein source, then add carbs and fat to hit your remaining targets. Protein is the anchor  -  everything else fills in around it.</div></li>';
+  html += '<li><span class="next-num">4</span><div>Weigh yourself at the same time each morning, at least 3 days per week. Track the <strong>weekly average</strong>  -  not the daily number. Two to four weeks of data tells you if your target is dialed in. One day on the scale tells you nothing.</div></li>';
+
+  if (goal === 'fat') {
+    html += '<li><span class="next-num">5</span><div>If fat loss stalls after <strong>3–4 weeks of accurate tracking</strong>, pull carbs down by 25–50g. Protein and fat stay put  -  <strong>carbs are your adjustment lever</strong>. Exhaust tracking accuracy as the reason before touching your targets.</div></li>';
+  } else if (goal === 'muscle') {
+    html += '<li><span class="next-num">5</span><div>Make sure you are in a <strong>progressive overload training program</strong>. Without structured resistance training, a calorie surplus builds fat  -  not muscle. The surplus is fuel  -  you have to earn it in the gym.</div></li>';
+  } else {
+    html += '<li><span class="next-num">5</span><div>Take <strong>weekly progress photos and body measurements</strong> (waist, hips, chest, arms). During recomposition the scale barely moves  -  your photos and measurements will show the change that\'s actually happening underneath.</div></li>';
+  }
+
+  html += '<li><span class="next-num">6</span><div><strong>Post your calorie target in the community</strong> and tag Coach Tony. Accountability starts the moment you say it out loud  -  and Coach Tony reads every post.</div></li>';
+  return html;
+}
+
+// ── RESET ──
+function resetCalc() {
+  document.getElementById('results').style.display = 'none';
+
+  // Reset nav indicators
+  for (var i = 0; i < 3; i++) {
+    var sn = document.getElementById('sn' + i);
+    sn.classList.remove('active', 'done');
+    sn.querySelector('.sn-check').style.display = 'none';
+  }
+  document.getElementById('sn0').classList.add('active');
+
+  // Reset fields
+  document.getElementById('age').value = '';
+  document.getElementById('weight').value = '';
+  document.getElementById('ht-ft').value = '';
+  document.getElementById('ht-in').value = '';
+
+  // Reset state
+  setSex('male');
+  setActivity(0);
+  setGoal('fat');
+  currentStep = 0;
+
+  // Show step 0
+  var steps = document.querySelectorAll('.step');
+  for (var j = 0; j < steps.length; j++) {
+    steps[j].classList.remove('active');
+  }
+  document.getElementById('step-0').classList.add('active');
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
