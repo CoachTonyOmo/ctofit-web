@@ -145,17 +145,7 @@ const MODULE = {
 
       ],
 
-      skoolPrompt: "\"Drop one fixed mindset thought you've caught yourself saying recently. No judgment. Just awareness. That's where we start.\"",
-
-      homework: {
-        eyebrow: "Lesson 1 Homework",
-        title:   "Your First Reps",
-        items: [
-          "Watch the lesson and take notes on your fixed mindset moments",
-          "Open The Reframe tool at ctofit.com/tools/reframe",
-          "Drop your comment in the community using the prompt above"
-        ]
-      }
+      skoolPrompt: "\"Drop one fixed mindset thought you've caught yourself saying recently. No judgment. Just awareness. That's where we start.\""
     },
 
     /* ── LESSON 2 ─────────────────────────────────────────── */
@@ -281,17 +271,7 @@ const MODULE = {
 
       ],
 
-      skoolPrompt: "\"What round are you in right now in your training, your health, your life? Be honest. No highlight reel. Just real.\"",
-
-      homework: {
-        eyebrow: "Lesson 2 Homework",
-        title:   "Build Your Edge",
-        items: [
-          "Watch the lesson and identify your most common fold point",
-          "Practice the 4-count breathwork before your next stressor",
-          "Drop your comment in the community using the prompt above"
-        ]
-      }
+      skoolPrompt: "\"What round are you in right now in your training, your health, your life? Be honest. No highlight reel. Just real.\""
     },
 
     /* ── LESSON 3 ─────────────────────────────────────────── */
@@ -345,18 +325,7 @@ const MODULE = {
 
       ],
 
-      skoolPrompt: "\"Post your reframe in the community. One fixed thought and one growth thought. Keep it short. Make it real.\"",
-
-      homework: {
-        eyebrow: "Lesson 3 Homework",
-        title:   "Complete The Reframe",
-        items: [
-          "Open The Reframe tool at ctofit.com/tools/reframe",
-          "Take the 3-question audit to identify your dominant pattern",
-          "Write your personal reframe in your own words",
-          "Or download the PDF worksheet if you prefer paper"
-        ]
-      }
+      skoolPrompt: "\"Post your reframe in the community. One fixed thought and one growth thought. Keep it short. Make it real.\""
     },
 
     /* ── ACTION ASSIGNMENT ───────────────────────────────── */
@@ -1015,7 +984,7 @@ function buildLessonSection(lesson, moduleNum) {
     <div class="content-wrap lesson-body">
       ${teachings}
       ${skoolHtml}
-      ${buildHomework(lesson.homework, lesson.id)}
+      ${lesson.homework ? buildHomework(lesson.homework, lesson.id) : ''}
     </div>
   </section>`;
 }
