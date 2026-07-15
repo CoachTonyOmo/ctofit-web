@@ -3,12 +3,30 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CTO FIT — Made to Overcome.</title>
+  <title>CTO FIT | Made to Overcome.</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="shortcut icon" href="favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1930317005037660');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1930317005037660&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 
   <script>
   /* ============================================================
@@ -24,12 +42,12 @@
 
   /* HERO SECTION
      -------------------------------------------------------- */
-  var HERO_EYEBROW     = "FIT 40 Method™ — For Adults Over 40";
+  var HERO_EYEBROW     = "FIT 40 Method™ for Adults Over 40";
   var HERO_LINE1       = "You're Not Done.";
   var HERO_LINE2       = "Prove It.";
-  var HERO_SUBTEXT     = "A purposeful training system for busy adults over 40 who refuse to quit. No guessing. No fluff. Show up — the program is waiting.";
+  var HERO_SUBTEXT     = "A purposeful training system for busy adults over 40 who refuse to quit. No guessing. No fluff. Show up. The program is waiting.";
   var HERO_CTA_TEXT    = "Start the 14-Day Challenge";
-  var HERO_CTA_LINK    = "https://www.skool.com/fit-40-inner-circle-1807/about";
+  var HERO_CTA_LINK    = "#kit-form";
   var HERO_GHOST_TEXT  = "See the Method";
 
   /* STATS (below hero)
@@ -48,28 +66,28 @@
   var F1_HEADLINE_EM   = "More Progress.";
   var F1_BODY          = "Most people don't fail because they lack motivation. They fail because they don't consistently do simple things. The FIT 40 Method removes every decision except one: show up.";
   var F1_CTA_TEXT      = "Start Free Today";
-  var F1_CTA_LINK      = "https://www.skool.com/fit-40-inner-circle-1807/about";
+  var F1_CTA_LINK      = "#kit-form";
 
   /* FEATURE SECTION 2
      -------------------------------------------------------- */
   var F2_EYEBROW       = "FIT 40 Inner Circle™";
   var F2_HEADLINE      = "Real People.";
   var F2_HEADLINE_EM   = "Real Results.";
-  var F2_BODY          = "Join a community of adults over 40 who are done making excuses. Share wins, stay accountable, and get access to done-for-you programming that keeps showing up every month.";
+  var F2_BODY          = "Join a community of adults over 40 who are done making excuses. Share wins, stay accountable, and get new training delivered every month.";
   var F2_CTA_TEXT      = "Join the Inner Circle";
-  var F2_CTA_LINK      = "https://www.skool.com/fit-40-inner-circle-1807/about";
+  var F2_CTA_LINK      = "#kit-form";
 
   /* COACH SECTION
      -------------------------------------------------------- */
   var CERTS_IMAGE      = "cert-badges.png";  // Certification badges image
 
-  var COACH_QUOTE      = "This isn't about intensity — it's about integrity. Train with control now so you can train with power later.";
+  var COACH_QUOTE      = "This isn't about intensity. It's about integrity. Train with control now so you can train with power later.";
   var COACH_NAME       = "Coach Tony O";
   var COACH_TITLE      = "Founder, CTO Health LLC · Precision Nutrition L1 · ISSA Certified";
 
   /* TESTIMONIALS (swap in real names/quotes when ready)
      -------------------------------------------------------- */
-  var T1_QUOTE         = "Finally a program that fits my life. I'm not trying to train like a 25-year-old anymore — and I'm seeing better results than I ever did.";
+  var T1_QUOTE         = "Finally a program that fits my life. I'm not trying to train like a 25-year-old anymore, and I'm seeing better results than I ever did.";
   var T1_NAME          = "Member Name";
   var T1_META          = "FIT 40 Inner Circle™";
 
@@ -83,11 +101,11 @@
 
   /* FINAL CTA SECTION
      -------------------------------------------------------- */
-  var FINAL_HEADLINE1  = "You're Not Done.";
-  var FINAL_HEADLINE2  = "Prove It.";
-  var FINAL_SUBTEXT    = "Join the FIT 40 Kickstart Challenge. 14 days of purposeful training, done-for-you programming, and a community that doesn't quit. Free to start. No excuses left.";
-  var FINAL_CTA_TEXT   = "Start the Challenge — It's Free";
-  var FINAL_CTA_LINK   = "https://www.skool.com/fit-40-inner-circle-1807/about";
+  var FINAL_EYEBROW    = "7-Day Free Trial";
+  var FINAL_HEADLINE1  = "Start Your 7-Day";
+  var FINAL_HEADLINE2  = "Free Trial";
+  var FINAL_SUBTEXT    = "Enter your email to get started. You'll be redirected to create your account and begin the Kickstart Challenge.";
+  var FINAL_FORM_NOTE  = "$7/month after your trial. Cancel anytime.";
 
   /* ============================================================
      STOP EDITING — Do not change anything below this line
@@ -249,22 +267,20 @@
     .featured-author{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:0.08em;color:var(--neon);}
 
     /* RECEIPTS */
-    .receipts{background:var(--graphite);padding:96px 0;}
-    .receipts-inner{max-width:860px;margin:0 auto;padding:0 48px;text-align:center;}
+    .receipts{background:var(--graphite);padding:96px 48px;}
+    .receipts-inner{max-width:1000px;margin:0 auto;}
 
     /* CAROUSEL */
-    .carousel-wrap{position:relative;padding-bottom:40px;margin-top:48px;max-width:1200px;margin-left:auto;margin-right:auto;}
-    .carousel-window{width:100%;box-sizing:border-box;overflow:hidden;}
-    .carousel-track{display:flex;gap:12px;transition:transform 0.4s cubic-bezier(.25,.46,.45,.94);}
-    .carousel-slide{flex:0 0 520px;width:520px;border-radius:12px;transition:opacity 0.4s,transform 0.4s;opacity:0.3;transform:scale(0.92);cursor:pointer;}
-    .carousel-slide.active{opacity:1;transform:scale(1);cursor:default;outline:2px solid rgba(0,242,97,0.4);}
-    .carousel-slide img{width:100%;display:block;border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.5);}
-    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.2);color:var(--white);width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:20;transition:all 0.2s;}
-    .carousel-btn:hover{background:var(--neon);color:var(--black);}
+    .carousel{position:relative;margin-top:48px;overflow:hidden;}
+    .carousel-track{display:flex;transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);will-change:transform;}
+    .carousel-slide{min-width:100%;display:flex;align-items:center;justify-content:center;padding:0 80px;}
+    .carousel-slide img{max-height:600px;max-width:100%;object-fit:contain;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.5);}
+    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.15);color:var(--white);font-size:22px;width:52px;height:52px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:10;}
+    .carousel-btn:hover{background:var(--neon);color:var(--black);border-color:var(--neon);}
     .carousel-btn.prev{left:8px;}
     .carousel-btn.next{right:8px;}
-    .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px;}
-    .carousel-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;cursor:pointer;padding:0;transition:all 0.2s;}
+    .carousel-dots{display:flex;justify-content:center;gap:10px;margin-top:32px;}
+    .carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;cursor:pointer;transition:all 0.2s;padding:0;}
     .carousel-dot.active{background:var(--neon);transform:scale(1.3);}
 
     @media(max-width:900px){
@@ -272,27 +288,14 @@
       .featured-quote{font-size:22px;}
       .featured-quote-cont{font-size:16px;}
       .featured-author{font-size:20px;}
-      .receipts{padding:64px 0;}
-      .receipts-inner{padding:0 20px;}
-      .carousel-window{padding:16px 8% 16px;}
-      .carousel-slide{flex:0 0 75vw;width:75vw;}
-    }
-    @media(max-width:480px){
-      .featured-quote{font-size:18px;}
-      .carousel-slide{flex:0 0 85vw;width:85vw;}
-    }
-
-    @media(max-width:900px){
-      .featured-testi{padding:64px 24px;}
-      .featured-quote{font-size:22px;}
-      .featured-quote-cont{font-size:16px;}
-      .featured-author{font-size:20px;}
       .receipts{padding:64px 20px;}
-      .carousel-slide{flex:0 0 75%;}
+      .carousel-slide{padding:0 48px;}
+      .carousel-slide img{max-height:480px;}
     }
     @media(max-width:480px){
       .featured-quote{font-size:18px;}
-      .carousel-slide{flex:0 0 85%;}
+      .carousel-slide{padding:0 40px;}
+      .carousel-slide img{max-height:380px;}
       .carousel-btn{width:40px;height:40px;font-size:18px;}
     }
 
@@ -305,6 +308,55 @@
     .final-h2 span{color:var(--neon);}
     .final-sub{font-size:16px;color:rgba(255,255,255,0.45);margin-bottom:40px;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto;}
     .final-tagline{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.15);margin-top:48px;}
+
+    /* KIT EMAIL CAPTURE FORM — styled to brand */
+    #kit-form-embed{max-width:440px;margin:0 auto;}
+    #kit-form-embed form,
+    #kit-form-embed .formkit-form{display:flex;flex-direction:column;gap:14px;}
+    #kit-form-embed input[type="email"],
+    #kit-form-embed input[type="text"],
+    #kit-form-embed .formkit-input{
+      width:100%;
+      background:#0D0F12;
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:4px;
+      color:var(--white);
+      font-family:'Sora',sans-serif;
+      font-size:16px;
+      padding:16px 18px;
+      height:52px;
+      transition:border-color 0.2s;
+    }
+    #kit-form-embed input[type="email"]::placeholder,
+    #kit-form-embed .formkit-input::placeholder{color:rgba(255,255,255,0.35);}
+    #kit-form-embed input[type="email"]:focus,
+    #kit-form-embed input[type="text"]:focus,
+    #kit-form-embed .formkit-input:focus{outline:none;border-color:var(--neon);}
+    #kit-form-embed button,
+    #kit-form-embed input[type="submit"],
+    #kit-form-embed .formkit-submit{
+      display:inline-block;
+      width:100%;
+      background:var(--neon);
+      color:var(--black);
+      font-family:'Oswald',sans-serif;
+      font-weight:700;
+      font-size:15px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      border:none;
+      border-radius:4px;
+      padding:16px 24px;
+      height:52px;
+      cursor:pointer;
+      transition:opacity 0.2s,transform 0.15s;
+      animation:pulse-neon 2.5s ease-in-out infinite;
+    }
+    #kit-form-embed button:hover,
+    #kit-form-embed input[type="submit"]:hover,
+    #kit-form-embed .formkit-submit:hover{opacity:0.9;transform:translateY(-1px);animation:none;box-shadow:0 0 28px rgba(0,242,97,0.65);}
+    #kit-form-embed .formkit-alert{font-size:13px;color:var(--volt);margin-top:10px;}
+    .final-form-note{font-size:13px;color:rgba(255,255,255,0.35);margin-top:20px;font-family:'Sora',sans-serif;}
 
     /* FOOTER */
     footer{background:var(--charcoal);padding:64px 48px 40px;border-top:1px solid rgba(255,255,255,0.05);}
@@ -388,7 +440,7 @@
     <li><a href="#community">Community</a></li>
     <li><a href="legal.html">Legal</a></li>
   </ul>
-  <a id="nav-cta-btn" href="#" class="nav-cta">Join Free</a>
+  <a id="nav-cta-btn" href="#kit-form" class="nav-cta">Start Free Trial</a>
 </nav>
 
 <section class="hero">
@@ -415,11 +467,11 @@
   <div class="strip-inner">
     <div class="strip-item">
       <div class="strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00F261" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-      <div class="strip-text"><h3>Done-For-You Training</h3><p>Open the app. Your workout is waiting. No planning. No guessing. Ever.</p></div>
+      <div class="strip-text"><h3>Training. Delivered.</h3><p>Open the app. Your workout is waiting. No planning. No guessing. Ever.</p></div>
     </div>
     <div class="strip-item">
       <div class="strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00F261" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-      <div class="strip-text"><h3>Built for Busy Adults</h3><p>Efficient sessions designed around your real life — not some ideal schedule.</p></div>
+      <div class="strip-text"><h3>Built for Busy Adults</h3><p>Efficient sessions designed around your real life, not some ideal schedule.</p></div>
     </div>
     <div class="strip-item">
       <div class="strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00F261" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
@@ -457,7 +509,7 @@
   <div class="pillars-inner">
     <div class="section-eyebrow">The FIT 40 Method™</div>
     <h2 class="section-h2">The 4M Framework</h2>
-    <p class="section-sub">Four pillars. One system. Everything you need — nothing you don't.</p>
+    <p class="section-sub">Four pillars. One system. Everything you need, nothing you don't.</p>
     <div class="pillars-grid">
       <div class="pillar"><div class="pillar-num">01</div><h3>Mindset</h3><p>Consistency, discipline, and identity. Who you decide to be determines what you actually do.</p></div>
       <div class="pillar"><div class="pillar-num">02</div><h3>Measurement</h3><p>Nutrition awareness, tracking, and data. You can't improve what you don't measure.</p></div>
@@ -472,10 +524,10 @@
     <div class="creds-text">
       <div class="f-eyebrow" style="font-size:12px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--neon);margin-bottom:14px;">Backed by Experience &amp; Expertise</div>
       <h2 class="creds-heading">Certified. Proven. Trusted.</h2>
-      <p class="creds-body">Built on real-world training — not fads. You're learning from a coach who has trained on real floors, earned every credential, and knows what actually works for adults over 40.</p>
+      <p class="creds-body">Built on real-world training, not fads. You're learning from a coach who has trained on real floors, earned every credential, and knows what actually works for adults over 40.</p>
     </div>
     <div class="creds-badges">
-      <img id="certs-img" src="" alt="Coach Tony O Certifications — Precision Nutrition L1, CDS Level 3, ISSA Certified, Kettlebell Coach, Rawai Muay Thai"/>
+      <img id="certs-img" src="" alt="Coach Tony O Certifications: Precision Nutrition L1, CDS Level 3, ISSA Certified, Kettlebell Coach, Rawai Muay Thai"/>
     </div>
   </div>
 </section>
@@ -509,8 +561,8 @@
     <div class="featured-testi-inner">
       <div class="featured-stars">⭐⭐⭐⭐⭐</div>
       <blockquote class="featured-quote">"This program was exactly what I needed. I used to feel lost when it came to workouts and nutrition, constantly second-guessing if I was doing the right thing. Coach Tony took all the guesswork out of it and made everything simple and effective.</blockquote>
-      <p class="featured-quote-cont">Since starting, I've lost weight, built strength, and for the first time in my life, I have <strong>visible muscle at 48</strong>. The best part? <strong>Everyone keeps asking me how I did it!</strong> I feel stronger, healthier, and more confident than ever — without spending hours in the gym or following extreme diets."</p>
-      <div class="featured-author">— Bob, 48 | Dad of 2 Girls</div>
+      <p class="featured-quote-cont">Since starting, I've lost weight, built strength, and for the first time in my life, I have <strong>visible muscle at 48</strong>. The best part? <strong>Everyone keeps asking me how I did it!</strong> I feel stronger, healthier, and more confident than ever, without spending hours in the gym or following extreme diets."</p>
+      <div class="featured-author">Bob, 48 | Dad of 2 Girls</div>
     </div>
   </div>
 
@@ -520,32 +572,43 @@
       <div class="section-eyebrow">Real Results</div>
       <h2 class="section-h2">Receipts &gt; Hype</h2>
       <p class="section-sub">No staged photos. No paid testimonials. Just real people, real data, real life.</p>
-    </div>
 
-    <div class="carousel-wrap" id="cw">
-      <div class="carousel-window">
+      <div class="carousel">
         <div class="carousel-track" id="carousel-track">
           <div class="carousel-slide"><img src="result-1.png" alt="Real member result"/></div>
           <div class="carousel-slide"><img src="result-2.png" alt="Real member result"/></div>
           <div class="carousel-slide"><img src="result-3.png" alt="Real member result"/></div>
           <div class="carousel-slide"><img src="result-4.png" alt="Real member result"/></div>
         </div>
+        <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">&#8592;</button>
+        <button class="carousel-btn next" id="carousel-next" aria-label="Next">&#8594;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
       </div>
-      <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">&#8592;</button>
-      <button class="carousel-btn next" id="carousel-next" aria-label="Next">&#8594;</button>
-      <div class="carousel-dots" id="carousel-dots"></div>
     </div>
   </div>
 
 </section>
 
-<section class="final-cta">
+<section class="final-cta" id="kit-form">
   <div class="final-cta-inner">
-    <div class="final-eyebrow">Free 14-Day Challenge — Start Today</div>
+    <div class="final-eyebrow" id="final-eyebrow-el"></div>
     <h2 class="final-h2" id="final-h2-el"></h2>
     <p class="final-sub" id="final-sub-el"></p>
-    <a id="final-cta-btn" href="#" class="btn-primary" style="font-size:16px;padding:18px 48px;"></a>
-    <div class="final-tagline">Made to Overcome. — CTO FIT</div>
+
+    <!-- ============================================================
+         KIT (ConvertKit) EMBED GOES HERE
+         Paste your Kit inline form embed code inside this div.
+         It is already wrapped in #kit-form-embed, which applies
+         brand styling (colors, fonts, radius) to whatever markup
+         Kit generates, and a script below wires up the Meta Pixel
+         Lead event on submit.
+         ============================================================ -->
+    <div id="kit-form-embed">
+      <script async data-uid="9fd60e35c0" src="https://ctofit.kit.com/9fd60e35c0/index.js"></script>
+    </div>
+
+    <p class="final-form-note" id="final-form-note-el"></p>
+    <div class="final-tagline">Made to Overcome. · CTO FIT</div>
   </div>
 </section>
 
@@ -635,46 +698,69 @@
     cs.style.backgroundPosition = 'center';
     document.getElementById('coach-placeholder').style.display = 'none';
   }
+  document.getElementById('final-eyebrow-el').textContent = FINAL_EYEBROW;
   document.getElementById('final-h2-el').innerHTML = FINAL_HEADLINE1 + '<br><span>' + FINAL_HEADLINE2 + '</span>';
   document.getElementById('final-sub-el').textContent = FINAL_SUBTEXT;
-  document.getElementById('final-cta-btn').textContent = FINAL_CTA_TEXT;
-  document.getElementById('final-cta-btn').href = FINAL_CTA_LINK;
+  document.getElementById('final-form-note-el').textContent = FINAL_FORM_NOTE;
 
   // Carousel
   (function(){
-    var trk=document.getElementById('carousel-track');
-    var dts=document.getElementById('carousel-dots');
-    var slides=Array.from(trk.children);
-    var N=slides.length,cur=0,gap=12;
-    slides.forEach(function(_,i){
-      var d=document.createElement('button');
-      d.className='carousel-dot'+(i===0?' active':'');
-      d.onclick=function(){go(i);};
-      dts.appendChild(d);
+    var track = document.getElementById('carousel-track');
+    var dotsContainer = document.getElementById('carousel-dots');
+    if(!track) return;
+    var slides = track.querySelectorAll('.carousel-slide');
+    var total = slides.length;
+    var current = 0;
+    var autoTimer;
+
+    // Build dots
+    slides.forEach(function(_, i){
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i===0?' active':'');
+      dot.setAttribute('aria-label', 'Slide ' + (i+1));
+      dot.addEventListener('click', function(){ goTo(i); resetAuto(); });
+      dotsContainer.appendChild(dot);
     });
-    function go(n){
-      cur=(n+N)%N;
-      var win=document.querySelector('.carousel-window');
-      var winW=win.offsetWidth;
-      var slideW=slides[0].offsetWidth;
-      // Center the active slide: offset = center of window - center of active slide
-      var centerOffset=(winW/2)-(slideW/2);
-      var offset=centerOffset - cur*(slideW+gap);
-      trk.style.transform='translateX('+offset+'px)';
-      slides.forEach(function(s,i){s.classList.toggle('active',i===cur);});
-      dts.querySelectorAll('.carousel-dot').forEach(function(d,i){d.classList.toggle('active',i===cur);});
+
+    function goTo(n){
+      current = (n + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dotsContainer.querySelectorAll('.carousel-dot').forEach(function(d,i){
+        d.classList.toggle('active', i===current);
+      });
     }
-    document.getElementById('carousel-prev').onclick=function(){go(cur-1);};
-    document.getElementById('carousel-next').onclick=function(){go(cur+1);};
-    slides.forEach(function(s,i){s.onclick=function(){if(i!==cur){go(i);}};});
-    var sx=0;
-    trk.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
-    trk.addEventListener('touchend',function(e){
-      var d=sx-e.changedTouches[0].clientX;
-      if(Math.abs(d)>40){go(d>0?cur+1:cur-1);}
-    },{passive:true});
-    window.addEventListener('resize',function(){go(cur);});
-    go(0);
+
+    document.getElementById('carousel-prev').addEventListener('click', function(){ goTo(current-1); resetAuto(); });
+    document.getElementById('carousel-next').addEventListener('click', function(){ goTo(current+1); resetAuto(); });
+
+    // Touch swipe
+    var startX = 0;
+    track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', function(e){
+      var diff = startX - e.changedTouches[0].clientX;
+      if(Math.abs(diff) > 40) goTo(diff > 0 ? current+1 : current-1);
+      resetAuto();
+    }, {passive:true});
+
+    // Auto advance — pauses on hover
+    function startAuto(){ autoTimer = setInterval(function(){ goTo(current+1); }, 5000); }
+    function resetAuto(){ clearInterval(autoTimer); startAuto(); }
+    track.parentElement.addEventListener('mouseenter', function(){ clearInterval(autoTimer); });
+    track.parentElement.addEventListener('mouseleave', startAuto);
+    startAuto();
+  })();
+
+  // Meta Pixel — fire Lead event when the Kit form is submitted.
+  // Listens on the container so it works no matter what markup
+  // Kit's embed script renders inside #kit-form-embed.
+  (function(){
+    var kitContainer = document.getElementById('kit-form-embed');
+    if(!kitContainer) return;
+    kitContainer.addEventListener('submit', function(e){
+      if(typeof fbq === 'function'){
+        fbq('track', 'Lead');
+      }
+    }, true);
   })();
 
 </script>

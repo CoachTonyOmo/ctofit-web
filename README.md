@@ -15,6 +15,7 @@
 | Tool | URL |
 |------|-----|
 | Mindset Detector Quiz | ctofit.com/tools/mindset-detector |
+| The Reframe | ctofit.com/tools/reframe |
 
 ---
 
