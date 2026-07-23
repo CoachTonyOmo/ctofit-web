@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 03 &middot; Measurement | FIT 40 Method | CTO FIT</title>
+<meta name="description" content="The complete Measurement pillar. Find your number, set your macros, and learn the one skill that changes everything after 40.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:18px;scroll-behavior:smooth}
+:root{
+  --neon:#00F261;--bg:#0D0F12;--bg2:#14171C;--bg3:#1B1F26;
+  --text:#fff;--text2:#9aa3ad;--text3:#5f6873;--border:#262B33;--amber:#FF9900;
+}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;font-size:1rem;line-height:1.65}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,15,18,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1200px;margin:0 auto;padding:.6rem 1.2rem;display:flex;align-items:center;gap:1rem}
+.nav-brand{display:flex;align-items:center;gap:.55rem;flex-shrink:0;text-decoration:none}
+.nav-logo{height:1.5rem;width:auto}
+.nav-logo-tx{font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--neon)}
+.nav-pills{display:flex;gap:.3rem;overflow-x:auto;flex:1;scrollbar-width:none;padding:.2rem 0}
+.nav-pills::-webkit-scrollbar{display:none}
+.pill{font-family:'Oswald',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--text3);text-decoration:none;padding:.42rem .62rem;border-radius:4px;white-space:nowrap;transition:all .18s;border:1px solid transparent}
+.pill:hover{color:var(--neon);border-color:var(--border)}
+.pill.on{color:var(--neon);border-color:var(--neon);background:rgba(0,242,97,.07)}
+.nav-cta{background:var(--neon);color:#000;font-family:'Oswald',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;padding:.55rem 1rem;border-radius:4px;transition:all .18s;white-space:nowrap;flex-shrink:0}
+.nav-cta:hover{background:#00d954;box-shadow:0 0 18px rgba(0,242,97,.35)}
+@media(max-width:760px){.nav-brand{display:none}}
+
+/* ── LAYOUT ── */
+.sec{max-width:900px;margin:0 auto;padding:3.4rem 1.4rem}
+.eyebrow{font-size:.63rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--neon);margin-bottom:.9rem}
+h1{font-family:'Oswald',sans-serif;font-size:clamp(2.6rem,8vw,4.6rem);font-weight:700;letter-spacing:.02em;text-transform:uppercase;line-height:1;margin-bottom:1.1rem}
+h2{font-family:'Oswald',sans-serif;font-size:clamp(1.9rem,5vw,3rem);font-weight:700;letter-spacing:.02em;text-transform:uppercase;line-height:1.05;margin-bottom:1.1rem}
+h3{font-family:'Oswald',sans-serif;font-size:clamp(1.15rem,2.5vw,1.5rem);font-weight:600;letter-spacing:.03em;text-transform:uppercase;line-height:1.15;margin-bottom:.55rem}
+.cv{font-family:'Caveat',cursive;font-weight:700;color:var(--neon);text-transform:lowercase;font-size:1.42em;letter-spacing:0;line-height:.8}
+.lede{font-size:clamp(1rem,2vw,1.18rem);color:var(--text2);max-width:38rem;line-height:1.65}
+.lede strong{color:var(--text)}
+p{color:var(--text2);margin-bottom:1rem}
+p strong{color:var(--text)}
+p:last-child{margin-bottom:0}
+
+/* ── MODULE HERO ── */
+.mhero{max-width:900px;margin:0 auto;padding:5rem 1.4rem 3rem;text-align:center}
+.mhero .lede{margin:0 auto}
+.mod-tag{font-family:'Oswald',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:1.4rem}
+.mod-tag span{color:var(--neon)}
+.mhero-meta{display:flex;gap:1.6rem;flex-wrap:wrap;justify-content:center;padding-top:1.6rem;margin-top:2rem;border-top:1px solid var(--border)}
+.mhero-meta div{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3)}
+.mhero-meta span{color:var(--neon)}
+
+/* ── LESSON HEADER ── */
+.lesson{border-top:1px solid var(--border)}
+.lhead{max-width:900px;margin:0 auto;padding:3.6rem 1.4rem 0}
+.lnum{font-family:'Oswald',sans-serif;font-size:clamp(3.4rem,10vw,6rem);font-weight:700;color:var(--bg3);line-height:.85;letter-spacing:-.02em;-webkit-text-stroke:1px var(--border)}
+.lmeta{display:flex;align-items:center;gap:.8rem;margin-top:-.6rem;margin-bottom:.5rem}
+.lmeta-line{height:1px;background:var(--neon);width:2rem;flex-shrink:0}
+.lmeta-tx{font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--neon)}
+
+/* ── PULL QUOTE ── */
+.pull{font-family:'Oswald',sans-serif;font-size:clamp(1.3rem,3.4vw,2.1rem);font-weight:600;letter-spacing:.03em;line-height:1.25;color:var(--text);margin:1.8rem 0 1.3rem;padding-left:1.4rem;border-left:3px solid var(--neon)}
+
+/* ── CHAPTERS ── */
+.chapter{display:grid;grid-template-columns:auto 1fr;gap:2rem;padding:2.2rem 0;border-bottom:1px solid var(--border)}
+.chapter:last-of-type{border-bottom:none}
+.ch-num{font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.16em;color:var(--text3);padding-top:.5rem;white-space:nowrap}
+.ch-num b{color:var(--neon)}
+@media(max-width:700px){.chapter{grid-template-columns:1fr;gap:.7rem}.ch-num{padding-top:0}}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:2.2rem}
+.stat{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.5rem 1rem;text-align:center}
+.stat-n{font-family:'Oswald',sans-serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--neon);line-height:1}
+.stat-l{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);margin-top:.5rem;line-height:1.3}
+@media(max-width:560px){.stats{grid-template-columns:1fr}}
+
+/* ── X LIST ── */
+.xlist{list-style:none;margin-top:1.6rem}
+.xlist li{display:flex;align-items:baseline;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);font-family:'Oswald',sans-serif;font-size:clamp(1.05rem,2.4vw,1.45rem);font-weight:600;letter-spacing:.03em;color:var(--text)}
+.xlist li:last-child{border-bottom:none}
+.xlist .x{color:var(--text3);flex-shrink:0;font-size:.8em}
+.xlist .dim{color:var(--text2);font-weight:400;font-family:'Sora',sans-serif;font-size:.62em}
+
+/* ── CALLOUT ── */
+.callout{margin-top:1.8rem;padding:1.4rem 1.6rem;background:var(--bg3);border-left:3px solid var(--neon);border-radius:6px;font-family:'Oswald',sans-serif;font-size:clamp(1.05rem,2.4vw,1.45rem);font-weight:600;letter-spacing:.03em;line-height:1.35;color:var(--text)}
+.callout .cv{font-size:1.3em}
+
+/* ── FORMULA ── */
+.formula{display:flex;align-items:center;justify-content:center;gap:clamp(.7rem,2.4vw,1.6rem);flex-wrap:wrap;margin:2.2rem 0}
+.fb{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:clamp(1rem,2.6vw,1.6rem) clamp(1.1rem,3.4vw,2.1rem);text-align:center;min-width:7.5rem}
+.fb.hot{border-color:var(--neon);background:rgba(0,242,97,.05)}
+.fb-t{font-family:'Oswald',sans-serif;font-size:clamp(1.3rem,3.4vw,2.2rem);font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1}
+.fb.hot .fb-t{color:var(--neon)}
+.fb-b{font-size:.6rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);margin-top:.45rem}
+.fop{font-family:'Oswald',sans-serif;font-size:clamp(1.4rem,3.4vw,2.2rem);font-weight:700;color:var(--neon)}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;margin-top:1.4rem;font-size:.84rem}
+.tbl th{text-align:left;font-family:'Oswald',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--neon);padding:.65rem .7rem;border-bottom:1px solid var(--border)}
+.tbl td{padding:.8rem .7rem;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.tbl td:first-child{color:var(--text);font-weight:600;white-space:nowrap}
+.tbl td.hi{color:var(--neon);font-family:'Oswald',sans-serif;font-weight:700;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:none}
+
+/* ── GOAL CARDS ── */
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:1.8rem}
+.gcard{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.6rem 1.1rem;text-align:center}
+.gcard.hot{border-color:var(--neon)}
+.g-ico{font-size:1.8rem;margin-bottom:.5rem}
+.g-name{font-family:'Oswald',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.45rem}
+.g-num{font-family:'Oswald',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;color:var(--neon);line-height:1}
+.g-sub{font-size:.71rem;color:var(--text2);margin-top:.45rem;line-height:1.45}
+@media(max-width:640px){.goals{grid-template-columns:1fr}}
+
+/* ── LEVER ── */
+.lever{margin-top:1.8rem}
+.lv-row{display:flex;align-items:center;gap:1rem;margin-bottom:.65rem}
+.lv-lbl{width:6rem;flex-shrink:0;font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.lv-bar{flex:1;height:2.6rem;border-radius:6px;display:flex;align-items:center;padding:0 1rem;font-family:'Oswald',sans-serif;font-size:.73rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.lv-bar.lock{background:var(--bg3);border:1px solid var(--border);color:var(--text2)}
+.lv-bar.move{background:var(--neon);color:#000}
+.lv-arr{margin-left:auto;font-size:1rem}
+@media(max-width:560px){.lv-lbl{width:4.4rem;font-size:.66rem}}
+
+/* ── STEP CARD ── */
+.refcard{background:#000;border:2px solid var(--neon);border-radius:10px;padding:2rem;margin-top:1.8rem}
+.ref-step{display:grid;grid-template-columns:auto 1fr;gap:1.1rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+.ref-step:last-child{border-bottom:none;padding-bottom:0}
+.ref-n{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;color:var(--neon);line-height:1;min-width:1.5rem}
+.ref-h{font-family:'Oswald',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.22rem}
+.ref-b{font-size:.81rem;color:var(--text2);line-height:1.55}
+.ref-b strong{color:var(--text)}
+
+/* ── VIDEO SLOT ── */
+.vslot{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:2.4rem 1.6rem;text-align:center;margin-top:1.8rem}
+.vslot-ico{font-size:2.2rem;margin-bottom:.7rem}
+.vslot-h{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.4rem}
+.vslot-b{font-size:.8rem;color:var(--text2);line-height:1.55;max-width:26rem;margin:0 auto}
+.vwrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-top:1.8rem;border:1px solid var(--border)}
+.vwrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* ── FIBER GRID ── */
+.fiber-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:1.6rem}
+.fcell{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.2rem .7rem;text-align:center}
+.fcell-n{font-family:'Oswald',sans-serif;font-size:clamp(1.4rem,3.4vw,2rem);font-weight:700;color:var(--neon);line-height:1}
+.fcell-l{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);margin-top:.45rem;line-height:1.35}
+@media(max-width:620px){.fiber-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── TWO COL ── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1.6rem}
+.tcell{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.5rem 1.3rem}
+.tcell.hot{border-color:var(--neon)}
+.tcell.warn{border-color:var(--amber)}
+.tcell-h{font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.tcell.hot .tcell-h{color:var(--neon)}
+.tcell.warn .tcell-h{color:var(--amber)}
+.tcell-b{font-size:.81rem;color:var(--text2);line-height:1.6}
+.tcell-b strong{color:var(--text)}
+@media(max-width:620px){.two{grid-template-columns:1fr}}
+
+/* ── FAQ ── */
+.faq{margin-top:1.4rem;border-top:1px solid var(--border)}
+.faq details{border-bottom:1px solid var(--border)}
+.faq summary{cursor:pointer;padding:1.1rem 2rem 1.1rem 0;font-family:'Oswald',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.03em;color:var(--text);list-style:none;position:relative;transition:color .18s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--neon)}
+.faq summary::after{content:'+';position:absolute;right:.2rem;top:.95rem;font-size:1.3rem;color:var(--neon);font-family:'Sora',sans-serif;font-weight:400;line-height:1}
+.faq details[open] summary::after{content:'\2212'}
+.faq-a{padding:0 0 1.2rem;font-size:.86rem;color:var(--text2);line-height:1.65;max-width:44rem}
+.faq-a strong{color:var(--text)}
+
+/* ── ACTION BAR ── */
+.action{background:rgba(0,242,97,.05);border:1px solid var(--neon);border-radius:8px;padding:1.5rem 1.6rem;margin-top:2rem;display:flex;align-items:center;gap:1.3rem;flex-wrap:wrap}
+.action-ico{font-size:1.6rem;flex-shrink:0}
+.action-tx{flex:1;min-width:14rem}
+.action-h{font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--neon);margin-bottom:.25rem}
+.action-b{font-size:.82rem;color:var(--text2);line-height:1.55}
+.action-btn{background:var(--neon);color:#000;font-family:'Oswald',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;padding:.75rem 1.4rem;border-radius:5px;transition:all .18s;white-space:nowrap}
+.action-btn:hover{background:#00d954;box-shadow:0 0 18px rgba(0,242,97,.35)}
+
+/* ── CLOSE ── */
+.close{background:#000;border:1px solid var(--border);border-top:2px solid var(--neon);border-radius:10px;padding:3rem 2rem;text-align:center;max-width:900px;margin:2rem 1.4rem 4rem}
+@media(min-width:929px){.close{margin:2rem auto 4rem}}
+.close h2{margin-bottom:1rem}
+.close .lede{margin:0 auto 1.7rem}
+.close-btn{display:inline-block;background:var(--neon);color:#000;font-family:'Oswald',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;padding:.95rem 2.2rem;border-radius:6px;transition:all .18s}
+.close-btn:hover{background:#00d954;box-shadow:0 0 24px rgba(0,242,97,.4);transform:translateY(-2px)}
+.made{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--neon);margin-top:1.7rem;line-height:1}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:2.2rem 1.4rem;text-align:center}
+.f-tx{font-size:.69rem;color:var(--text3);line-height:1.7}
+.f-tx a{color:var(--text2);text-decoration:none}
+.f-tx a:hover{color:var(--neon)}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(1.3rem);transition:opacity .55s ease,transform .55s ease}
+.rv.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-in">
+    <a class="nav-brand" href="https://ctofit.com">
+      <img class="nav-logo" src="https://ctofit.com/logo_white_new.png" alt="CTO FIT"
+           onerror="this.style.display='none';document.getElementById('nlt').style.display='block'">
+      <span class="nav-logo-tx" id="nlt" style="display:none">CTO FIT</span>
+    </a>
+    <div class="nav-pills">
+      <a class="pill" href="#l1">01 Measured</a>
+      <a class="pill" href="#l2">02 The Number</a>
+      <a class="pill" href="#l3">03 The Lever</a>
+      <a class="pill" href="#l4">04 Make It Yours</a>
+      <a class="pill" href="#l5">05 Fourth Number</a>
+      <a class="pill" href="#l6">06 Chipotle</a>
+      <a class="pill" href="#l7">07 Consistency</a>
+    </div>
+    <a class="nav-cta" href="https://ctofit.com/tools/calorie-calculator">Get My Number</a>
+  </div>
+</nav>
+
+<!-- MODULE HERO -->
+<header class="mhero rv">
+  <div class="mod-tag"><span>Module 03</span> &nbsp;&#9670;&nbsp; FIT 40 Method</div>
+  <h1>Measure<span class="cv">ment</span></h1>
+  <p class="lede">Mindset is handled. Movement is handled. <strong>This is the one thing still running on guesswork.</strong> Seven lessons. Nothing long. By the end you will have your number, it will live on your phone, and you will know how to hit it.</p>
+  <div class="mhero-meta">
+    <div><span>&#9670;</span> 7 lessons</div>
+    <div><span>&#9670;</span> About 40 minutes</div>
+    <div><span>&#9670;</span> Coach Tony O</div>
+  </div>
+</header>
+
+<!-- ══════ LESSON 01 ══════ -->
+<section class="lesson" id="l1">
+  <div class="lhead rv">
+    <div class="lnum">01</div>
+    <div class="lmeta"><span class="lmeta-line"></span><span class="lmeta-tx">Lesson One &middot; 4 min</span></div>
+    <h2>What Gets<br><span class="cv">measured</span></h2>
+    <div class="pull">What gets measured, gets managed.</div>
+    <p class="lede">Old business saying, and the entire reason this pillar exists. <strong>You cannot manage what you have never actually looked at.</strong></p>
+  </div>
+
+  <div class="sec">
+    <div class="rv">
+      <div class="eyebrow">How I found it</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem);margin-bottom:1rem">I Spent Years Trying to Outrun <span class="cv">my fork</span></h3>
+    </div>
+
+    <div class="chapter rv">
+      <div class="ch-num"><b>01</b> / 04</div>
+      <div>
+        <h3>I Was Training Hard</h3>
+        <p>Muay Thai sessions burning a thousand calories. Running. Cardio stacked on cardio. I worked as hard as anybody I knew, and for a long time it was enough to cover for everything else.</p>
+      </div>
+    </div>
+
+    <div class="chapter rv">
+      <div class="ch-num"><b>02</b> / 04</div>
+      <div>
+        <h3>My Diet Was Never Handled</h3>
+        <p>I was not paying attention to what was going into my body or in what portions. I did not have to. The volume of work I was doing hid the problem. So I never learned the skill.</p>
+      </div>
+    </div>
+
+    <div class="chapter rv">
+      <div class="ch-num"><b>03</b> / 04</div>
+      <div>
+        <h3>Then Life Changed and the Cover Was Gone</h3>
+        <p>The training volume of your twenties and thirties does not survive your forties. Work, family, recovery, time. When the output dropped, the diet I had been outrunning caught up to me all at once.</p>
+        <p><strong>That was the wall. Not a broken metabolism. A lifestyle that changed while my habits did not.</strong></p>
+      </div>
+    </div>
+
+    <div class="chapter rv">
+      <div class="ch-num"><b>04</b> / 04</div>
+      <div>
+        <h3>One Skill Fixed It</h3>
+        <p>Three or four years ago I learned to weigh my food and know my numbers. That is it. That is the whole thing. I am the leanest, strongest, best conditioned I have ever been, and I am 49.</p>
+        <p>Training was never my problem. <strong>Measurement was.</strong></p>
+      </div>
+    </div>
+
+    <div class="stats rv">
+      <div class="stat"><div class="stat-n">49</div><div class="stat-l">Years old</div></div>
+      <div class="stat"><div class="stat-n">1</div><div class="stat-l">Skill that changed it</div></div>
+      <div class="stat"><div class="stat-n">2-5</div><div class="stat-l">Minutes a meal</div></div>
+    </div>
+
+    <div class="callout rv">If you learn one skill this year, <span class="cv">make it this one.</span></div>
+
+    <p class="rv" style="margin-top:1.8rem">Most people over 40 do not have a training problem. <strong>They have a measurement problem wearing a training problem costume.</strong> They work hard, they show up, and they cannot understand why the results do not follow. The work was never the issue. What was going in the body, and in what amounts, was never looked at.</p>
+  </div>
+</section>
+
+<!-- ══════ LESSON 02 ══════ -->
+<section class="lesson" id="l2">
+  <div class="lhead rv">
+    <div class="lnum">02</div>
+    <div class="lmeta"><span class="lmeta-line"></span><span class="lmeta-tx">Lesson Two &middot; 7 min</span></div>
+    <h2>The First<br><span class="cv">number</span></h2>
+    <p class="lede">Before you change your diet. Before you buy a supplement. Before you cut a single carb. <strong>There is one number everything else depends on, and almost nobody finds it.</strong></p>
+  </div>
+
+  <div class="sec">
+    <div class="rv">
+      <div class="eyebrow">The pattern</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem)">Everyone Starts at Step <span class="cv">three</span></h3>
+      <ul class="xlist">
+        <li><span class="x">&#10005;</span>New diet <span class="dim">on Monday</span></li>
+        <li><span class="x">&#10005;</span>Supplements <span class="dim">in the cart</span></li>
+        <li><span class="x">&#10005;</span>Carbs <span class="dim">cut to zero</span></li>
+        <li><span class="x">&#10005;</span>More cardio <span class="dim">than ever</span></li>
+      </ul>
+      <div class="callout">All of it depends on a number <span class="cv">most people never find.</span></div>
+    </div>
+
+    <div class="rv" style="margin-top:3rem">
+      <div class="eyebrow">The number</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem)">Your Maintenance <span class="cv">calories</span></h3>
+      <p class="lede">TDEE. Total Daily Energy Expenditure. The calories your body burns across a full day of training, working, walking, and living. <strong>Your baseline.</strong></p>
+      <p style="margin-top:1.2rem">Eat above it, you gain. Eat below it, you lose. Eat at it, you hold. Never find it, and you are guessing at everything downstream forever.</p>
+      <p><strong>It is an estimate, not a verdict.</strong> No formula knows your exact body. What it gives you is a starting point far closer than a guess, and something concrete to adjust from once you have real data.</p>
+    </div>
+
+    <div class="rv" style="margin-top:3rem">
+      <div class="eyebrow">The math</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem)">How the Number Is <span class="cv">built</span></h3>
+      <div class="formula">
+        <div class="fb"><div class="fb-t">BMR</div><div class="fb-b">Your engine at idle</div></div>
+        <div class="fop">&times;</div>
+        <div class="fb"><div class="fb-t">Activity</div><div class="fb-b">How you actually move</div></div>
+        <div class="fop">=</div>
+        <div class="fb hot"><div class="fb-t">TDEE</div><div class="fb-b">Your number</div></div>
+      </div>
+      <p><strong>BMR</strong> is what you would burn lying in bed all day. Age, height, weight, and sex go in, a number comes out. The formula worth using is Mifflin-St Jeor.</p>
+      <p><strong>Activity</strong> is the multiplier, and it is where almost everyone gets it wrong. Someone getting four to six thousand steps a day needs far less than someone hitting the gym hard and walking ten to fifteen thousand.</p>
+
+      <table class="tbl">
+        <tr><th>Level</th><th>What it means</th><th>&times;</th></tr>
+        <tr><td>Sedentary</td><td>Desk job, little or no training</td><td class="hi">1.2</td></tr>
+        <tr><td>Lightly Active</td><td>Light training 1 to 3 days a week</td><td class="hi">1.375</td></tr>
+        <tr><td>Moderately Active</td><td>Structured training 3 to 5 days a week</td><td class="hi">1.55</td></tr>
+        <tr><td>Very Active</td><td>Hard training 6 to 7 days, or a physical job</td><td class="hi">1.725</td></tr>
+        <tr><td>Super Active</td><td>Daily intense training plus physical work</td><td class="hi">1.9</td></tr>
+      </table>
+      <div class="callout">When you are between two levels, <span class="cv">pick the lower one.</span></div>
+    </div>
+
+    <div class="rv" style="margin-top:3rem">
+      <div class="eyebrow">The direction</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem)">One Number, Three <span class="cv">roads</span></h3>
+      <p class="lede">You pick one. Chasing two at once usually means progress on neither.</p>
+      <div class="goals">
+        <div class="gcard hot">
+          <div class="g-ico">&#128293;</div>
+          <div class="g-name">Fat Loss</div>
+          <div class="g-num">-10%</div>
+          <div class="g-sub">Start here. Earn the deeper cuts.</div>
+        </div>
+        <div class="gcard">
+          <div class="g-ico">&#128170;</div>
+          <div class="g-name">Muscle Gain</div>
+          <div class="g-num">+10%</div>
+          <div class="g-sub">Fuel it. Then earn it in the gym.</div>
+        </div>
+        <div class="gcard">
+          <div class="g-ico">&#9878;</div>
+          <div class="g-name">Recomp</div>
+          <div class="g-num">-5%</div>
+          <div class="g-sub">Just under. Train with intent.</div>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem">Ten percent is not dramatic, and that is the point. Aggressive cuts after 40 cost you energy, cost you training quality, and cost you muscle. <strong>You cannot afford to give muscle back at this age.</strong> Start at ten and earn your way down only if progress genuinely stalls.</p>
+    </div>
+
+    <div class="rv" style="margin-top:3rem">
+      <div class="eyebrow">The anchor</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem)">Protein Comes <span class="cv">first</span></h3>
+      <div class="formula">
+        <div class="fb hot"><div class="fb-t">1g</div><div class="fb-b">Per pound of bodyweight</div></div>
+      </div>
+      <p class="lede"><strong>Non negotiable after 40.</strong> Muscle is the asset that protects your metabolism, your strength, your joints, and your independence later. Protein is what protects the muscle.</p>
+      <p style="margin-top:1.2rem">Set it first. Build every meal around the protein source, then fill in the rest. If you hit nothing else in a day, hit this.</p>
+    </div>
+
+    <div class="rv" style="margin-top:3rem">
+      <div class="eyebrow">One more thing</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem)">Your Number Is <span class="cv">yours</span></h3>
+      <p>Do not compare it to anybody else's. Not your training partner's, not your spouse's, not somebody's in the community.</p>
+      <p>Two people the same age and the same height can have targets hundreds of calories apart, and both are correct. <strong>Bodyweight, activity, and goal all move the number.</strong> A higher target does not mean somebody is doing better and a lower one does not mean you are behind.</p>
+      <p>The only number that matters to you is the one on your screen, and the only comparison worth making is <strong>you now against you three weeks from now.</strong></p>
+    </div>
+
+    <div class="action rv">
+      <div class="action-ico">&#9670;</div>
+      <div class="action-tx">
+        <div class="action-h">Your action</div>
+        <div class="action-b">Run the calculator. Save your baseline. Write the number down somewhere you will see it.</div>
+      </div>
+      <a class="action-btn" href="https://ctofit.com/tools/calorie-calculator">Open Calculator</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ LESSON 03 ══════ -->
+<section class="lesson" id="l3">
+  <div class="lhead rv">
+    <div class="lnum">03</div>
+    <div class="lmeta"><span class="lmeta-line"></span><span class="lmeta-tx">Lesson Three &middot; 6 min</span></div>
+    <h2>Carbs Are<br>the <span class="cv">lever</span></h2>
+    <p class="lede">Three macros. Two are locked. <strong>One is the only dial you ever need to turn.</strong></p>
+  </div>
+
+  <div class="sec">
+    <div class="lever rv">
+      <div class="lv-row"><div class="lv-lbl">Protein</div><div class="lv-bar lock">&#128274; Locked at 1g / lb</div></div>
+      <div class="lv-row"><div class="lv-lbl">Fat</div><div class="lv-bar lock">&#128274; Locked at 30%</div></div>
+      <div class="lv-row"><div class="lv-lbl">Carbs</div><div class="lv-bar move">The Lever<span class="lv-arr">&#11014;&#11015;</span></div></div>
+    </div>
+
+    <div class="rv">
+      <p style="margin-top:1.6rem"><strong>Protein stays put</strong> because muscle depends on it, and after 40 muscle is the asset you cannot afford to lose. It does not drop when calories drop. In a deficit it matters more, not less.</p>
+      <p><strong>Fat stays put</strong> at 30 percent because hormones, joints, and staying full depend on it. Cutting fat to nothing is how people end up miserable, stiff, and hungry.</p>
+      <p><strong>That leaves carbs.</strong> Whatever calories are left after protein and fat get covered, carbs take. Which means carbs are the only thing that ever needs to move.</p>
+    </div>
+
+    <div class="two rv">
+      <div class="tcell hot">
+        <div class="tcell-h">&#11014; Carbs Up</div>
+        <div class="tcell-b">Heavy training day. Energy in the tank is low. Lifts are dragging. <strong>Add 25 to 50g of carbs and fuel the work.</strong> Carbs are not the enemy, they are the fuel that lets you train hard enough to keep the muscle.</div>
+      </div>
+      <div class="tcell warn">
+        <div class="tcell-h">&#11015; Carbs Down</div>
+        <div class="tcell-b">Three to four weeks of honest tracking and the scale has not moved. <strong>Pull 25 to 50g of carbs.</strong> Not protein. Not fat. Carbs. Then give it another three weeks before you touch it again.</div>
+      </div>
+    </div>
+
+    <div class="callout rv">One dial. Up for fuel. Down for fat loss. <span class="cv">that's the system.</span></div>
+
+    <div class="rv" style="margin-top:2.6rem">
+      <h3>Why This Beats a New Diet</h3>
+      <p>Every eight weeks somebody sells you a new plan. Keto, carnivore, fasting, cleanses. All of it is just a different way of eating fewer calories with extra rules attached.</p>
+      <p>You do not need a new plan. <strong>You need one lever and the discipline to use it.</strong> When something stalls, you know exactly what to move and by how much. That is a system you can run for the rest of your life instead of a diet you quit in March.</p>
+    </div>
+
+    <div class="rv" style="margin-top:2.6rem">
+      <h3>Small Moves Only</h3>
+      <p>The calculator has a fine-tune control built into it. Plus or minus 100 calories at a time, capped at 300 total. That cap is deliberate.</p>
+      <p>If you think you need to move more than 300 calories from where the formula put you, the problem is almost never the formula. <strong>It is the tracking.</strong> Go back and weigh honestly for one week before you touch the number again.</p>
+    </div>
+
+    <div class="action rv">
+      <div class="action-ico">&#9670;</div>
+      <div class="action-tx">
+        <div class="action-h">Your action</div>
+        <div class="action-b">Open your saved numbers. Find the fine-tune control. Leave it at zero until you have three weeks of honest data.</div>
+      </div>
+      <a class="action-btn" href="https://ctofit.com/tools/calorie-calculator">Open Calculator</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ LESSON 04 ══════ -->
+<section class="lesson" id="l4">
+  <div class="lhead rv">
+    <div class="lnum">04</div>
+    <div class="lmeta"><span class="lmeta-line"></span><span class="lmeta-tx">Lesson Four &middot; 7 min</span></div>
+    <h2>Make It<br><span class="cv">yours</span></h2>
+    <p class="lede">A number in your notes app does nothing. <strong>It has to live where you eat.</strong></p>
+  </div>
+
+  <div class="sec">
+    <div class="rv">
+      <h3>Why Cronometer</h3>
+      <p>Any app you will actually open every day beats the perfect app you abandon in a week. That said, Cronometer is what I use and what I recommend.</p>
+      <p>The food database is more accurate, and it tracks fiber and micronutrients properly instead of treating them as an afterthought. <strong>After 40 those details start to matter.</strong></p>
+    </div>
+
+    <div class="rv" style="margin-top:2.6rem">
+      <h3>Your Split, Not the Generic Split</h3>
+      <p>Most nutrition advice hands everybody the same ratio. Forty percent protein, thirty carbs, thirty fat, off you go.</p>
+      <p>That breaks at the edges. <strong>A 250 pound man and a 140 pound woman should not be eating the same percentage of protein.</strong> One ends up with far more than he needs, the other with less than she should have.</p>
+      <p>The calculator anchors protein to your bodyweight first, then works out what percentage that actually is for you. <strong>Two members get different percentages and both are correct.</strong> Those are the numbers you enter, not the generic ones.</p>
+    </div>
+
+    <div class="refcard rv">
+      <div class="ref-step">
+        <div class="ref-n">1</div>
+        <div>
+          <div class="ref-h">Run the calculator</div>
+          <div class="ref-b">Get your calorie target and your personal macro percentages.</div>
+        </div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-n">2</div>
+        <div>
+          <div class="ref-h">Tap Copy My Numbers</div>
+          <div class="ref-b">Everything comes across formatted, including <strong>the exact percentages to enter.</strong></div>
+        </div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-n">3</div>
+        <div>
+          <div class="ref-h">Open Cronometer settings</div>
+          <div class="ref-b">Set your daily calorie target first.</div>
+        </div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-n">4</div>
+        <div>
+          <div class="ref-h">Enter your macro percentages</div>
+          <div class="ref-b">Protein, carbs, fat. Your numbers, not the defaults. <strong>This is the step everybody skips.</strong></div>
+        </div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-n">5</div>
+        <div>
+          <div class="ref-h">Check your fiber target is showing</div>
+          <div class="ref-b">Next lesson covers why that one matters.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vslot rv">
+      <div class="vslot-ico">&#127909;</div>
+      <div class="vslot-h">Walkthrough</div>
+      <div class="vslot-b">Screen recording of the full Cronometer setup goes here.</div>
+    </div>
+
+    <div class="rv" style="margin-top:2.8rem">
+      <h3>That Is the Setup</h3>
+      <p>Your number now lives where you eat. Every time you log something, the app tells you how much room is left and which macro still needs filling.</p>
+      <p>From here it is repetition. <strong>Hit the target, log honestly, let a few weeks of data accumulate.</strong></p>
+      <p>Adjusting the numbers around heavy training days, travel weeks, or a stall is real and it comes later. <strong>That is nuance, and nuance belongs in the community where I can look at your actual week</strong> instead of guessing at a hypothetical one.</p>
+    </div>
+
+    <div class="action rv">
+      <div class="action-ico">&#9670;</div>
+      <div class="action-tx">
+        <div class="action-h">Your action</div>
+        <div class="action-b">Set up Cronometer with your numbers. If you get stuck on any step, ask in the community.</div>
+      </div>
+      <a class="action-btn" href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">Ask a Question</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ LESSON 05 ══════ -->
+<section class="lesson" id="l5">
+  <div class="lhead rv">
+    <div class="lnum">05</div>
+    <div class="lmeta"><span class="lmeta-line"></span><span class="lmeta-tx">Lesson Five &middot; 5 min</span></div>
+    <h2>The Fourth<br><span class="cv">number</span></h2>
+    <p class="lede">Calories, protein, carbs, fat. Then everybody stops counting. <strong>There is a fourth number, and almost nobody tracks it.</strong></p>
+  </div>
+
+  <div class="sec">
+    <div class="rv">
+      <h3>It Lives Inside Your Carbs</h3>
+      <p>This is the part that confuses people. <strong>Fiber is not additional grams stacked on top of your carbs.</strong> It is already counted inside them.</p>
+      <p>So hitting your fiber target does not mean eating more. It means <strong>making your carbs work double duty.</strong> Choosing sources that carry fiber with them instead of sources that do not.</p>
+    </div>
+
+    <div class="rv" style="margin-top:2.4rem">
+      <h3>Your Target</h3>
+      <div class="fiber-grid">
+        <div class="fcell"><div class="fcell-n">38g</div><div class="fcell-l">Men<br>under 50</div></div>
+        <div class="fcell"><div class="fcell-n">30g</div><div class="fcell-l">Men<br>50 and over</div></div>
+        <div class="fcell"><div class="fcell-n">25g</div><div class="fcell-l">Women<br>under 50</div></div>
+        <div class="fcell"><div class="fcell-n">21g</div><div class="fcell-l">Women<br>50 and over</div></div>
+      </div>
+      <p style="margin-top:1.2rem;font-size:.85rem;color:var(--text3)">The calculator sets yours automatically based on your age and sex.</p>
+    </div>
+
+    <div class="rv" style="margin-top:2.6rem">
+      <h3>Why It Matters More After 40</h3>
+      <p>Digestion slows. Cholesterol becomes something your doctor actually mentions. Blood sugar control gets less forgiving. <strong>Fiber helps all three.</strong></p>
+      <p>And there is a practical one nobody talks about: <strong>fiber keeps you full.</strong> When you are eating in a deficit, that is not a small thing. It is often the difference between sticking to the plan and raiding the pantry at nine at night.</p>
+    </div>
+
+    <div class="rv" style="margin-top:2.6rem">
+      <h3>How to Hit It</h3>
+      <p>Vegetables. Fruit. Beans and lentils. Whole grains over refined. Berries are the highest-fiber fruit by a wide margin.</p>
+      <p>You do not need a supplement to get there, though I use one in the morning because it is easy. <strong>Food first, supplement to close the gap.</strong></p>
+      <div class="callout">Cronometer counts it for you automatically. <span class="cv">you just have to look at it.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ LESSON 06 ══════ -->
+<section class="lesson" id="l6">
+  <div class="lhead rv">
+    <div class="lnum">06</div>
+    <div class="lmeta"><span class="lmeta-line"></span><span class="lmeta-tx">Lesson Six &middot; 8 min</span></div>
+    <h2>The Chipotle<br><span class="cv">method</span></h2>
+    <p class="lede">The skill everybody thinks is tedious. <strong>It takes two to five minutes and it is the one that changes everything.</strong></p>
+  </div>
+
+  <div class="sec">
+    <div class="rv">
+      <div class="pull">"Ugh, do I really have to weigh my food?"</div>
+      <p>That is the single most common thing I hear when tracking comes up. I understand it. It sounds like homework, it sounds tedious, and it sounds like something that will take over your life.</p>
+      <p><strong>It is none of those things.</strong> But you will not believe me until you weigh out one real serving of peanut butter and see what a tablespoon actually looks like. Do that once and the argument is over.</p>
+    </div>
+
+    <div class="rv" style="margin-top:2.8rem">
+      <div class="eyebrow">The method</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem)">Build It Like a <span class="cv">chipotle bowl</span></h3>
+      <p class="lede">This is the whole trick, and it is why weighing food is easy for me and hard for most people.</p>
+      <p style="margin-top:1.2rem">Do not try to weigh a finished casserole. Do not try to reverse engineer a mixed dish. <strong>Build your meal one ingredient at a time, into one bowl, on top of the scale.</strong> Weigh, log, zero, next ingredient. Exactly like watching someone build a bowl at Chipotle.</p>
+      <p>Each ingredient gets logged the second it goes in, so <strong>you never have to remember a single number.</strong></p>
+    </div>
+
+    <div class="refcard rv">
+      <div class="ref-step">
+        <div class="ref-n">1</div>
+        <div>
+          <div class="ref-h">Bowl on the scale, then zero it</div>
+          <div class="ref-b">Always tare before the first ingredient so you are weighing food and not dishware.</div>
+        </div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-n">2</div>
+        <div>
+          <div class="ref-h">Add one ingredient</div>
+          <div class="ref-b">Just one. <strong>Use grams, not ounces.</strong> Grams are more precise and every food label supports them.</div>
+        </div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-n">3</div>
+        <div>
+          <div class="ref-h">Log it before you add anything else</div>
+          <div class="ref-b">Type the number into the app while it is on the screen in front of you. <strong>Do not batch this.</strong></div>
+        </div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-n">4</div>
+        <div>
+          <div class="ref-h">Zero the scale again</div>
+          <div class="ref-b">Now the next ingredient weighs clean on top of what is already in the bowl.</div>
+        </div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-n">5</div>
+        <div>
+          <div class="ref-h">Repeat until the meal is built</div>
+          <div class="ref-b">Save your regulars as favorites in the app. <strong>After a week this takes under two minutes.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vslot rv">
+      <div class="vslot-ico">&#127909;</div>
+      <div class="vslot-h">Watch me build a real breakfast</div>
+      <div class="vslot-b">Full walkthrough. Greek yogurt, protein powder, fiber, banana. Weighed and logged start to finish.</div>
+    </div>
+
+    <div class="rv" style="margin-top:2.8rem">
+      <h3>What About Casseroles and Mixed Dishes?</h3>
+      <p>They are harder. That is not a reason to avoid tracking, it is a reason to start somewhere else.</p>
+      <p><strong>Start with meals you assemble.</strong> Bowls, plates, anything where the ingredients go in separately. Once the habit is automatic, mixed dishes and recipes are a small step, and we work through those in the community.</p>
+    </div>
+
+    <div class="callout rv">If you learn one skill this year, <span class="cv">make it this one.</span></div>
+  </div>
+</section>
+
+<!-- ══════ LESSON 07 ══════ -->
+<section class="lesson" id="l7">
+  <div class="lhead rv">
+    <div class="lnum">07</div>
+    <div class="lmeta"><span class="lmeta-line"></span><span class="lmeta-tx">Lesson Seven &middot; 5 min</span></div>
+    <h2>Consistency Over<br><span class="cv">accuracy</span></h2>
+    <p class="lede">Most tracking advice demands perfection. <strong>Perfection is exactly why people quit in week two.</strong></p>
+  </div>
+
+  <div class="sec">
+    <div class="rv">
+      <div class="pull">I teach consistency over accuracy.</div>
+      <p>That is not the popular position. Most macro content acts like a missed gram is a failed day.</p>
+      <p>Here is the truth. <strong>Somebody who logs imperfectly every single day for a month beats somebody who logs perfectly for four days and quits.</strong> It is not close. The data does not have to be flawless to be useful, it just has to exist.</p>
+    </div>
+
+    <div class="two rv" style="margin-top:2rem">
+      <div class="tcell warn">
+        <div class="tcell-h">Chasing perfect</div>
+        <div class="tcell-b">Every bite measured. Every gram exact. Restaurant meals cause panic. <strong>Quits by week three.</strong></div>
+      </div>
+      <div class="tcell hot">
+        <div class="tcell-h">Chasing consistent</div>
+        <div class="tcell-b">Logs every day, estimates when it has to. <strong>Still logging a year later, and knows their food cold.</strong></div>
+      </div>
+    </div>
+
+    <div class="rv" style="margin-top:2.8rem">
+      <h3>Awareness, Not Punishment</h3>
+      <p>This is a tool for awareness. It is not a scoreboard for your character.</p>
+      <p>There is no good food and bad food here. There is no good person and bad person. <strong>There is data, and data tells you what to do next.</strong> The moment tracking becomes a way to feel guilty about yourself, it stops working and you stop doing it.</p>
+      <p>You are gathering information. That is all. Stay neutral about it.</p>
+    </div>
+
+    <div class="rv" style="margin-top:2.6rem">
+      <h3>Start Small</h3>
+      <p>You do not have to track everything on day one. That is how people overwhelm themselves out of the habit before it forms.</p>
+      <p><strong>Track one meal a day.</strong> Or track only protein. Or log breakfast for a week and add lunch after. Whatever you will actually do, do that. Build the habit first, add precision later.</p>
+    </div>
+
+    <div class="rv" style="margin-top:2.6rem">
+      <h3>Log On the Spot</h3>
+      <p>Do not save it for the end of the day. You will not remember, you will guess, and the guess will be wrong in the same direction it is always wrong.</p>
+      <p><strong>Log it while it is in front of you.</strong> Ten seconds now beats five minutes of reconstruction tonight.</p>
+    </div>
+
+    <div class="rv" style="margin-top:2.8rem">
+      <div class="eyebrow">Where the rest lives</div>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem)">Learn the Skill, Then the <span class="cv">nuance</span></h3>
+      <p>Raw versus cooked weights. Eating out. Alcohol. Holidays. Recipes you make in bulk. Travel weeks. Somebody else cooking for you.</p>
+      <p>All of that is real, and none of it fits in a video. <strong>That is what the community and the live calls are for.</strong> Bring your actual week, not a hypothetical one, and we will work it out together.</p>
+      <div class="callout">You learn the skill. <span class="cv">then you learn the nuance.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="lesson">
+  <div class="sec rv">
+    <div class="eyebrow">Reference</div>
+    <h2>Common <span class="cv">questions</span></h2>
+    <div class="faq">
+      <details>
+        <summary>Do I have to weigh my food forever?</summary>
+        <div class="faq-a">No. You weigh long enough to calibrate your eye and build the skill, usually a few weeks. Once you know what 150g of chicken actually looks like, you have that for life. Most people find it takes two to five minutes a meal and stops feeling like work fast.</div>
+      </details>
+      <details>
+        <summary>My number looks too high. Is it wrong?</summary>
+        <div class="faq-a">Probably not. Most people over 40 are eating less than they think and moving less than they think, which is a different problem than a slow metabolism. <strong>Run your number honestly for three weeks and let the scale tell you.</strong> Data beats a hunch every time.</div>
+      </details>
+      <details>
+        <summary>What if I am not losing weight?</summary>
+        <div class="faq-a">Check tracking accuracy before you cut anything. Research consistently shows people underestimate their intake by 30 to 50 percent. Weigh every bite honestly for one week. If the tracking is genuinely tight and the scale still has not moved after three to four weeks, then pull carbs down by 25 to 50 grams.</div>
+      </details>
+      <details>
+        <summary>Do I need to hit my macros perfectly every day?</summary>
+        <div class="faq-a">No. Consistency beats accuracy. <strong>Hit protein, get close on the rest, keep showing up.</strong> Someone who logs imperfectly every day for a month gets far better results than someone who logs perfectly for four days and stops.</div>
+      </details>
+      <details>
+        <summary>Which app should I use?</summary>
+        <div class="faq-a">Cronometer. The food database is more accurate and it tracks fiber and micronutrients properly, which matters more after 40. That said, any app you will actually open every day beats the perfect app you abandon in a week.</div>
+      </details>
+      <details>
+        <summary>What about eating out, alcohol, and holidays?</summary>
+        <div class="faq-a">That is the nuance layer, and it is genuinely where you need a coach rather than a formula. Bring those to the community feed or a live call and we will work through your actual week instead of a hypothetical one. <strong>That is what the community is for.</strong></div>
+      </details>
+      <details>
+        <summary>How often should I recalculate?</summary>
+        <div class="faq-a">Every three to four weeks, or after roughly ten pounds of change. Your TDEE moves as your weight moves. A number that was right in January is not automatically right in March. <strong>The calculator remembers your baseline and will walk you through the check-in.</strong></div>
+      </details>
+      <details>
+        <summary>Is it normal for this to feel like a lot at first?</summary>
+        <div class="faq-a">Completely. Every new skill feels clumsy before it feels automatic. You were not good at driving the first week either. Start small, log one meal, and let it get easier. <strong>It does.</strong></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<div class="close rv">
+  <div class="eyebrow">Module 03 complete</div>
+  <h2>You Have the Number.<br><span class="cv">now go hit it.</span></h2>
+  <p class="lede">Run the calculator. Save your baseline. Set up your app. Weigh your first meal. <strong>Then come back in three to four weeks and we will see what the data says.</strong></p>
+  <a class="close-btn" href="https://ctofit.com/tools/calorie-calculator">Open the Calculator &rarr;</a>
+  <div class="made">Made to Overcome.</div>
+</div>
+
+<footer>
+  <div class="f-tx">
+    &copy; 2026 CTO Health LLC &nbsp;&middot;&nbsp;
+    <a href="https://ctofit.com">ctofit.com</a> &nbsp;&middot;&nbsp;
+    <a href="https://ctofit.com/legal">Terms</a> &nbsp;&middot;&nbsp;
+    <a href="https://ctofit.com/legal#privacy">Privacy</a><br>
+    Educational content only. Not medical or nutritional advice. Consult a qualified professional before changing your diet or training.
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+var els = document.querySelectorAll('.rv');
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+  });
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+for(var i=0;i<els.length;i++){ io.observe(els[i]); }
+
+// Active lesson pill
+var lessons = document.querySelectorAll('.lesson[id]');
+var pills = document.querySelectorAll('.pill');
+var spy = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var id = e.target.getAttribute('id');
+      for(var j=0;j<pills.length;j++){
+        var href = pills[j].getAttribute('href');
+        pills[j].className = (href === '#'+id) ? 'pill on' : 'pill';
+      }
+    }
+  });
+}, {rootMargin:'-45% 0px -50% 0px'});
+for(var k=0;k<lessons.length;k++){ spy.observe(lessons[k]); }
+</script>
+</body>
+</html>
