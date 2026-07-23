@@ -102,6 +102,8 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
 .tdee-num{font-size:clamp(52px,14vw,80px);font-weight:900;color:var(--y);line-height:1;letter-spacing:-3px}
 .tdee-unit{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-top:6px}
 .tdee-note{margin-top:14px;font-size:13px;color:var(--y);font-weight:700;letter-spacing:.5px}
+.tdee-myth{position:relative;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text2);line-height:1.55;text-align:left}
+.tdee-myth strong{color:var(--text)}
 
 /* TARGET CARDS */
 .target-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:20px 20px 18px;margin-bottom:10px;transition:all .2s;cursor:pointer;position:relative}
@@ -140,6 +142,27 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
 .macro-num{font-size:26px;font-weight:900;color:var(--text);letter-spacing:-1px;line-height:1}
 .macro-unit{font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
 .macro-label{font-size:11px;color:var(--text2);margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+/* Fiber bar - the 4th number */
+.fiber-bar{display:flex;align-items:center;gap:16px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--y);border-radius:6px;padding:14px 16px;margin-top:8px}
+.fiber-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:70px}
+.fiber-num{font-size:26px;font-weight:900;color:var(--y);letter-spacing:-1px;line-height:1}
+.fiber-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);margin-top:4px;white-space:nowrap}
+.fiber-note{font-size:12px;color:var(--text2);line-height:1.5}
+/* Fine-tune stepper */
+.tune-wrap{margin-top:14px;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:6px}
+.tune-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:4px}
+.tune-sub{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px}
+.tune-row{display:flex;align-items:center;gap:10px}
+.tune-btn{flex:1;height:48px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:14px;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif;line-height:1.2}
+.tune-btn:hover{border-color:var(--y);color:var(--y)}
+.tune-btn small{display:block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
+.tune-display{flex-shrink:0;min-width:90px;text-align:center}
+.tune-val{font-size:24px;font-weight:900;color:var(--text);letter-spacing:-1px;line-height:1}
+.tune-val.active{color:var(--y)}
+.tune-cap{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);margin-top:3px}
+.tune-reset{display:none;margin:10px auto 0;background:transparent;border:none;color:var(--text2);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:'Helvetica Neue',Arial,sans-serif}
+.tune-reset:hover{color:var(--y)}
+.tune-reset.show{display:block}
 
 /* PORTIONS */
 .portions-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -171,6 +194,83 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
 /* Diamond separator  -  AI Coach Cert style */
 .diamond-row{display:flex;align-items:center;justify-content:center;gap:10px;margin:10px 0 6px;color:var(--y);font-size:10px;letter-spacing:4px}
 .diamond-row span{opacity:.5}
+
+/* REPORT CARD - screenshot-ready summary */
+.report-card{background:#000;border:2px solid var(--y);border-radius:8px;padding:28px 24px 22px;margin-bottom:10px;position:relative;overflow:hidden}
+.report-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(200,244,0,.08) 0%,transparent 70%);pointer-events:none}
+.rc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative}
+.rc-logo{height:22px;width:auto}
+.rc-logo-text{font-size:13px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--y)}
+.rc-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text2)}
+.rc-name{font-size:clamp(20px,4.5vw,28px);font-weight:900;letter-spacing:-1px;line-height:1.1;margin-bottom:2px;position:relative}
+.rc-name em{font-style:italic;font-family:Georgia,serif;font-weight:400;color:var(--y)}
+.rc-goal{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:18px;position:relative}
+.rc-target-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;position:relative}
+.rc-target{font-size:clamp(44px,11vw,64px);font-weight:900;color:var(--y);letter-spacing:-2px;line-height:1}
+.rc-target-unit{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2)}
+.rc-macros{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);position:relative}
+.rc-macro{text-align:center}
+.rc-macro-num{font-size:22px;font-weight:900;color:var(--text);letter-spacing:-.5px;line-height:1}
+.rc-macro-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);margin-top:4px}
+.rc-foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:1px solid var(--border);position:relative}
+.rc-tagline{font-size:10px;font-style:italic;font-family:Georgia,serif;color:var(--text2)}
+.rc-url{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--y)}
+/* Copy button */
+.copy-btn{width:100%;height:50px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif;margin-bottom:10px}
+.copy-btn:hover{border-color:var(--y);color:var(--y)}
+.copy-btn.copied{background:rgba(200,244,0,.08);border-color:var(--y);color:var(--y)}
+/* SAVE BASELINE */
+.save-btn{width:100%;height:52px;background:var(--y);color:#000;border:none;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif;margin-bottom:10px}
+.save-btn:hover{background:#d4f000;box-shadow:0 0 20px rgba(200,244,0,.3)}
+.save-btn.saved{background:var(--bg2);border:1px solid var(--y);color:var(--y)}
+/* WELCOME BACK */
+.welcome{display:none;background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--y);border-radius:8px;padding:22px;margin-bottom:24px}
+.welcome.show{display:block}
+.wb-eyebrow{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--y);margin-bottom:8px}
+.wb-head{font-size:20px;font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.wb-body{font-size:13px;color:var(--text2);line-height:1.55;margin-bottom:16px}
+.wb-body strong{color:var(--text)}
+.wb-row{display:flex;gap:8px;flex-wrap:wrap}
+.wb-btn{flex:1;min-width:150px;height:46px;background:var(--y);color:#000;border:none;border-radius:6px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif}
+.wb-btn:hover{background:#d4f000}
+.wb-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text2)}
+.wb-btn.ghost:hover{border-color:var(--text2);color:var(--text)}
+/* CHECK-IN */
+.checkin{display:none;max-width:720px;margin:0 auto;padding:40px 20px 60px}
+.checkin.show{display:block}
+.ci-field{max-width:260px;margin-bottom:8px}
+.ci-optional{font-size:11px;color:var(--text2);text-transform:none;letter-spacing:0;font-weight:400}
+/* VERDICT */
+.verdict{border-radius:8px;padding:24px;margin-bottom:16px;border:1px solid var(--border);border-top:3px solid var(--y);background:var(--bg3)}
+.verdict.warn{border-top-color:#ff9900}
+.verdict.good{border-top-color:var(--y)}
+.v-eyebrow{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--y);margin-bottom:10px}
+.verdict.warn .v-eyebrow{color:#ff9900}
+.v-head{font-size:clamp(20px,4vw,26px);font-weight:900;letter-spacing:-1px;line-height:1.15;margin-bottom:10px}
+.v-body{font-size:14px;color:var(--text2);line-height:1.65}
+.v-body strong{color:var(--text)}
+.v-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}
+.v-stat{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:12px 8px;text-align:center}
+.v-stat-num{font-size:20px;font-weight:900;color:var(--y);letter-spacing:-.5px;line-height:1}
+.v-stat-lbl{font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--text2);margin-top:5px}
+/* NEW TARGET RECOMMEND */
+.newtarget{background:#000;border:2px solid var(--y);border-radius:8px;padding:22px;margin-bottom:16px;text-align:center}
+.nt-lbl{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--y);margin-bottom:8px}
+.nt-num{font-size:clamp(36px,9vw,52px);font-weight:900;color:var(--y);letter-spacing:-2px;line-height:1}
+.nt-sub{font-size:12px;color:var(--text2);margin-top:8px;line-height:1.5}
+.nt-row{display:flex;gap:8px;margin-top:16px}
+.nt-btn{flex:1;height:46px;border-radius:6px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .18s;font-family:'Helvetica Neue',Arial,sans-serif;background:var(--y);color:#000;border:none}
+.nt-btn:hover{background:#d4f000}
+.nt-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text2)}
+.nt-btn.ghost:hover{border-color:var(--text2);color:var(--text)}
+/* HISTORY */
+.hist-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px}
+.hist-row:last-child{border-bottom:none}
+.hist-date{width:74px;flex-shrink:0;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
+.hist-main{flex:1;color:var(--text)}
+.hist-main strong{color:var(--y)}
+.hist-tag{font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#000;background:var(--text2);padding:2px 7px;border-radius:2px;flex-shrink:0}
+.hist-tag.base{background:var(--y)}
 
 /* CTA STRIP */
 .cta-strip{background:#000;border:1px solid var(--border);border-top:2px solid var(--y);border-radius:8px;padding:36px 28px;text-align:center;margin-top:16px}
@@ -232,7 +332,18 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
 </header>
 
 
-<div class="wrap">
+<div class="wrap" id="main-wrap">
+
+  <!-- WELCOME BACK -->
+  <div class="welcome" id="welcome">
+    <div class="wb-eyebrow">Welcome Back</div>
+    <div class="wb-head" id="wb-head"></div>
+    <div class="wb-body" id="wb-body"></div>
+    <div class="wb-row">
+      <button class="wb-btn" onclick="startCheckin()">Check My Progress</button>
+      <button class="wb-btn ghost" onclick="startFresh()">Start Over</button>
+    </div>
+  </div>
 
   <!-- HERO -->
   <div class="hdr">
@@ -266,6 +377,13 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
     <div class="step-hdr">
       <h2>Tell Us About You</h2>
       <p>Sex, age, and body stats are used to calculate your BMR  -  the same Mifflin-St Jeor formula from Module 3.</p>
+    </div>
+
+    <div class="field-grid g2" style="margin-bottom:14px">
+      <div class="fgroup">
+        <label>First Name</label>
+        <input type="text" id="fname" placeholder="e.g. Mike" maxlength="20" autocomplete="given-name">
+      </div>
     </div>
 
     <div class="toggle-row">
@@ -375,7 +493,7 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
       <button class="goal-btn" id="goal-recomp" onclick="setGoal('recomp')">
         <span class="goal-icon">⚖️</span>
         <span class="goal-name">Recomposition</span>
-        <span class="goal-sub">Maintenance  -  lose fat, build muscle</span>
+        <span class="goal-sub">Just under maintenance  -  lose fat, build muscle</span>
       </button>
     </div>
 
@@ -395,6 +513,7 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
       <div class="tdee-num" id="tdee-num"> - </div>
       <div class="tdee-unit">Calories per Day</div>
       <div class="tdee-note">✎ Write this number down  -  this is your metabolic baseline.</div>
+      <div class="tdee-myth"><strong>That number might look high. It is not.</strong> Your metabolism did not break at 40. The research is clear that it holds steady from 20 to 60. What actually changed is muscle and movement. Both of those you control.</div>
       <div class="diamond-row"><span>◆</span><span>◆</span><span>◆</span></div>
     </div>
 
@@ -407,6 +526,19 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
       <div class="section-title">Daily Macro Breakdown</div>
       <p style="font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.5"><strong style="color:var(--text)">Protein is set first at 1g per lb of bodyweight</strong>  -  non-negotiable for muscle retention over 40. Fat stays fixed at 30% to support hormones and joints. <strong style="color:var(--text)">Carbs are your lever</strong>  -  they go up when you need more energy and performance, down when you're cutting. That's it. That's the system.</p>
       <div id="macro-content"></div>
+      <div class="tune-wrap">
+        <div class="tune-title">Fine-Tune Your Number</div>
+        <div class="tune-sub">The formula gets you close. Your body gets the final vote. After 3 to 4 weeks of honest tracking: not seeing progress, nudge down. Energy or strength dropping, nudge up. Small moves only.</div>
+        <div class="tune-row">
+          <button class="tune-btn" onclick="adjustTarget(-100)">-100<small>Progress stalled</small></button>
+          <div class="tune-display">
+            <div class="tune-val" id="tune-val">&plusmn;0</div>
+            <div class="tune-cap">cal adjustment</div>
+          </div>
+          <button class="tune-btn" onclick="adjustTarget(100)">+100<small>Energy dropping</small></button>
+        </div>
+        <button class="tune-reset" id="tune-reset" onclick="resetAdjust()">Reset to formula</button>
+      </div>
     </div>
 
     <!-- COACH TONY -->
@@ -430,17 +562,91 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
       <ol class="next-list" id="next-steps"></ol>
     </div>
 
+    <!-- REPORT CARD - screenshot-ready -->
+    <div class="report-card" id="report-card">
+      <div class="rc-head">
+        <img class="rc-logo" src="https://ctofit.com/logo_white_new.png" alt="CTO FIT"
+             onerror="this.style.display='none';document.getElementById('rclf').style.display='block'">
+        <span class="rc-logo-text" id="rclf" style="display:none">CTO FIT</span>
+        <span class="rc-label">My Daily Targets</span>
+      </div>
+      <div class="rc-name" id="rc-name"></div>
+      <div class="rc-goal" id="rc-goal"></div>
+      <div class="rc-target-row">
+        <span class="rc-target" id="rc-target"></span>
+        <span class="rc-target-unit">cal/day</span>
+      </div>
+      <div class="rc-macros" id="rc-macros"></div>
+      <div class="rc-foot">
+        <span class="rc-tagline">Made to Overcome.</span>
+        <span class="rc-url">FIT 40 Inner Circle</span>
+      </div>
+    </div>
+
+    <button class="save-btn" id="save-btn" onclick="saveBaseline()">◆ Save My Baseline</button>
+    <button class="copy-btn" id="copy-btn" onclick="copyNumbers()">⧉ Copy My Numbers</button>
+
     <!-- SKOOL CTA -->
     <div class="cta-strip">
       <div class="cta-eyebrow">FIT 40 Inner Circle</div>
-      <h2>Now Share It<br><em style="font-style:italic;font-family:Georgia,serif;font-weight:400;color:var(--y)">With the Community</em></h2>
-      <p>Post your calorie target and macro breakdown in the community feed. Tag Coach Tony  -  he reads every post. Your number is only as powerful as your commitment to it.</p>
-      <a class="cta-btn" href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">Post My Results in the Community →</a>
+      <h2>Now Go<br><em style="font-style:italic;font-family:Georgia,serif;font-weight:400;color:var(--y)">Hit It</em></h2>
+      <p>This number is yours. Do not measure it against anybody else's. Bodyweight, activity, and goal all move it, and two people the same age can land hundreds of calories apart. Got a question about yours? Bring it to the community.</p>
+      <a class="cta-btn" href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">Ask Coach Tony →</a>
     </div>
 
     <button class="reset-btn" onclick="resetCalc()">← Recalculate</button>
 
   </div>
+</div>
+
+
+<!-- CHECK-IN SCREEN -->
+<div class="checkin" id="checkin">
+
+  <div class="hdr" style="margin-bottom:28px">
+    <div class="badge">Progress Check-In</div>
+    <h1>Let's See<br><em>Where You Are</em></h1>
+    <p id="ci-intro"></p>
+  </div>
+
+  <!-- INPUT -->
+  <div class="section-card" id="ci-input-card">
+    <div class="section-title" id="ci-input-title">Your Current Numbers</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.5" id="ci-input-help"></p>
+    <div class="ci-field">
+      <div class="fgroup">
+        <label id="ci-primary-label">Current Weight (lbs)</label>
+        <input type="number" id="ci-weight" placeholder="185" min="80" max="500">
+      </div>
+    </div>
+    <div class="ci-field" id="ci-waist-wrap" style="display:none">
+      <div class="fgroup">
+        <label id="ci-waist-label">Waist (inches)</label>
+        <input type="number" id="ci-waist" placeholder="34" min="20" max="70" step="0.25">
+      </div>
+    </div>
+    <button class="btn-next" style="margin-top:18px" onclick="runCheckin()">See My Progress &rarr;</button>
+    <div class="err" id="ci-err"></div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="ci-results" style="display:none">
+    <div id="ci-verdict"></div>
+    <div id="ci-newtarget"></div>
+    <div class="section-card">
+      <span class="section-num">04</span>
+      <div class="section-title">Your History</div>
+      <div id="ci-history"></div>
+    </div>
+    <div class="cta-strip">
+      <div class="cta-eyebrow">FIT 40 Inner Circle</div>
+      <h2>Keep<br><em style="font-style:italic;font-family:Georgia,serif;font-weight:400;color:var(--y)">Going</em></h2>
+      <p>The only comparison that matters is you now against you three weeks ago. If something is not moving the way you expected, bring it to the community and we will work it out.</p>
+      <a class="cta-btn" href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" rel="noopener">Ask Coach Tony &rarr;</a>
+    </div>
+    <button class="reset-btn" onclick="backToCalc()">&larr; Back to Calculator</button>
+  </div>
+
 </div>
 
 <footer class="site-footer">
@@ -594,6 +800,13 @@ function calculate() {
   var ft     = parseFloat(document.getElementById('ht-ft').value);
   var hin    = parseFloat(document.getElementById('ht-in').value) || 0;
 
+  // Capture first name (sanitized, capitalized)
+  var rawName = document.getElementById('fname').value.replace(/[^a-zA-Z\- ']/g, '').trim();
+  if (rawName.length > 0) {
+    rawName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
+  }
+  window._calcName = rawName;
+
   // Convert to metric
   var weightKg = weight * 0.453592;
   var heightCm = (ft * 12 + hin) * 2.54;
@@ -613,6 +826,15 @@ function calculate() {
   // Note: very active/super active users may target up to 1.1g/lb  -  that's still close enough
   var proteinG = rnd(weight * 1.0);
 
+  // Fiber target - sex and age aware (IOM standard). Fiber counts inside carbs.
+  var fiberG;
+  if (sex === 'male') {
+    fiberG = age >= 50 ? 30 : 38;
+  } else {
+    fiberG = age >= 50 ? 21 : 25;
+  }
+  window._calcFiber = fiberG;
+
   // Goal targets
   var primary;
 
@@ -621,12 +843,14 @@ function calculate() {
   } else if (goal === 'muscle') {
     primary = rnd(tdee * 1.10);
   } else {
-    primary = tdee;
+    primary = rnd(tdee * 0.95);
   }
 
   // Store tdee + weight globally so selectDeficit can reuse them
   window._calcTdee = tdee;
   window._calcWeight = weight;
+  window._calcAge = age;
+  window._calcHeightIn = (ft * 12 + hin);
   window._calcProteinG = proteinG;
 
   // Macros  -  protein-first for 40+ audience
@@ -726,8 +950,8 @@ function calculate() {
     tc += '<div class="target-card selected">';
     tc += '<div class="tc-row"><div class="tc-left"><div class="tc-select-ring"></div><div>';
     tc += '<div class="tc-tag">Recomposition</div>';
-    tc += '<div class="tc-name">Maintenance Calories</div>';
-    tc += '<div class="tc-desc">Eat at maintenance, train with intent. Lose fat and build muscle simultaneously. Slower process  -  but it\'s real and it works.</div>';
+    tc += '<div class="tc-name">5% Deficit  -  Just Under Maintenance</div>';
+    tc += '<div class="tc-desc">Research shows recomp works best just under maintenance. The slight deficit lets fat stores fund muscle growth while you train with intent. Lose fat and build muscle at the same time. Slower process  -  but it\'s real and it works.</div>';
     tc += '</div></div>';
     tc += '<div><div class="tc-cals" style="color:var(--y)">' + primary.toLocaleString() + '</div><div class="tc-cals-unit">cal/day</div></div>';
     tc += '</div></div>';
@@ -738,20 +962,66 @@ function calculate() {
   // Macros
   function renderMacros(cals, pG) {
     var mx = buildMacros(cals, pG);
+    var fbr = window._calcFiber;
     var mc = '<div class="macro-grid">';
     mc += '<div class="macro-item macro-updating"><div class="macro-num">' + cals.toLocaleString() + '</div><div class="macro-unit">kcal</div><div class="macro-label">Total</div></div>';
     mc += '<div class="macro-item macro-updating"><div class="macro-num">' + pG + 'g</div><div class="macro-unit">' + mx.proteinCals + ' cal</div><div class="macro-label">Protein · ' + mx.pPct + '%</div></div>';
     mc += '<div class="macro-item macro-updating"><div class="macro-num">' + mx.carbG + 'g</div><div class="macro-unit">' + mx.carbCals + ' cal</div><div class="macro-label">Carbs · ' + mx.cPct + '%</div></div>';
     mc += '<div class="macro-item macro-updating"><div class="macro-num">' + mx.fatG + 'g</div><div class="macro-unit">' + mx.fatCals + ' cal</div><div class="macro-label">Fat · ' + mx.fPct + '%</div></div>';
     mc += '</div>';
+    mc += '<div class="fiber-bar macro-updating"><div class="fiber-left"><span class="fiber-num">' + fbr + 'g</span><span class="fiber-label">Daily Fiber</span></div><div class="fiber-note">The 4th number to track. Fiber counts inside your carbs - it is not additional. Vegetables, fruit, beans, and whole grains get you there.</div></div>';
     document.getElementById('macro-content').innerHTML = mc;
   }
-
-  renderMacros(primary, proteinG);
 
   // Store renderMacros globally for selectDeficit
   window._renderMacros = renderMacros;
   window._buildMacros = buildMacros;
+
+  // Report card
+  var goalLabels = {fat: 'Fat Loss · 10% Deficit', muscle: 'Muscle Gain · 10% Surplus', recomp: 'Recomposition · 5% Deficit'};
+  window._goalKey = goal;
+
+  function renderReportCard(cals, pG, goalLabel) {
+    var mx = buildMacros(cals, pG);
+    var fname = window._calcName || '';
+    var nameHTML = fname
+      ? fname + '\'s <em>Numbers</em>'
+      : 'My <em>Numbers</em>';
+    document.getElementById('rc-name').innerHTML = nameHTML;
+    document.getElementById('rc-goal').textContent = goalLabel;
+    document.getElementById('rc-target').textContent = cals.toLocaleString();
+    var rm = '';
+    rm += '<div class="rc-macro"><div class="rc-macro-num">' + pG + 'g</div><div class="rc-macro-label">Protein</div></div>';
+    rm += '<div class="rc-macro"><div class="rc-macro-num">' + mx.carbG + 'g</div><div class="rc-macro-label">Carbs</div></div>';
+    rm += '<div class="rc-macro"><div class="rc-macro-num">' + mx.fatG + 'g</div><div class="rc-macro-label">Fat</div></div>';
+    rm += '<div class="rc-macro"><div class="rc-macro-num">' + window._calcFiber + 'g</div><div class="rc-macro-label">Fiber</div></div>';
+    document.getElementById('rc-macros').innerHTML = rm;
+    // Store current numbers for copy
+    window._copyData = {cals: cals, pG: pG, cG: mx.carbG, fG: mx.fatG, fbr: window._calcFiber, pPct: mx.pPct, cPct: mx.cPct, fPct: mx.fPct, goal: goalLabel};
+  }
+
+  window._renderReportCard = renderReportCard;
+
+  // Centralized target: base (goal/deficit) + fine-tune adjustment
+  window._baseTarget = primary;
+  window._adjust = 0;
+  window._goalLabel = goalLabels[goal];
+  window._applyTarget = function() {
+    var cals = window._baseTarget + window._adjust;
+    var lbl = window._goalLabel + (window._adjust !== 0 ? ' · Adjusted' : '');
+    renderMacros(cals, proteinG);
+    renderReportCard(cals, proteinG, lbl);
+    var at = document.getElementById('action-target-cals');
+    if (at) { at.textContent = cals.toLocaleString() + ' calories'; }
+    var tv = document.getElementById('tune-val');
+    if (tv) {
+      tv.textContent = window._adjust === 0 ? '\u00B10' : (window._adjust > 0 ? '+' : '') + window._adjust;
+      tv.className = window._adjust === 0 ? 'tune-val' : 'tune-val active';
+    }
+    var tr = document.getElementById('tune-reset');
+    if (tr) { tr.className = window._adjust === 0 ? 'tune-reset' : 'tune-reset show'; }
+  };
+  window._applyTarget();
 
   // Coach Tony tips
   document.getElementById('tony-tips').innerHTML = buildTips(age, sex, goal, activityIndex, proteinG, primary, tdee, weight);
@@ -783,12 +1053,11 @@ function selectDeficit(pct) {
     }
   }
 
-  // Live-update macros + portions
-  window._renderMacros(cals, pG);
-
-  // Update action plan step 1 number
-  var actionTarget = document.getElementById('action-target-cals');
-  if (actionTarget) { actionTarget.textContent = cals.toLocaleString() + ' calories'; }
+  // New base target resets fine-tune, then re-render everything
+  window._baseTarget = cals;
+  window._adjust = 0;
+  window._goalLabel = 'Fat Loss · ' + pct + '% Deficit';
+  if (window._applyTarget) { window._applyTarget(); }
 
   // Update Coach Tony's deficit-specific tip inline
   var tony = document.getElementById('tony-fat-deficit-tip');
@@ -796,11 +1065,77 @@ function selectDeficit(pct) {
     if (pct === 10) {
       tony.innerHTML = '<div class="tip-hl">Patience Is the Strategy</div><div class="tip-body">A 10% deficit is not dramatic  -  and that\'s the point. Slow, consistent fat loss while holding your strength is the FIT 40 way. <strong>Stack 8–12 weeks of this</strong> and the results speak for themselves. Earn your way to a deeper cut before jumping there.</div>';
     } else if (pct === 15) {
-      tony.innerHTML = '<div class="tip-hl">You\'ve Earned a Deeper Cut  -  Stay Vigilant</div><div class="tip-body">A 15% deficit is appropriate if you have a solid training base and consistent nutrition habits. <strong>Watch your strength and energy weekly.</strong> If your lifts start dropping or fatigue spikes, pull back to 10%. This is a tool, not a test of willpower.</div>';
+      tony.innerHTML = '<div class="tip-hl">You\'ve Earned a Deeper Cut  -  Stay Vigilant</div><div class="tip-body">A 15% deficit is appropriate if you have a solid training base and consistent nutrition habits. <strong>Watch your strength and energy weekly.</strong> If your lifts start dropping or fatigue spikes, pull back to 10%. This is a tool, not a test of willpower.</div><div class="tip-body" style="margin-top:8px">The research is clear on one point: protein matters <strong>more</strong> in a deficit, not less. Your protein number does not move when calories come down. It is the reason you lose fat instead of muscle.</div>';
     } else {
-      tony.innerHTML = '<div class="tip-hl">20% Is a Scalpel  -  Not a Sledgehammer</div><div class="tip-body"><strong style="color:#ff9900">This is an aggressive cut.</strong> At 20%, muscle loss risk is real  -  especially over 40. Hit your protein every single day without exception. If strength drops more than 5–10% over two weeks, reduce the deficit immediately. Limit this phase to 4–6 weeks maximum, then reassess.</div>';
+      tony.innerHTML = '<div class="tip-hl">20% Is a Scalpel  -  Not a Sledgehammer</div><div class="tip-body"><strong style="color:#ff9900">This is an aggressive cut.</strong> At 20%, muscle loss risk is real  -  especially over 40. Hit your protein every single day without exception. If strength drops more than 5–10% over two weeks, reduce the deficit immediately. Limit this phase to 4–6 weeks maximum, then reassess.</div><div class="tip-body" style="margin-top:8px">Research on adults over 40 shows high protein protects lean mass specifically when you are in a deficit or training hard. You are doing both. <strong>Protein is not optional here  -  it is the whole reason this works.</strong></div>';
     }
   }
+}
+
+// ── FINE-TUNE ──
+function adjustTarget(delta) {
+  if (window._baseTarget === undefined) { return; }
+  var next = (window._adjust || 0) + delta;
+  if (next > 300) { next = 300; }
+  if (next < -300) { next = -300; }
+  window._adjust = next;
+  if (window._applyTarget) { window._applyTarget(); }
+}
+
+function resetAdjust() {
+  window._adjust = 0;
+  if (window._applyTarget) { window._applyTarget(); }
+}
+
+// ── COPY NUMBERS ──
+function copyNumbers() {
+  var d = window._copyData;
+  if (!d) { return; }
+  var fname = window._calcName || '';
+  var text = '';
+  text += 'MY DAILY TARGETS' + (fname ? ' - ' + fname : '') + '\n';
+  text += d.goal + '\n';
+  text += '\n';
+  text += 'Calories: ' + d.cals.toLocaleString() + '\n';
+  text += '\n';
+  text += 'MACRO TARGETS\n';
+  text += 'Protein: ' + d.pG + 'g  (' + d.pPct + '%)\n';
+  text += 'Carbs: ' + d.cG + 'g  (' + d.cPct + '%)\n';
+  text += 'Fat: ' + d.fG + 'g  (' + d.fPct + '%)\n';
+  text += 'Fiber: ' + d.fbr + 'g\n';
+  text += '\n';
+  text += 'FOR CRONOMETER\n';
+  text += 'Enter these percentages: ' + d.pPct + '% protein / ' + d.cPct + '% carbs / ' + d.fPct + '% fat\n';
+  text += '\n';
+  text += 'FIT 40 Inner Circle - Made to Overcome.';
+
+  var btn = document.getElementById('copy-btn');
+
+  function showCopied() {
+    btn.className = 'copy-btn copied';
+    btn.textContent = '✓ Copied - Save It In Your Notes';
+    setTimeout(function() {
+      btn.className = 'copy-btn';
+      btn.textContent = '⧉ Copy My Numbers';
+    }, 2500);
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(showCopied, function() { fallbackCopy(text, showCopied); });
+  } else {
+    fallbackCopy(text, showCopied);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); cb(); } catch (e) {}
+  document.body.removeChild(ta);
 }
 
 // ── COACH TONY TIPS ──
@@ -808,6 +1143,12 @@ function buildTips(age, sex, goal, actIdx, proteinG, targetCals, tdee, weight) {
   var html = '';
   var is50plus = age >= 50;
   var isFemale = sex === 'female';
+  var fname = window._calcName || '';
+
+  // Personalized greeting
+  if (fname) {
+    html += '<div class="tip-body" style="margin-bottom:18px;font-size:15px;color:var(--text)">' + fname + ' - these numbers are yours. Built from your stats, your activity, your goal. Here\'s how to use them.</div>';
+  }
 
   // Tip 1: Protein
   html += '<div class="tip-item">';
@@ -837,9 +1178,9 @@ function buildTips(age, sex, goal, actIdx, proteinG, targetCals, tdee, weight) {
   } else {
     html += '<div class="tip-hl">Recomp Is Slow  -  Trust It Anyway</div>';
     if (isFemale) {
-      html += '<div class="tip-body">Body recomposition is real, and it works especially well for people over 40 who haven\'t been consistently strength training. It is slower than a focused cut or bulk, but you hold onto muscle, improve your body composition, and build habits that stick. <strong>Stay consistent at maintenance, train with intent</strong>, and measure body composition  -  not just weight.</div>';
+      html += '<div class="tip-body">Body recomposition is real, and it works especially well for people over 40 who haven\'t been consistently strength training. It is slower than a focused cut or bulk, but you hold onto muscle, improve your body composition, and build habits that stick. <strong>Stay consistent just under maintenance, train with intent</strong>, and measure body composition  -  not just weight. The slight deficit lets your fat stores fund the muscle you\'re building.</div>';
     } else {
-      html += '<div class="tip-body">Body recomposition is not a myth  -  it\'s a slow process. At maintenance calories with hard, consistent training, you can lose fat and build muscle at the same time. The scale barely moves. Your body changes anyway. <strong>Trust the process and measure what actually matters</strong>  -  body composition, not just weight.</div>';
+      html += '<div class="tip-body">Body recomposition is not a myth  -  it\'s a slow process. Just under maintenance with hard, consistent training, you can lose fat and build muscle at the same time  -  the small deficit pulls from fat stores while your training builds muscle. The scale barely moves. Your body changes anyway. <strong>Trust the process and measure what actually matters</strong>  -  body composition, not just weight.</div>';
     }
   }
   html += '</div>';
@@ -862,6 +1203,12 @@ function buildTips(age, sex, goal, actIdx, proteinG, targetCals, tdee, weight) {
   }
   html += '</div>';
 
+  // Tip: Fiber
+  html += '<div class="tip-item">';
+  html += '<div class="tip-hl">Fiber Is the Number Nobody Tracks  -  Track It</div>';
+  html += '<div class="tip-body">Your target is <strong>' + window._calcFiber + 'g per day</strong>. Fiber supports digestion, cholesterol, blood sugar control, and keeps you full in a deficit  -  all things that matter more after 40, not less. It counts inside your carbs, so make your carbs work double duty: vegetables, fruit, beans, and whole grains over processed sources. Your tracking app counts it automatically  -  you just have to look at it.</div>';
+  html += '</div>';
+
   // Tip 4: 50+ meal timing, or scale tip for under-50
   if (is50plus) {
     html += '<div class="tip-item">';
@@ -882,7 +1229,7 @@ function buildTips(age, sex, goal, actIdx, proteinG, targetCals, tdee, weight) {
 function buildNextSteps(goal, primary, tdee) {
   var html = '';
   html += '<li><span class="next-num">1</span><div>Lock in your daily target: <strong id="action-target-cals">' + primary.toLocaleString() + ' calories</strong>. Put it in your phone notes, on your fridge  -  wherever you will see it every day.</div></li>';
-  html += '<li><span class="next-num">2</span><div>Download a food tracking app  -  <strong>Cronometer</strong> or <strong>MyFitnessPal</strong> are the two I recommend. Enter your calorie and macro targets. Use the food scale to weigh your meals for the first 2–3 weeks. This is the step most people skip and then wonder why they\'re not getting results.</div></li>';
+  html += '<li><span class="next-num">2</span><div>Download <strong>Cronometer</strong>. Set your calorie target, then enter your macro percentages in the settings  -  hit Copy My Numbers below and they are ready to paste. Weigh your food for the first 2–3 weeks. This is the step most people skip and then wonder why they\'re not getting results.</div></li>';
   html += '<li><span class="next-num">3</span><div><strong>Hit your protein target first</strong>, every day. Build your meals around your protein source, then add carbs and fat to hit your remaining targets. Protein is the anchor  -  everything else fills in around it.</div></li>';
   html += '<li><span class="next-num">4</span><div>Weigh yourself at the same time each morning, at least 3 days per week. Track the <strong>weekly average</strong>  -  not the daily number. Two to four weeks of data tells you if your target is dialed in. One day on the scale tells you nothing.</div></li>';
 
@@ -911,6 +1258,7 @@ function resetCalc() {
   document.getElementById('sn0').classList.add('active');
 
   // Reset fields
+  document.getElementById('fname').value = '';
   document.getElementById('age').value = '';
   document.getElementById('weight').value = '';
   document.getElementById('ht-ft').value = '';
@@ -931,6 +1279,391 @@ function resetCalc() {
 
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
+
+// ══════════════════════════════════════
+// MEMORY SYSTEM
+// ══════════════════════════════════════
+var STORE_KEY = 'ctofit_calc_v1';
+
+function storeAvailable() {
+  try {
+    var t = '__t';
+    window.localStorage.setItem(t, t);
+    window.localStorage.removeItem(t);
+    return true;
+  } catch (e) { return false; }
+}
+
+function loadData() {
+  if (!storeAvailable()) { return null; }
+  try {
+    var raw = window.localStorage.getItem(STORE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function writeData(obj) {
+  if (!storeAvailable()) { return false; }
+  try {
+    window.localStorage.setItem(STORE_KEY, JSON.stringify(obj));
+    return true;
+  } catch (e) { return false; }
+}
+
+function todayISO() {
+  var d = new Date();
+  return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+}
+
+function daysBetween(a, b) {
+  var d1 = new Date(a + 'T00:00:00');
+  var d2 = new Date(b + 'T00:00:00');
+  return Math.round((d2 - d1) / 86400000);
+}
+
+function fmtDate(iso) {
+  var p = iso.split('-');
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return months[parseInt(p[1], 10) - 1] + ' ' + parseInt(p[2], 10);
+}
+
+var GOAL_NAMES = {fat: 'Fat Loss', muscle: 'Muscle Gain', recomp: 'Recomposition'};
+
+// ── SAVE BASELINE ──
+function saveBaseline() {
+  var btn = document.getElementById('save-btn');
+  if (window._baseTarget === undefined) { return; }
+
+  var deficitPct = 10;
+  if (window._goalLabel && window._goalLabel.indexOf('15%') > -1) { deficitPct = 15; }
+  if (window._goalLabel && window._goalLabel.indexOf('20%') > -1) { deficitPct = 20; }
+  if (window._goalKey === 'recomp') { deficitPct = 5; }
+  if (window._goalKey === 'muscle') { deficitPct = -10; }
+
+  var entry = {
+    date: todayISO(),
+    weight: window._calcWeight,
+    tdee: window._calcTdee,
+    target: window._baseTarget + (window._adjust || 0),
+    waist: null
+  };
+
+  var data = {
+    baseline: {
+      name: window._calcName || '',
+      sex: sex,
+      age: window._calcAge,
+      heightIn: window._calcHeightIn,
+      activityIdx: activityIndex,
+      goal: window._goalKey,
+      deficitPct: deficitPct,
+      startWeight: window._calcWeight,
+      startDate: todayISO()
+    },
+    checkins: [entry]
+  };
+
+  if (writeData(data)) {
+    btn.className = 'save-btn saved';
+    btn.textContent = '\u2713 Baseline Saved  -  Come Back In 3 To 4 Weeks';
+  } else {
+    btn.className = 'save-btn saved';
+    btn.textContent = 'Could Not Save  -  Storage Unavailable';
+  }
+}
+
+// ── ON LOAD: welcome back ──
+function initMemory() {
+  var data = loadData();
+  if (!data || !data.baseline) { return; }
+  var b = data.baseline;
+  var last = data.checkins[data.checkins.length - 1];
+  var days = daysBetween(last.date, todayISO());
+
+  var head = b.name ? ('Good to see you, ' + b.name + '.') : 'Good to see you.';
+  var body = '';
+  body += 'You set your baseline <strong>' + daysBetween(b.startDate, todayISO()) + ' days ago</strong> at ';
+  body += '<strong>' + last.target.toLocaleString() + ' calories</strong> for ' + GOAL_NAMES[b.goal] + '. ';
+  if (days < 14) {
+    body += 'It has only been ' + days + ' days since your last entry. Give it at least 3 weeks of honest tracking before checking in  -  the trend needs time to show itself.';
+  } else {
+    body += 'That is enough time to see a real trend. Let us take a look.';
+  }
+
+  document.getElementById('wb-head').innerHTML = head;
+  document.getElementById('wb-body').innerHTML = body;
+  document.getElementById('welcome').className = 'welcome show';
+}
+
+function startFresh() {
+  if (storeAvailable()) {
+    try { window.localStorage.removeItem(STORE_KEY); } catch (e) {}
+  }
+  document.getElementById('welcome').className = 'welcome';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── CHECK-IN FLOW ──
+function startCheckin() {
+  var data = loadData();
+  if (!data) { return; }
+  var b = data.baseline;
+  var last = data.checkins[data.checkins.length - 1];
+
+  document.getElementById('main-wrap').style.display = 'none';
+  document.getElementById('checkin').className = 'checkin show';
+
+  var intro = 'Last entry: ' + fmtDate(last.date) + ' at ' + last.weight + ' lbs, targeting ' + last.target.toLocaleString() + ' calories.';
+  document.getElementById('ci-intro').textContent = intro;
+
+  if (b.goal === 'recomp') {
+    document.getElementById('ci-input-title').textContent = 'Your Waist Measurement';
+    document.getElementById('ci-input-help').innerHTML = 'For recomposition, <strong style="color:var(--text)">the scale is not the metric</strong>. Your weight is supposed to hold steady while your body composition changes underneath. Waist is what tells the real story.';
+    document.getElementById('ci-primary-label').innerHTML = 'Waist (inches)';
+    document.getElementById('ci-weight').placeholder = '34';
+    document.getElementById('ci-weight').step = '0.25';
+    document.getElementById('ci-waist-wrap').style.display = 'block';
+    document.getElementById('ci-waist-label').innerHTML = 'Current Weight (lbs) <span class="ci-optional">optional</span>';
+    document.getElementById('ci-waist').placeholder = '185';
+    document.getElementById('ci-waist').step = '1';
+  } else if (b.goal === 'muscle') {
+    document.getElementById('ci-input-title').textContent = 'Your Current Weight';
+    document.getElementById('ci-input-help').innerHTML = 'In a lean gain phase we want <strong style="color:var(--text)">slow, controlled weight gain</strong>. Roughly a quarter to half a pound per week. Faster than that and you are adding fat, not muscle.';
+    document.getElementById('ci-primary-label').textContent = 'Current Weight (lbs)';
+  } else {
+    document.getElementById('ci-input-title').textContent = 'Your Current Weight';
+    document.getElementById('ci-input-help').innerHTML = 'Weigh yourself first thing in the morning, and use your <strong style="color:var(--text)">weekly average</strong> if you have one. A single day tells you almost nothing.';
+    document.getElementById('ci-primary-label').textContent = 'Current Weight (lbs)';
+  }
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function backToCalc() {
+  document.getElementById('checkin').className = 'checkin';
+  document.getElementById('main-wrap').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function runCheckin() {
+  var data = loadData();
+  if (!data) { return; }
+  var b = data.baseline;
+  var last = data.checkins[data.checkins.length - 1];
+  var err = document.getElementById('ci-err');
+
+  var primaryVal = parseFloat(document.getElementById('ci-weight').value);
+  var secondVal = parseFloat(document.getElementById('ci-waist').value);
+
+  if (isNaN(primaryVal) || primaryVal <= 0) {
+    err.style.display = 'block';
+    err.textContent = b.goal === 'recomp' ? 'Please enter your waist measurement.' : 'Please enter your current weight.';
+    return;
+  }
+  err.style.display = 'none';
+
+  var newWeight, newWaist;
+  if (b.goal === 'recomp') {
+    newWaist = primaryVal;
+    newWeight = isNaN(secondVal) ? last.weight : secondVal;
+  } else {
+    newWeight = primaryVal;
+    newWaist = null;
+  }
+
+  var days = daysBetween(last.date, todayISO());
+  if (days < 1) { days = 1; }
+  var weeks = days / 7;
+
+  // Recalculate TDEE at new weight
+  var wKg = newWeight * 0.453592;
+  var hCm = b.heightIn * 2.54;
+  var bmr = (10 * wKg) + (6.25 * hCm) - (5 * b.age) + (b.sex === 'male' ? 5 : -161);
+  var newTdee = Math.round(bmr * actMultipliers[b.activityIdx]);
+  var newTarget = Math.round(newTdee * (1 - b.deficitPct / 100));
+  var newProtein = Math.round(newWeight * 1.0);
+
+  var verdict = buildVerdict(b, last, newWeight, newWaist, weeks, days);
+
+  document.getElementById('ci-verdict').innerHTML = verdict.html;
+
+  // New target recommendation
+  var nt = '';
+  nt += '<div class="newtarget">';
+  nt += '<div class="nt-lbl">Recommended Updated Target</div>';
+  nt += '<div class="nt-num">' + newTarget.toLocaleString() + '</div>';
+  nt += '<div class="nt-sub">Recalculated at ' + newWeight + ' lbs. Your TDEE is now ' + newTdee.toLocaleString() + ' cal. Protein target: ' + newProtein + 'g.</div>';
+  nt += '<div class="nt-row">';
+  nt += '<button class="nt-btn" onclick="acceptTarget(' + newWeight + ',' + (newWaist === null ? 'null' : newWaist) + ',' + newTdee + ',' + newTarget + ')">Accept New Target</button>';
+  nt += '<button class="nt-btn ghost" onclick="keepTarget(' + newWeight + ',' + (newWaist === null ? 'null' : newWaist) + ',' + newTdee + ',' + last.target + ')">Keep ' + last.target.toLocaleString() + '</button>';
+  nt += '</div>';
+  nt += '</div>';
+  document.getElementById('ci-newtarget').innerHTML = nt;
+
+  document.getElementById('ci-input-card').style.display = 'none';
+  document.getElementById('ci-results').style.display = 'block';
+
+  renderHistory(data, newWeight, newWaist);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── VERDICT LOGIC (goal-aware) ──
+function buildVerdict(b, last, newWeight, newWaist, weeks, days) {
+  var html = '';
+  var cls = 'verdict good';
+  var eyebrow = 'The Verdict';
+  var head = '';
+  var body = '';
+  var stats = '';
+
+  if (b.goal === 'recomp') {
+    var waistChange = null;
+    var prevWaist = null;
+    // find last recorded waist
+    var d = loadData();
+    for (var i = d.checkins.length - 1; i >= 0; i--) {
+      if (d.checkins[i].waist !== null && d.checkins[i].waist !== undefined) { prevWaist = d.checkins[i].waist; break; }
+    }
+    var wtChange = newWeight - last.weight;
+
+    stats += '<div class="v-stats">';
+    stats += '<div class="v-stat"><div class="v-stat-num">' + days + '</div><div class="v-stat-lbl">Days</div></div>';
+    stats += '<div class="v-stat"><div class="v-stat-num">' + (wtChange > 0 ? '+' : '') + wtChange.toFixed(1) + '</div><div class="v-stat-lbl">lbs change</div></div>';
+    if (prevWaist !== null) {
+      waistChange = newWaist - prevWaist;
+      stats += '<div class="v-stat"><div class="v-stat-num">' + (waistChange > 0 ? '+' : '') + waistChange.toFixed(2) + '"</div><div class="v-stat-lbl">Waist</div></div>';
+    } else {
+      stats += '<div class="v-stat"><div class="v-stat-num">' + newWaist + '"</div><div class="v-stat-lbl">Waist (base)</div></div>';
+    }
+    stats += '</div>';
+
+    if (prevWaist === null) {
+      head = 'Baseline Waist Locked In';
+      body = 'This is your first waist measurement, so there is nothing to compare it to yet. That is fine. <strong>' + newWaist + ' inches is your starting line.</strong> Come back in 3 to 4 weeks and this is where the real story shows up.';
+    } else if (waistChange <= -0.25 && Math.abs(wtChange) < 2) {
+      head = 'This Is Exactly What Recomp Looks Like';
+      body = 'Waist down <strong>' + Math.abs(waistChange).toFixed(2) + ' inches</strong> while the scale barely moved. That is fat coming off and muscle going on at the same time. Most people would look at a flat scale and think they failed. <strong>You did not fail. This is the win.</strong> Keep doing exactly what you are doing.';
+    } else if (waistChange <= -0.25) {
+      head = 'Waist Is Moving. Good.';
+      body = 'Down <strong>' + Math.abs(waistChange).toFixed(2) + ' inches</strong> at the waist. Your body composition is shifting in the right direction. The scale moved ' + (wtChange > 0 ? 'up' : 'down') + ' ' + Math.abs(wtChange).toFixed(1) + ' lbs, which matters less than the tape. Stay the course.';
+    } else if (waistChange >= 0.25) {
+      cls = 'verdict warn';
+      eyebrow = 'Course Correction';
+      head = 'Waist Is Going the Wrong Way';
+      body = 'Up <strong>' + waistChange.toFixed(2) + ' inches</strong>. That usually means the deficit is not real  -  either tracking has slipped or the target is too high for you. <strong>Check your tracking accuracy first.</strong> Weigh your food for one honest week before changing the number. If tracking is solid, take the updated target below and give it another 3 weeks.';
+    } else {
+      head = 'Holding Steady';
+      body = 'Waist essentially unchanged and the scale is flat. In recomp that is not failure, but it is not progress either. <strong>Two things to check: are you actually adding weight or reps in the gym, and is your protein hitting every day.</strong> Recomp only works when training drives it. Give it 3 more weeks of honest effort before adjusting.';
+    }
+
+  } else if (b.goal === 'muscle') {
+    var gain = newWeight - last.weight;
+    var rate = gain / weeks;
+    stats += '<div class="v-stats">';
+    stats += '<div class="v-stat"><div class="v-stat-num">' + days + '</div><div class="v-stat-lbl">Days</div></div>';
+    stats += '<div class="v-stat"><div class="v-stat-num">' + (gain > 0 ? '+' : '') + gain.toFixed(1) + '</div><div class="v-stat-lbl">lbs total</div></div>';
+    stats += '<div class="v-stat"><div class="v-stat-num">' + (rate > 0 ? '+' : '') + rate.toFixed(2) + '</div><div class="v-stat-lbl">lbs / week</div></div>';
+    stats += '</div>';
+
+    if (rate < 0.1) {
+      cls = 'verdict warn';
+      eyebrow = 'Course Correction';
+      head = 'The Surplus Is Not Real';
+      body = 'You are gaining <strong>' + rate.toFixed(2) + ' lbs per week</strong>, which is close to nothing. Either you are eating less than you think or your activity is higher than you selected. <strong>Track honestly for one week before adding calories.</strong> If the tracking is accurate, take the updated target and add 100 to 150 calories of carbs on training days.';
+    } else if (rate <= 0.5) {
+      head = 'Right In the Window';
+      body = 'Gaining <strong>' + rate.toFixed(2) + ' lbs per week</strong>. That is the range where the weight you add is mostly muscle instead of fat. Over 40 this is exactly where you want to be. <strong>Keep hitting your protein and keep adding weight or reps in the gym.</strong> The surplus only turns into muscle if you earn it.';
+    } else {
+      cls = 'verdict warn';
+      eyebrow = 'Ease Off';
+      head = 'That Is Too Fast';
+      body = 'Gaining <strong>' + rate.toFixed(2) + ' lbs per week</strong> is faster than muscle can actually be built. The extra is going on as fat. <strong>Pull carbs back by 25 to 50 grams</strong> and hold there for 3 weeks. Protein and fat stay exactly where they are. Slower is not worse here  -  slower is leaner.';
+    }
+
+  } else {
+    var lost = last.weight - newWeight;
+    var rateLb = lost / weeks;
+    var ratePct = (rateLb / last.weight) * 100;
+    stats += '<div class="v-stats">';
+    stats += '<div class="v-stat"><div class="v-stat-num">' + days + '</div><div class="v-stat-lbl">Days</div></div>';
+    stats += '<div class="v-stat"><div class="v-stat-num">' + (lost > 0 ? '-' : '+') + Math.abs(lost).toFixed(1) + '</div><div class="v-stat-lbl">lbs total</div></div>';
+    stats += '<div class="v-stat"><div class="v-stat-num">' + Math.abs(rateLb).toFixed(2) + '</div><div class="v-stat-lbl">lbs / week</div></div>';
+    stats += '</div>';
+
+    if (ratePct < 0.15) {
+      cls = 'verdict warn';
+      eyebrow = 'Before You Cut Anything';
+      head = 'The Scale Has Stalled';
+      body = 'You are losing <strong>' + Math.abs(rateLb).toFixed(2) + ' lbs per week</strong>. That is not enough movement to call it progress. <strong>Do not cut calories yet.</strong> The research is consistent: most people underestimate what they eat by 30 to 50 percent. Weigh every bite for one honest week first. If the tracking is genuinely tight and the scale still has not moved, then take the updated target below.';
+    } else if (ratePct <= 0.55) {
+      head = 'Steady and Sustainable';
+      body = 'Down <strong>' + Math.abs(rateLb).toFixed(2) + ' lbs per week</strong>. Slower than the internet promises and far better for you. At this rate you keep your muscle, you keep your strength, and you keep your energy. <strong>This is the pace that actually holds.</strong> Stay with it.';
+    } else if (ratePct <= 1.0) {
+      head = 'Right In the Sweet Spot';
+      body = 'Down <strong>' + Math.abs(rateLb).toFixed(2) + ' lbs per week</strong>. That is the target range for someone your size, and you are hitting it. <strong>Protein every day, keep training hard, do not touch a thing.</strong> Come back in another 3 to 4 weeks.';
+    } else {
+      cls = 'verdict warn';
+      eyebrow = 'Slow It Down';
+      head = 'You Are Losing Too Fast';
+      body = 'Down <strong>' + Math.abs(rateLb).toFixed(2) + ' lbs per week</strong>. That is faster than fat can realistically come off, which means some of it is muscle  -  and after 40 muscle is the one thing you cannot afford to give back. <strong>Add carbs back until you are in the half to one percent range.</strong> Losing slower will leave you looking better.';
+    }
+  }
+
+  html += '<div class="' + cls + '">';
+  html += '<div class="v-eyebrow">' + eyebrow + '</div>';
+  html += '<div class="v-head">' + head + '</div>';
+  html += stats;
+  html += '<div class="v-body">' + body + '</div>';
+  html += '</div>';
+  return {html: html};
+}
+
+// ── ACCEPT / KEEP ──
+function acceptTarget(w, waist, tdee, target) { commitCheckin(w, waist, tdee, target, true); }
+function keepTarget(w, waist, tdee, target) { commitCheckin(w, waist, tdee, target, false); }
+
+function commitCheckin(w, waist, tdee, target, accepted) {
+  var data = loadData();
+  if (!data) { return; }
+  data.checkins.push({date: todayISO(), weight: w, waist: waist, tdee: tdee, target: target});
+  writeData(data);
+
+  var el = document.getElementById('ci-newtarget');
+  el.innerHTML = '<div class="newtarget"><div class="nt-lbl">Saved</div><div class="nt-num">' + target.toLocaleString() + '</div><div class="nt-sub">' + (accepted ? 'Updated target locked in.' : 'Sticking with your current target.') + ' Check in again in 3 to 4 weeks.</div></div>';
+
+  renderHistory(loadData(), null, null);
+}
+
+// ── HISTORY ──
+function renderHistory(data, pendingW, pendingWaist) {
+  var items = data.checkins.slice();
+  if (pendingW !== null && pendingW !== undefined) {
+    items.push({date: todayISO(), weight: pendingW, waist: pendingWaist, target: null, pending: true});
+  }
+  var show = items.slice(-8);
+  var h = '';
+  for (var i = show.length - 1; i >= 0; i--) {
+    var c = show[i];
+    var isBase = (items.indexOf(c) === 0);
+    h += '<div class="hist-row">';
+    h += '<div class="hist-date">' + fmtDate(c.date) + '</div>';
+    h += '<div class="hist-main">';
+    if (c.waist !== null && c.waist !== undefined) {
+      h += c.waist + '" waist';
+      if (c.weight) { h += '  ·  ' + c.weight + ' lbs'; }
+    } else {
+      h += c.weight + ' lbs';
+    }
+    if (c.target) { h += '  ·  <strong>' + c.target.toLocaleString() + ' cal</strong>'; }
+    h += '</div>';
+    h += '<div class="hist-tag' + (isBase ? ' base' : '') + '">' + (isBase ? 'Baseline' : (c.pending ? 'Today' : 'Check-In')) + '</div>';
+    h += '</div>';
+  }
+  document.getElementById('ci-history').innerHTML = h;
+}
+
+initMemory();
+
 </script>
 </body>
 </html>
