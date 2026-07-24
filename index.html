@@ -242,7 +242,7 @@
       .creds-heading{font-size:36px;}
       .creds-body{font-size:15px;}
     }
-    .coach{background:var(--black);display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
+    .coach{background:var(--black);display:grid;grid-template-columns:minmax(320px,720px) 1fr;min-height:600px;}
     .coach-img{position:relative;background:var(--graphite);display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:500px;}
     .coach-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 50%,var(--black));z-index:1;}
     .coach-img-placeholder{text-align:center;opacity:0.2;color:var(--white);z-index:2;}
@@ -650,7 +650,7 @@
     var cs = document.getElementById('coach-img-section');
     cs.style.backgroundImage = "url('" + COACH_IMAGE + "')";
     cs.style.backgroundSize = 'cover';
-    cs.style.backgroundPosition = 'center';
+    cs.style.backgroundPosition = 'center top';
     document.getElementById('coach-placeholder').style.display = 'none';
   }
   document.getElementById('final-eyebrow-el').textContent = FINAL_EYEBROW;
