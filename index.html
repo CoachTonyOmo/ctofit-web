@@ -1,682 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CTO FIT — Made to Overcome.</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-  <link rel="shortcut icon" href="favicon.svg"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="THE 100 — 100 active days to build a way of training, eating and living that holds up when real life changes the plan.">
+<title>THE 100 | Made to Overcome. — CTO FIT</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:         #080808;
+  --d1:         #111111;
+  --cream:      #F0EDE8;
+  --cream-sub:  rgba(240,237,232,0.54);
+  --cream-dim:  rgba(240,237,232,0.2);
+  --ink:        #0e0e0e;
+  --ink-sub:    rgba(14,14,14,0.52);
+  --olive-text: #B8CC55;
+  --olive-mid:  #7A8C35;
+  --olive:      #5C6B28;
+  --gold:       #F49E02;
+  --border:     rgba(240,237,232,0.07);
+  --border-ol:  rgba(92,107,40,0.4);
+  --D: 'Oswald', sans-serif;
+  --B: 'Plus Jakarta Sans', sans-serif;
+  --px: clamp(28px, 7vw, 110px);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--cream); font-family: var(--B); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-  <script>
-  /* ============================================================
-     EDIT ZONE — Make all your changes here, nowhere else
-     ============================================================
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--px); height: 64px;
+  transition: background 0.4s, border-color 0.4s; border-bottom: 1px solid transparent;
+}
+nav.on { background: rgba(8,8,8,0.93); backdrop-filter: blur(14px); border-bottom-color: var(--border); }
+.nav-mark { text-decoration: none; line-height: 1; }
+.nav-mark-t { font-family: var(--D); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream-sub); display: block; }
+.nav-mark-n { font-family: var(--D); font-size: 26px; font-weight: 700; letter-spacing: 0em; color: var(--cream); display: block; line-height: 1; }
+.nav-cta {
+  display: inline-block; padding: 9px 22px;
+  border: 1.5px solid var(--gold); background: rgba(244,158,2,0.06);
+  color: var(--gold); font-family: var(--B); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  border-radius: 10px; transition: background 0.2s;
+}
+.nav-cta:hover { background: rgba(244,158,2,0.14); }
 
-     IMAGES (must match filenames uploaded to GitHub exactly)
-     -------------------------------------------------------- */
-  var HERO_IMAGE       = "hero-bg.jpg";           // Hero background photo
-  var FEATURE1_IMAGE   = "feature-tracker.png";   // Feature 1 left panel image
-  var FEATURE2_IMAGE   = "feature-community.png"; // Feature 2 right panel image
-  var COACH_IMAGE      = "";                       // Coach photo — e.g. "coach-tony.jpg"
+/* HERO */
+.s-hero {
+  position: relative; min-height: 100svh; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 64px var(--px) clamp(60px, 10vh, 120px);
+  background:
+    linear-gradient(to right, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.84) 36%, rgba(8,8,8,0.3) 62%, rgba(8,8,8,0.06) 100%),
+    linear-gradient(to bottom, rgba(8,8,8,0.18) 0%, rgba(8,8,8,0.0) 28%, rgba(8,8,8,0.82) 84%, var(--bg) 100%),
+    url("hero-bg.png") center 50% / cover no-repeat;
+}
+.hero-wm {
+  position: absolute; bottom: -40px; right: -16px;
+  font-family: var(--D); font-size: clamp(260px, 40vw, 560px); font-weight: 700;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(92,107,40,0.26);
+  letter-spacing: -0.03em; line-height: 1; pointer-events: none; user-select: none;
+}
+.hero-body { position: relative; z-index: 2; max-width: 860px; opacity: 0; animation: rise 0.9s 0.1s ease forwards; }
+.hero-label { font-family: var(--D); font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive-text); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--olive-text); }
+.hero-hl { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.91; letter-spacing: -0.01em; font-size: clamp(80px, 13vw, 168px); margin-bottom: 28px; }
+.hero-hl .c { color: var(--cream); display: block; }
+.hero-hl .o { color: var(--olive-text); display: block; }
+.hero-rule { width: 36px; height: 1px; background: var(--cream-sub); margin-bottom: 22px; }
+.hero-copy { font-family: var(--B); font-size: clamp(16px, 1.5vw, 19px); color: var(--cream-sub); line-height: 1.7; max-width: 460px; margin-bottom: 36px; }
+.hero-micro { display: block; margin-top: 16px; font-family: var(--B); font-size: 11px; font-weight: 500; color: var(--cream-dim); letter-spacing: 0.14em; text-transform: uppercase; }
+.btn-gold {
+  display: inline-block; padding: 15px 36px;
+  border: 1.5px solid var(--gold); background: rgba(244,158,2,0.06);
+  color: var(--gold); font-family: var(--B); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none;
+  border-radius: 10px; transition: background 0.2s;
+}
+.btn-gold:hover { background: rgba(244,158,2,0.14); }
 
-  /* HERO SECTION
-     -------------------------------------------------------- */
-  var HERO_EYEBROW     = "FIT 40 Method™ — For Adults Over 40";
-  var HERO_LINE1       = "You're Not Done.";
-  var HERO_LINE2       = "Prove It.";
-  var HERO_SUBTEXT     = "A purposeful training system for busy adults over 40 who refuse to quit. No guessing. No fluff. Show up — the program is waiting.";
-  var HERO_CTA_TEXT    = "Start the 14-Day Challenge";
-  var HERO_CTA_LINK    = "https://www.skool.com/fit-40-inner-circle-1807/about";
-  var HERO_GHOST_TEXT  = "See the Method";
+/* PROBLEM — CREAM */
+.s-problem { background: var(--cream); color: var(--ink); padding: clamp(80px, 12vh, 140px) var(--px); }
+.problem-grid { display: grid; grid-template-columns: 1fr 320px; gap: clamp(48px, 6vw, 88px); align-items: start; }
+.problem-label { font-family: var(--D); font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive); margin-bottom: 24px; }
+.problem-hl { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.93; letter-spacing: -0.01em; font-size: clamp(52px, 8.5vw, 112px); color: var(--ink); margin-bottom: 56px; }
+.problem-lines { margin-bottom: 72px; }
+.problem-line { font-family: var(--B); font-size: clamp(19px, 1.8vw, 24px); color: var(--ink-sub); line-height: 1.5; padding: 16px 0; border-bottom: 1px solid rgba(14,14,14,0.08); }
+.problem-line:first-child { border-top: 1px solid rgba(14,14,14,0.08); }
+.problem-line.gap { padding-top: 36px; border-top: 1px solid rgba(14,14,14,0.08); }
+.problem-line.strong { color: var(--ink); font-style: italic; border-bottom: none; padding-top: 36px; font-size: clamp(20px, 2vw, 26px); }
+.problem-close { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.93; letter-spacing: -0.01em; font-size: clamp(48px, 8vw, 112px); color: var(--ink); }
+.problem-close .olive { color: var(--olive); display: block; }
+.problem-sticky { position: sticky; top: 100px; }
+.problem-img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 14px; display: block; }
+.problem-img-note { font-family: var(--B); font-size: 11px; color: rgba(14,14,14,0.3); margin-top: 10px; font-style: italic; }
 
-  /* STATS (below hero)
-     -------------------------------------------------------- */
-  var STAT1_NUM        = "14";
-  var STAT1_LABEL      = "Days to Momentum";
-  var STAT2_NUM        = "40+";
-  var STAT2_LABEL      = "Built for This Age Group";
-  var STAT3_NUM        = "4";
-  var STAT3_LABEL      = "Pillars of the Method";
+/* REFRAME — DARK */
+.s-reframe { background: var(--bg); padding: clamp(80px, 12vh, 140px) var(--px); }
+.reframe-grid { display: grid; grid-template-columns: 1fr 380px; gap: clamp(48px, 6vw, 88px); align-items: center; }
+.reframe-label { font-family: var(--D); font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive-text); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.reframe-label::before { content: ''; display: block; width: 18px; height: 1px; background: var(--olive-text); }
+.reframe-hl { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.93; letter-spacing: -0.01em; font-size: clamp(44px, 7vw, 96px); color: var(--cream); margin-bottom: 40px; }
+.reframe-copy { font-family: var(--B); font-size: clamp(17px, 1.5vw, 20px); color: var(--cream-sub); line-height: 1.75; max-width: 480px; margin-bottom: 40px; }
+.reframe-close { font-family: var(--D); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 3vw, 40px); color: var(--cream); line-height: 1.1; }
+.reframe-close .o { color: var(--olive-text); display: block; margin-top: 4px; }
+.reframe-img-wrap { position: relative; }
+.reframe-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 14px; display: block; }
 
-  /* FEATURE SECTION 1
-     -------------------------------------------------------- */
-  var F1_EYEBROW       = "No More Guessing";
-  var F1_HEADLINE      = "Less Admin.";
-  var F1_HEADLINE_EM   = "More Progress.";
-  var F1_BODY          = "Most people don't fail because they lack motivation. They fail because they don't consistently do simple things. The FIT 40 Method removes every decision except one: show up.";
-  var F1_CTA_TEXT      = "Start Free Today";
-  var F1_CTA_LINK      = "https://www.skool.com/fit-40-inner-circle-1807/about";
+/* PHILOSOPHY — DARK */
+.s-phil { background: var(--d1); padding: clamp(80px, 12vh, 140px) var(--px); }
+.phil-m1 { margin-bottom: clamp(88px, 13vh, 140px); }
+.phil-statement { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.91; letter-spacing: -0.01em; font-size: clamp(64px, 11vw, 144px); color: var(--cream); margin-bottom: 40px; }
+.phil-copy { font-family: var(--B); font-size: clamp(17px, 1.5vw, 20px); color: var(--cream-sub); line-height: 1.75; max-width: 520px; }
+.phil-copy p + p { margin-top: 12px; }
+.phil-m2 { display: grid; grid-template-columns: 1fr 320px; gap: clamp(48px, 6vw, 88px); align-items: center; border-top: 1px solid var(--border); padding-top: clamp(80px, 12vh, 140px); }
+.phil-goal-label { font-family: var(--B); font-size: clamp(17px, 1.5vw, 20px); color: var(--cream-sub); font-style: italic; margin-bottom: 16px; }
+.phil-day101 { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.88; letter-spacing: -0.02em; font-size: clamp(88px, 16vw, 210px); }
+.phil-day101 .w { color: var(--cream); }
+.phil-day101 .g { color: var(--gold); }
+.phil-lake { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 30%; border-radius: 14px; display: block; }
 
-  /* FEATURE SECTION 2
-     -------------------------------------------------------- */
-  var F2_EYEBROW       = "FIT 40 Inner Circle™";
-  var F2_HEADLINE      = "Real People.";
-  var F2_HEADLINE_EM   = "Real Results.";
-  var F2_BODY          = "Join a community of adults over 40 who are done making excuses. Share wins, stay accountable, and get access to done-for-you programming that keeps showing up every month.";
-  var F2_CTA_TEXT      = "Join the Inner Circle";
-  var F2_CTA_LINK      = "https://www.skool.com/fit-40-inner-circle-1807/about";
+/* DAY 101 — CINEMATIC */
+.s-day101 {
+  position: relative; min-height: 90vh; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 64px var(--px) clamp(64px, 11vh, 120px);
+  background:
+    linear-gradient(to bottom, rgba(8,8,8,0.2) 0%, rgba(8,8,8,0.5) 45%, rgba(8,8,8,0.96) 78%, var(--bg) 100%),
+    url("mountains.png") center 20% / cover no-repeat;
+}
+.day101-label { font-family: var(--D); font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive-text); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.day101-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--olive-text); }
+.day101-hl { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.93; font-size: clamp(48px, 8vw, 108px); color: var(--cream); margin-bottom: 28px; }
+.day101-copy { font-family: var(--B); font-size: clamp(17px, 1.5vw, 20px); color: var(--cream-sub); line-height: 1.75; max-width: 560px; }
+.day101-copy p + p { margin-top: 14px; }
 
-  /* COACH SECTION
-     -------------------------------------------------------- */
-  var CERTS_IMAGE      = "cert-badges.png";  // Certification badges image
+/* COACH — CREAM */
+.s-coach {
+  background: var(--cream); color: var(--ink);
+  padding: clamp(80px, 12vh, 140px) var(--px);
+  display: grid; grid-template-columns: 1fr 300px;
+  gap: clamp(48px, 7vw, 100px); align-items: start;
+}
+.coach-label { font-family: var(--D); font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive); margin-bottom: 24px; }
+.coach-hl { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.94; font-size: clamp(36px, 5vw, 64px); color: var(--ink); margin-bottom: 32px; }
+.coach-bio { font-family: var(--B); font-size: clamp(16px, 1.5vw, 19px); color: var(--ink-sub); line-height: 1.8; max-width: 500px; }
+.coach-bio + .coach-bio { margin-top: 14px; }
+.coach-creds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.coach-cred { padding: 5px 13px; border: 1px solid rgba(14,14,14,0.15); border-radius: 100px; font-family: var(--B); font-size: 11px; font-weight: 600; color: var(--ink-sub); }
+.coach-photo {
+  background: rgba(14,14,14,0.06); border: 1px solid rgba(14,14,14,0.1);
+  border-radius: 14px; aspect-ratio: 3/4;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+}
+.coach-photo svg { opacity: 0.2; }
+.coach-photo-hint { font-family: var(--B); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(14,14,14,0.3); }
 
-  var COACH_QUOTE      = "This isn't about intensity — it's about integrity. Train with control now so you can train with power later.";
-  var COACH_NAME       = "Coach Tony O";
-  var COACH_TITLE      = "Founder, CTO Health LLC · Precision Nutrition L1 · ISSA Certified";
+/* FINAL CTA */
+.s-final {
+  background: var(--bg); text-align: center; position: relative; overflow: hidden;
+  padding: clamp(96px, 14vh, 160px) var(--px);
+}
+.final-wm {
+  position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%);
+  font-family: var(--D); font-size: clamp(200px, 36vw, 500px); font-weight: 700;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(92,107,40,0.2);
+  letter-spacing: -0.03em; line-height: 1; pointer-events: none; user-select: none; white-space: nowrap;
+}
+.final-body { position: relative; z-index: 2; }
+.final-eyebrow { font-family: var(--D); font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive-text); margin-bottom: 32px; display: block; }
+.final-hl { font-family: var(--D); font-weight: 700; text-transform: uppercase; line-height: 0.93; font-size: clamp(56px, 10vw, 128px); margin-bottom: 36px; }
+.final-hl .c { color: var(--cream); display: block; }
+.final-hl .o { color: var(--olive-text); display: block; }
+.final-hl .g { color: var(--gold); display: block; }
+.final-sub { font-family: var(--B); font-size: clamp(16px, 1.4vw, 19px); color: var(--cream-sub); margin: 0 auto 40px; max-width: 380px; line-height: 1.65; }
+.final-micro { display: block; margin-top: 16px; font-family: var(--B); font-size: 13px; color: var(--cream-dim); }
 
-  /* TESTIMONIALS (swap in real names/quotes when ready)
-     -------------------------------------------------------- */
-  var T1_QUOTE         = "Finally a program that fits my life. I'm not trying to train like a 25-year-old anymore — and I'm seeing better results than I ever did.";
-  var T1_NAME          = "Member Name";
-  var T1_META          = "FIT 40 Inner Circle™";
+/* FOOTER BAR */
+.footer-bar {
+  background: var(--d1); border-top: 1px solid var(--border);
+  padding: 18px var(--px); display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+}
+.footer-bar-box {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; flex-shrink: 0;
+  border: 1.5px solid var(--olive-mid); border-radius: 4px;
+  font-family: var(--D); font-size: 14px; font-weight: 700; color: var(--olive-text);
+}
+.footer-bar-copy { font-family: var(--D); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); flex: 1; }
+.footer-bar-copy em { color: var(--olive-text); font-style: normal; }
+.footer-bar-right { font-family: var(--D); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream-sub); }
 
-  var T2_QUOTE         = "The tracker alone changed everything. I stopped overthinking and started showing up. 14 days in and I hadn't missed a single session.";
-  var T2_NAME          = "Member Name";
-  var T2_META          = "Kickstart Challenge Graduate";
+/* FOOTER */
+footer {
+  background: var(--d1); border-top: 1px solid var(--border);
+  padding: 32px var(--px); display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.footer-logo { font-family: var(--D); font-size: 14px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cream); text-decoration: none; }
+.footer-logo em { color: var(--olive-text); font-style: normal; }
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer-links a { font-family: var(--B); font-size: 12px; font-weight: 500; color: var(--cream-sub); text-decoration: none; }
+.footer-links a:hover { color: var(--cream); }
+.footer-legal { font-family: var(--B); font-size: 11px; color: rgba(240,237,232,0.22); width: 100%; margin-top: 4px; }
 
-  var T3_QUOTE         = "Coach Tony gets it. He's not selling you a fantasy. He's giving you a system that actually works when life is busy and messy.";
-  var T3_NAME          = "Member Name";
-  var T3_META          = "FIT 40 Inner Circle™";
+/* REVEAL */
+.rv { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.rv.in { opacity: 1; transform: none; }
+.rv.d1 { transition-delay: 0.1s; } .rv.d2 { transition-delay: 0.22s; }
+.rv.d3 { transition-delay: 0.36s; } .rv.d4 { transition-delay: 0.5s; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity:1; transform:none; transition:none; } }
+@keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
 
-  /* FINAL CTA SECTION
-     -------------------------------------------------------- */
-  var FINAL_HEADLINE1  = "You're Not Done.";
-  var FINAL_HEADLINE2  = "Prove It.";
-  var FINAL_SUBTEXT    = "Join the FIT 40 Kickstart Challenge. 14 days of purposeful training, done-for-you programming, and a community that doesn't quit. Free to start. No excuses left.";
-  var FINAL_CTA_TEXT   = "Start the Challenge — It's Free";
-  var FINAL_CTA_LINK   = "https://www.skool.com/fit-40-inner-circle-1807/about";
-
-  /* ============================================================
-     STOP EDITING — Do not change anything below this line
-     ============================================================ */
-  </script>
-
-  <style>
-    :root {
-      --neon:     #00F261;
-      --volt:     #E4F222;
-      --electric: #2D7BFF;
-      --violet:   #5D00E8;
-      --black:    #000000;
-      --charcoal: #111111;
-      --graphite: #1C1C1C;
-      --white:    #FFFFFF;
-      --cream:    #F7F5F0;
-      --stone-bg: #F2EFE8;
-      --stone-card:#E8E4DB;
-      --pebble:   #DDD9CF;
-      --text-head:#1A1A1A;
-      --text-body:#4A4438;
-      --text-muted:#7A6E62;
-      --violet-light:#5D00E8;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%;}
-    body{background:var(--black);color:var(--white);font-family:'Sora',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;max-width:100%;position:relative;}
-
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);}
-    .nav-logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;color:var(--white);text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;}
-    .nav-logo span{color:var(--neon);}
-    .nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
-    .nav-links a{font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;}
-    .nav-links a:hover{color:var(--white);}
-    .nav-cta{background:var(--neon);color:var(--black);font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;padding:10px 24px;border-radius:4px;text-decoration:none;transition:opacity 0.2s;}
-    .nav-cta:hover{opacity:0.88;}
-
-    /* HERO */
-    .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;}
-    .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center center;background-repeat:no-repeat;z-index:0;}
-    .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.62);z-index:1;}
-    .hero-overlay2{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 50%);z-index:1;}
-    .hero-accent-line{display:none;}
-    .hero-content{position:relative;z-index:2;padding:140px 48px 100px;max-width:860px;width:100%;}
-    .hero-eyebrow{font-family:'Sora',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--neon);margin-bottom:20px;justify-content:center;display:flex;align-items:center;gap:10px;}
-    .hero-eyebrow::before{content:'';flex:0 0 32px;height:1px;background:var(--neon);opacity:0.5;}
-    .hero-eyebrow::after{content:'';flex:0 0 32px;height:1px;background:var(--neon);opacity:0.5;}
-    .hero-h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:96px;line-height:0.95;text-transform:uppercase;letter-spacing:0.01em;color:var(--white);margin-bottom:24px;}
-    .hero-h1 .accent{color:var(--neon);display:block;}
-    .hero-sub{font-size:18px;color:rgba(255,255,255,0.7);line-height:1.7;max-width:560px;margin:0 auto 36px;}
-    .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
-    .btn-primary{display:inline-block;background:var(--neon);color:var(--black);font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;padding:16px 40px;border-radius:4px;text-decoration:none;transition:opacity 0.2s,transform 0.15s;animation:pulse-neon 2.5s ease-in-out infinite;}
-    .btn-primary:hover{opacity:0.9;transform:translateY(-1px);animation:none;box-shadow:0 0 28px rgba(0,242,97,0.65);}
-    @keyframes pulse-neon{0%,100%{box-shadow:0 0 0 0 rgba(0,242,97,0);}50%{box-shadow:0 0 18px 4px rgba(0,242,97,0.3);}}
-    @keyframes pulse-violet{0%,100%{box-shadow:0 0 0 0 rgba(93,0,232,0);}50%{box-shadow:0 0 18px 4px rgba(93,0,232,0.35);}}
-    .btn-ghost{display:inline-block;color:rgba(255,255,255,0.7);font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;border:1px solid rgba(255,255,255,0.35);border-radius:4px;text-decoration:none;transition:all 0.2s;}
-    .btn-ghost:hover{color:var(--white);border-color:rgba(255,255,255,0.7);}
-    .hero-proof{margin-top:72px;display:flex;gap:56px;flex-wrap:nowrap;justify-content:center;}
-    .hero-stat{border-left:3px solid var(--neon);padding-left:20px;text-align:left;}
-    .hero-stat-num{font-family:'Oswald',sans-serif;font-weight:700;font-size:48px;color:var(--white);line-height:1;}
-    .hero-stat-label{font-size:13px;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;margin-top:6px;}
-
-    /* STRIP */
-    .strip{background:var(--charcoal);border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);}
-    .strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);}
-    .strip-item{padding:48px 48px;border-right:1px solid rgba(255,255,255,0.06);display:flex;align-items:flex-start;gap:24px;}
-    .strip-item:last-child{border-right:none;}
-    .strip-icon{flex-shrink:0;width:56px;height:56px;background:rgba(0,242,97,0.08);border-radius:4px;display:flex;align-items:center;justify-content:center;}
-    .strip-icon svg{width:28px;height:28px;}
-    .strip-text h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);margin-bottom:8px;}
-    .strip-text p{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;}
-
-    /* FEATURES */
-    .features{background:var(--white);}
-    .feature-row{display:grid;grid-template-columns:1fr 1fr;min-height:520px;}
-    .feature-row.reverse{direction:rtl;}
-    .feature-row.reverse>*{direction:ltr;}
-    .feature-img{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:stretch;justify-content:center;}
-    .feature-img.dark{background:var(--graphite);}
-    .feature-img.light{background:var(--stone-bg);}
-    .feature-img img{width:100%;height:100%;object-fit:cover;max-height:520px;display:block;}
-    .feature-img-placeholder{text-align:center;opacity:0.2;}
-    .feature-img-placeholder svg{width:60px;height:60px;margin-bottom:8px;}
-    .feature-img-placeholder p{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;}
-    .feature-img.dark .feature-img-placeholder{color:var(--white);}
-    .feature-img.light .feature-img-placeholder{color:var(--text-head);}
-    .feature-content{padding:96px 80px;display:flex;flex-direction:column;justify-content:center;}
-    .feature-content.dark-bg{background:var(--charcoal);}
-    .feature-content.light-bg{background:var(--white);}
-    .f-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px;}
-    .f-eyebrow.green{color:var(--neon);}
-    .f-eyebrow.muted{color:var(--text-muted);}
-    .f-h2{font-family:'Oswald',sans-serif;font-weight:700;font-size:52px;line-height:1.05;text-transform:uppercase;letter-spacing:0.01em;margin-bottom:24px;}
-    .f-h2.light{color:var(--white);}
-    .f-h2.dark{color:var(--text-head);}
-    .f-h2 em{font-style:normal;color:var(--neon);}
-    .f-h2.dark em{color:var(--violet);}
-    .f-body{font-size:17px;line-height:1.85;margin-bottom:36px;}
-    .f-body.light{color:rgba(255,255,255,0.6);}
-    .f-body.dark{color:var(--text-body);}
-    .btn-neon{display:inline-block;background:var(--neon);color:var(--black);font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;padding:14px 36px;border-radius:4px;text-decoration:none;transition:opacity 0.2s;animation:pulse-neon 2.5s ease-in-out infinite;align-self:flex-start;}
-    .btn-neon:hover{opacity:0.88;animation:none;box-shadow:0 0 28px rgba(0,242,97,0.65);}
-    .btn-violet{display:inline-block;background:var(--violet);color:var(--white);font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;padding:14px 36px;border-radius:4px;text-decoration:none;transition:opacity 0.2s;animation:pulse-violet 2.5s ease-in-out infinite;align-self:flex-start;}
-    .btn-violet:hover{opacity:0.88;animation:none;box-shadow:0 0 28px rgba(93,0,232,0.55);}
-
-    /* PILLARS */
-    .pillars{background:var(--charcoal);padding:100px 48px;}
-    .pillars-inner{max-width:1100px;margin:0 auto;}
-    .section-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--neon);margin-bottom:16px;text-align:center;}
-    .section-h2{font-family:'Oswald',sans-serif;font-weight:700;font-size:64px;text-transform:uppercase;letter-spacing:0.01em;color:var(--white);text-align:center;margin-bottom:20px;line-height:1.0;}
-    .section-sub{font-size:17px;color:rgba(255,255,255,0.4);text-align:center;max-width:560px;margin:0 auto 72px;}
-    .pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
-    .pillar{background:var(--graphite);padding:48px 36px;border-top:3px solid;}
-    .pillar:nth-child(1){border-color:var(--neon);}
-    .pillar:nth-child(2){border-color:var(--electric);}
-    .pillar:nth-child(3){border-color:var(--volt);}
-    .pillar:nth-child(4){border-color:var(--violet);}
-    .pillar-num{font-family:'Oswald',sans-serif;font-weight:700;font-size:56px;line-height:1;margin-bottom:20px;opacity:0.1;}
-    .pillar h3{font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:14px;}
-    .pillar p{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.75;}
-
-    /* CREDENTIALS */
-    .credentials{background:var(--charcoal);padding:80px 48px;}
-    .credentials-inner{max-width:1100px;margin:0 auto;}
-    .creds-text{max-width:760px;margin-bottom:56px;}
-    .creds-heading{font-family:'Oswald',sans-serif;font-weight:700;font-size:52px;text-transform:uppercase;letter-spacing:0.01em;color:var(--white);line-height:1.0;margin-bottom:20px;}
-    .creds-body{font-size:17px;color:rgba(255,255,255,0.5);line-height:1.8;max-width:680px;}
-    .creds-badges{display:flex;align-items:center;justify-content:center;}
-    .creds-badges img{width:100%;max-width:1000px;height:auto;display:block;}
-    @media(max-width:900px){
-      .credentials{padding:56px 20px;}
-      .creds-heading{font-size:36px;}
-      .creds-body{font-size:15px;}
-    }
-    .coach{background:var(--black);display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
-    .coach-img{position:relative;background:var(--graphite);display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:500px;}
-    .coach-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 50%,var(--black));z-index:1;}
-    .coach-img-placeholder{text-align:center;opacity:0.2;color:var(--white);z-index:2;}
-    .coach-img-placeholder svg{width:64px;height:64px;margin-bottom:10px;}
-    .coach-img-placeholder p{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;}
-    .coach-content{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;position:relative;}
-    .coach-content::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--neon);}
-    .quote-mark{font-family:'Georgia',serif;font-size:96px;line-height:0.8;color:var(--neon);opacity:0.25;margin-bottom:16px;}
-    .coach-quote{font-family:'Oswald',sans-serif;font-weight:500;font-size:32px;line-height:1.45;color:var(--white);margin-bottom:32px;}
-    .coach-name{font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:0.1em;color:var(--neon);margin-bottom:6px;}
-    .coach-title-text{font-size:15px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;margin-bottom:32px;}
-    .coach-creds{display:flex;flex-wrap:wrap;gap:8px;}
-    .cred-badge{font-size:11px;font-weight:600;letter-spacing:0.06em;padding:6px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:2px;color:rgba(255,255,255,0.5);}
-
-    /* FEATURED TESTIMONIAL */
-    .featured-testi{background:var(--black);padding:96px 48px;border-top:1px solid rgba(0,242,97,0.12);}
-    .featured-testi-inner{max-width:860px;margin:0 auto;}
-    .featured-stars{font-size:32px;margin-bottom:24px;letter-spacing:4px;}
-    .featured-quote{font-family:'Oswald',sans-serif;font-weight:500;font-size:28px;line-height:1.5;color:var(--white);margin-bottom:16px;font-style:normal;}
-    .featured-quote-cont{font-size:18px;color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:32px;}
-    .featured-quote-cont strong{color:var(--white);}
-    .featured-author{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:0.08em;color:var(--neon);}
-
-    /* RECEIPTS */
-    .receipts{background:var(--graphite);padding:96px 0;}
-    .receipts-inner{max-width:860px;margin:0 auto;padding:0 48px;text-align:center;}
-
-    /* CAROUSEL */
-    .carousel-wrap{position:relative;padding-bottom:40px;margin-top:48px;max-width:1200px;margin-left:auto;margin-right:auto;}
-    .carousel-window{width:100%;box-sizing:border-box;overflow:hidden;}
-    .carousel-track{display:flex;gap:12px;transition:transform 0.4s cubic-bezier(.25,.46,.45,.94);}
-    .carousel-slide{flex:0 0 520px;width:520px;border-radius:12px;transition:opacity 0.4s,transform 0.4s;opacity:0.3;transform:scale(0.92);cursor:pointer;}
-    .carousel-slide.active{opacity:1;transform:scale(1);cursor:default;outline:2px solid rgba(0,242,97,0.4);}
-    .carousel-slide img{width:100%;display:block;border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.5);}
-    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.2);color:var(--white);width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:20;transition:all 0.2s;}
-    .carousel-btn:hover{background:var(--neon);color:var(--black);}
-    .carousel-btn.prev{left:8px;}
-    .carousel-btn.next{right:8px;}
-    .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px;}
-    .carousel-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;cursor:pointer;padding:0;transition:all 0.2s;}
-    .carousel-dot.active{background:var(--neon);transform:scale(1.3);}
-
-    @media(max-width:900px){
-      .featured-testi{padding:64px 24px;}
-      .featured-quote{font-size:22px;}
-      .featured-quote-cont{font-size:16px;}
-      .featured-author{font-size:20px;}
-      .receipts{padding:64px 0;}
-      .receipts-inner{padding:0 20px;}
-      .carousel-window{padding:16px 8% 16px;}
-      .carousel-slide{flex:0 0 75vw;width:75vw;}
-    }
-    @media(max-width:480px){
-      .featured-quote{font-size:18px;}
-      .carousel-slide{flex:0 0 85vw;width:85vw;}
-    }
-
-    @media(max-width:900px){
-      .featured-testi{padding:64px 24px;}
-      .featured-quote{font-size:22px;}
-      .featured-quote-cont{font-size:16px;}
-      .featured-author{font-size:20px;}
-      .receipts{padding:64px 20px;}
-      .carousel-slide{flex:0 0 75%;}
-    }
-    @media(max-width:480px){
-      .featured-quote{font-size:18px;}
-      .carousel-slide{flex:0 0 85%;}
-      .carousel-btn{width:40px;height:40px;font-size:18px;}
-    }
-
-    /* FINAL CTA */
-    .final-cta{background:var(--black);padding:120px 48px;text-align:center;position:relative;overflow:hidden;border-top:1px solid rgba(0,242,97,0.12);}
-    .final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,242,97,0.07) 0%,transparent 65%);}
-    .final-cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;}
-    .final-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--neon);margin-bottom:20px;}
-    .final-h2{font-family:'Oswald',sans-serif;font-weight:700;font-size:76px;text-transform:uppercase;letter-spacing:0.01em;color:var(--white);line-height:0.95;margin-bottom:20px;}
-    .final-h2 span{color:var(--neon);}
-    .final-sub{font-size:16px;color:rgba(255,255,255,0.45);margin-bottom:40px;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto;}
-    .final-tagline{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.15);margin-top:48px;}
-
-    /* FOOTER */
-    footer{background:var(--charcoal);padding:64px 48px 40px;border-top:1px solid rgba(255,255,255,0.05);}
-    .footer-top{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.06);}
-    .footer-brand .logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;color:var(--white);text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;display:inline-block;margin-bottom:16px;}
-    .footer-brand .logo span{color:var(--neon);}
-    .footer-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:240px;}
-    .footer-col h4{font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:16px;}
-    .footer-col ul{list-style:none;}
-    .footer-col ul li{margin-bottom:10px;}
-    .footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
-    .footer-col ul li a:hover{color:var(--white);}
-    .footer-bottom{max-width:1100px;margin:0 auto;padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-    .footer-copy{font-size:12px;color:rgba(255,255,255,0.2);}
-    .footer-tagline-text{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.15);}
-
-    /* ANIMATIONS */
-    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-    .hero-eyebrow{animation:fadeUp 0.7s 0.1s ease both;}
-    .hero-h1{animation:fadeUp 0.7s 0.2s ease both;}
-    .hero-sub{animation:fadeUp 0.7s 0.3s ease both;}
-    .hero-actions{animation:fadeUp 0.7s 0.4s ease both;}
-    .hero-proof{animation:fadeUp 0.7s 0.5s ease both;}
-
-    /* RESPONSIVE */
-    @media(max-width:900px){
-      nav{padding:0 20px;}
-      .nav-links{display:none;}
-      .hero-content{padding:100px 24px 60px;max-width:100%;}
-      .hero-h1{font-size:52px;}
-      .hero-proof{flex-wrap:wrap;gap:28px;}
-      .strip-inner{grid-template-columns:1fr;}
-      .strip-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);padding:28px 20px;}
-      .feature-row,.feature-row.reverse{grid-template-columns:1fr;direction:ltr;}
-      .feature-img{min-height:280px;}
-      .feature-content{padding:48px 24px;}
-      .f-h2{font-size:34px;}
-      .pillars{padding:64px 20px;}
-      .pillars-grid{grid-template-columns:1fr 1fr;}
-      .section-h2{font-size:36px;}
-      .coach{grid-template-columns:1fr;}
-      .coach-img{min-height:320px;}
-      .coach-content{padding:48px 24px;}
-      .coach-content::before{display:none;}
-      .credentials{padding:56px 20px;}
-      .creds-heading{font-size:32px;}
-      .creds-body{font-size:15px;}
-      .testimonials{padding:64px 20px;}
-      .testimonials-grid{grid-template-columns:1fr;}
-      .final-cta{padding:80px 24px;}
-      .final-h2{font-size:44px;}
-      footer{padding:48px 20px 32px;}
-      .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
-      .footer-bottom{flex-direction:column;align-items:flex-start;}
-    }
-    @media(max-width:480px){
-      .hero-h1{font-size:40px;}
-      .hero-sub{font-size:15px;}
-      .hero-proof{gap:20px;}
-      .hero-stat-num{font-size:36px;}
-      .hero-actions{flex-direction:column;align-items:center;width:100%;}
-      .btn-primary,.btn-ghost{width:100%;text-align:center;}
-      .pillars-grid{grid-template-columns:1fr;}
-      .section-h2{font-size:30px;}
-      .f-h2{font-size:28px;}
-      .coach-quote{font-size:22px;}
-      .final-h2{font-size:36px;}
-      .footer-top{grid-template-columns:1fr;}
-      .creds-heading{font-size:28px;}
-      .testi{padding:28px 20px;}
-    }
-  </style>
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .problem-grid { grid-template-columns: 1fr; }
+  .problem-sticky { display: none; }
+  .reframe-grid { grid-template-columns: 1fr; }
+  .reframe-img-wrap { display: none; }
+  .phil-m2 { grid-template-columns: 1fr; }
+  .phil-lake { display: none; }
+  .s-coach { grid-template-columns: 1fr; }
+  .coach-photo { max-width: 260px; }
+  .footer-bar-right { display: none; }
+}
+@media (max-width: 600px) {
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-logo"><img src="logo_white_new.png" alt="CTO FIT" style="height:36px;width:auto;display:block;"></a>
-  <ul class="nav-links">
-    <li><a href="#method">The Method</a></li>
-    <li><a href="#coach">Coach Tony</a></li>
-    <li><a href="#community">Community</a></li>
-    <li><a href="legal.html">Legal</a></li>
-  </ul>
-  <a id="nav-cta-btn" href="#" class="nav-cta">Join Free</a>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-mark">
+    <span class="nav-mark-t">THE</span>
+    <span class="nav-mark-n">100</span>
+  </a>
+  <a href="https://www.skool.com/fit-40-inner-circle-1807/about" class="nav-cta">Explore THE 100</a>
 </nav>
 
-<section class="hero">
-  <div class="hero-bg" id="hero-bg-div"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-overlay2"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow" id="hero-eyebrow-el"></div>
-    <h1 class="hero-h1" id="hero-h1-el"></h1>
-    <p class="hero-sub" id="hero-sub-el"></p>
-    <div class="hero-actions">
-      <a id="hero-cta-btn" href="#" class="btn-primary"></a>
-      <a id="hero-ghost-btn" href="#method" class="btn-ghost"></a>
-    </div>
-    <div class="hero-proof">
-      <div class="hero-stat"><div class="hero-stat-num" id="s1n"></div><div class="hero-stat-label" id="s1l"></div></div>
-      <div class="hero-stat"><div class="hero-stat-num" id="s2n"></div><div class="hero-stat-label" id="s2l"></div></div>
-      <div class="hero-stat"><div class="hero-stat-num" id="s3n"></div><div class="hero-stat-label" id="s3l"></div></div>
-    </div>
+<!-- 01 HERO -->
+<section class="s-hero">
+  <div class="hero-wm" aria-hidden="true">100</div>
+  <div class="hero-body">
+    <p class="hero-label">THE 100 &nbsp;&middot;&nbsp; CTO FIT</p>
+    <h1 class="hero-hl">
+      <span class="c">You&#39;re not</span>
+      <span class="o">done.</span>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-copy">100 active days to build a way of training, eating and living that holds up when real life changes the plan.</p>
+    <a href="https://www.skool.com/fit-40-inner-circle-1807/about" class="btn-gold">Explore THE 100</a>
+    <span class="hero-micro">100 ACTIVE DAYS &nbsp;|&nbsp; FOUR ROUNDS &nbsp;|&nbsp; ONE STANDARD</span>
   </div>
 </section>
 
-<div class="strip">
-  <div class="strip-inner">
-    <div class="strip-item">
-      <div class="strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00F261" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-      <div class="strip-text"><h3>Done-For-You Training</h3><p>Open the app. Your workout is waiting. No planning. No guessing. Ever.</p></div>
-    </div>
-    <div class="strip-item">
-      <div class="strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00F261" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-      <div class="strip-text"><h3>Built for Busy Adults</h3><p>Efficient sessions designed around your real life — not some ideal schedule.</p></div>
-    </div>
-    <div class="strip-item">
-      <div class="strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00F261" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-      <div class="strip-text"><h3>A Coach in Your Corner</h3><p>Not a content library. A coach who shows up calm, focused, and ready.</p></div>
-    </div>
-  </div>
-</div>
-
-<div class="features">
-  <div class="feature-row">
-    <div class="feature-img dark">
-      <img id="feature1-img" src="" alt="FIT 40 Kickstart Challenge Tracker"/>
-    </div>
-    <div class="feature-content dark-bg">
-      <div class="f-eyebrow green" id="f1-eyebrow"></div>
-      <h2 class="f-h2 light" id="f1-headline"></h2>
-      <p class="f-body light" id="f1-body"></p>
-      <a id="f1-cta" href="#" class="btn-neon"></a>
-    </div>
-  </div>
-  <div class="feature-row reverse">
-    <div class="feature-img light">
-      <img id="feature2-img" src="" alt="FIT 40 Inner Circle Community"/>
-    </div>
-    <div class="feature-content light-bg">
-      <div class="f-eyebrow muted" id="f2-eyebrow"></div>
-      <h2 class="f-h2 dark" id="f2-headline"></h2>
-      <p class="f-body dark" id="f2-body"></p>
-      <a id="f2-cta" href="#" class="btn-violet"></a>
-    </div>
-  </div>
-</div>
-
-<section class="pillars" id="method">
-  <div class="pillars-inner">
-    <div class="section-eyebrow">The FIT 40 Method™</div>
-    <h2 class="section-h2">The 4M Framework</h2>
-    <p class="section-sub">Four pillars. One system. Everything you need — nothing you don't.</p>
-    <div class="pillars-grid">
-      <div class="pillar"><div class="pillar-num">01</div><h3>Mindset</h3><p>Consistency, discipline, and identity. Who you decide to be determines what you actually do.</p></div>
-      <div class="pillar"><div class="pillar-num">02</div><h3>Measurement</h3><p>Nutrition awareness, tracking, and data. You can't improve what you don't measure.</p></div>
-      <div class="pillar"><div class="pillar-num">03</div><h3>Movement</h3><p>Strength and conditioning built for longevity. Train with control now. Train with power later.</p></div>
-      <div class="pillar"><div class="pillar-num">04</div><h3>Momentum</h3><p>Habit building and long-term adherence. A short plan you finish beats a long plan you don't.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="credentials">
-  <div class="credentials-inner">
-    <div class="creds-text">
-      <div class="f-eyebrow" style="font-size:12px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--neon);margin-bottom:14px;">Backed by Experience &amp; Expertise</div>
-      <h2 class="creds-heading">Certified. Proven. Trusted.</h2>
-      <p class="creds-body">Built on real-world training — not fads. You're learning from a coach who has trained on real floors, earned every credential, and knows what actually works for adults over 40.</p>
-    </div>
-    <div class="creds-badges">
-      <img id="certs-img" src="" alt="Coach Tony O Certifications — Precision Nutrition L1, CDS Level 3, ISSA Certified, Kettlebell Coach, Rawai Muay Thai"/>
-    </div>
-  </div>
-</section>
-
-<section class="coach" id="coach">
-  <div class="coach-img" id="coach-img-section">
-    <div class="coach-img-overlay"></div>
-    <div class="coach-img-placeholder" id="coach-placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      <p>Coach Tony O Photo Here</p>
-    </div>
-  </div>
-  <div class="coach-content">
-    <div class="quote-mark">"</div>
-    <p class="coach-quote" id="coach-quote-el"></p>
-    <div class="coach-name" id="coach-name-el"></div>
-    <div class="coach-title-text" id="coach-title-el"></div>
-    <div class="coach-creds">
-      <span class="cred-badge">Precision Nutrition L1</span>
-      <span class="cred-badge">CDS Level 3</span>
-      <span class="cred-badge">ISSA Certified</span>
-      <span class="cred-badge">Kettlebell Coach</span>
-    </div>
-  </div>
-</section>
-
-<section class="testimonials" id="community">
-
-  <!-- Featured Testimonial — Bob -->
-  <div class="featured-testi">
-    <div class="featured-testi-inner">
-      <div class="featured-stars">⭐⭐⭐⭐⭐</div>
-      <blockquote class="featured-quote">"This program was exactly what I needed. I used to feel lost when it came to workouts and nutrition, constantly second-guessing if I was doing the right thing. Coach Tony took all the guesswork out of it and made everything simple and effective.</blockquote>
-      <p class="featured-quote-cont">Since starting, I've lost weight, built strength, and for the first time in my life, I have <strong>visible muscle at 48</strong>. The best part? <strong>Everyone keeps asking me how I did it!</strong> I feel stronger, healthier, and more confident than ever — without spending hours in the gym or following extreme diets."</p>
-      <div class="featured-author">— Bob, 48 | Dad of 2 Girls</div>
-    </div>
-  </div>
-
-  <!-- Receipts Carousel -->
-  <div class="receipts">
-    <div class="receipts-inner">
-      <div class="section-eyebrow">Real Results</div>
-      <h2 class="section-h2">Receipts &gt; Hype</h2>
-      <p class="section-sub">No staged photos. No paid testimonials. Just real people, real data, real life.</p>
-    </div>
-
-    <div class="carousel-wrap" id="cw">
-      <div class="carousel-window">
-        <div class="carousel-track" id="carousel-track">
-          <div class="carousel-slide"><img src="result-1.png" alt="Real member result"/></div>
-          <div class="carousel-slide"><img src="result-2.png" alt="Real member result"/></div>
-          <div class="carousel-slide"><img src="result-3.png" alt="Real member result"/></div>
-          <div class="carousel-slide"><img src="result-4.png" alt="Real member result"/></div>
-        </div>
+<!-- 02 PROBLEM — CREAM -->
+<section class="s-problem">
+  <div class="problem-grid">
+    <div>
+      <p class="problem-label rv">The Real Problem</p>
+      <h2 class="problem-hl rv d1">You already know<br>what to do.</h2>
+      <div class="problem-lines">
+        <p class="problem-line rv d1">You&#39;ve trained before.</p>
+        <p class="problem-line rv d2">You&#39;ve eaten better before.</p>
+        <p class="problem-line rv d3">You&#39;ve told yourself this time would be different.</p>
+        <p class="problem-line rv d4">And maybe it was. For a while.</p>
+        <p class="problem-line gap rv">Then work got crazy. You traveled. The kids needed you.<br>One bad meal became a bad weekend.</p>
+        <p class="problem-line strong rv">The problem wasn&#39;t that you didn&#39;t know what to do.</p>
       </div>
-      <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">&#8592;</button>
-      <button class="carousel-btn next" id="carousel-next" aria-label="Next">&#8594;</button>
-      <div class="carousel-dots" id="carousel-dots"></div>
+      <div class="problem-close rv">
+        Knowing isn&#39;t<br>the bottleneck.<br>
+        <span class="olive">Execution is.</span>
+      </div>
+    </div>
+    <div class="problem-sticky rv d2">
+      <!-- REPLACE: editorial portrait photo — person, training moment, real life -->
+      <div style="width:100%;aspect-ratio:2/3;background:rgba(14,14,14,0.08);border:1px solid rgba(14,14,14,0.12);border-radius:14px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:var(--B);font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(14,14,14,0.25);">Person photo</span>
+      </div>
     </div>
   </div>
-
 </section>
 
-<section class="final-cta">
-  <div class="final-cta-inner">
-    <div class="final-eyebrow">Free 14-Day Challenge — Start Today</div>
-    <h2 class="final-h2" id="final-h2-el"></h2>
-    <p class="final-sub" id="final-sub-el"></p>
-    <a id="final-cta-btn" href="#" class="btn-primary" style="font-size:16px;padding:18px 48px;"></a>
-    <div class="final-tagline">Made to Overcome. — CTO FIT</div>
+<!-- 03 REFRAME — DARK + RAINY ROAD -->
+<section class="s-reframe">
+  <div class="reframe-grid">
+    <div>
+      <p class="reframe-label rv">A Different Kind of 100 Days</p>
+      <h2 class="reframe-hl rv d1">This isn&#39;t another<br>fitness challenge.</h2>
+      <p class="reframe-copy rv d2">Most challenges ask one question: can you follow the rules?<br><br>THE 100 asks something different. Can you build something that survives real life?</p>
+      <div class="reframe-close rv d3">
+        Not a perfect streak.<br>
+        <span class="o">Real life.</span>
+      </div>
+    </div>
+    <div class="reframe-img-wrap rv d2">
+      <img src="rainy-road.png" alt="Dark rainy road continuing forward" class="reframe-img" loading="lazy">
+    </div>
   </div>
 </section>
 
+<!-- 04 PHILOSOPHY — DARK + LAKE REFLECTION -->
+<section class="s-phil">
+  <div class="phil-m1">
+    <h2 class="phil-statement rv">You don&#39;t<br>start over.</h2>
+    <div class="phil-copy rv d1">
+      <p>Life will interrupt THE 100. That&#39;s not failure. That&#39;s the point.</p>
+      <p>You learn to adapt. You learn to return. You collect evidence. You go again.</p>
+    </div>
+  </div>
+  <div class="phil-m2">
+    <div class="rv">
+      <p class="phil-goal-label">The goal isn&#39;t a perfect Day 1&ndash;100.</p>
+      <div class="phil-day101">
+        <span class="w">Day&nbsp;</span><span class="g">101.</span>
+      </div>
+    </div>
+    <img src="lake-reflection.png" alt="Lake at sunrise — reflection and stillness" class="phil-lake rv d2" loading="lazy">
+  </div>
+</section>
+
+<!-- 05 DAY 101 — MOUNTAINS CINEMATIC -->
+<section class="s-day101">
+  <div style="position:relative;z-index:2;max-width:720px;">
+    <p class="day101-label rv">Day 101</p>
+    <h2 class="day101-hl rv d1">That&#39;s the day<br>that matters.</h2>
+    <div class="day101-copy rv d2">
+      <p>Anyone can follow a set of rules for a while. But eventually the challenge ends. Nobody is keeping score.</p>
+      <p>THE 100 isn&#39;t only about what happens during the 100 days. It&#39;s about who shows up the day after.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 COACH — CREAM -->
+<section class="s-coach">
+  <div>
+    <p class="coach-label rv">The Coach</p>
+    <h2 class="coach-hl rv d1">I built THE 100<br>because I<br>needed it too.</h2>
+    <p class="coach-bio rv d2">I&#39;ve spent years studying fitness, coaching it and practicing it myself. And I&#39;ve still drifted. Knowing what to do doesn&#39;t make you immune to real life.</p>
+    <p class="coach-bio rv d3">What mattered wasn&#39;t finding another perfect plan. It was learning how to return. THE 100 grew from that idea.</p>
+    <div class="coach-creds rv d4">
+      <span class="coach-cred">Precision Nutrition L1</span>
+      <span class="coach-cred">ISSA Certified</span>
+      <span class="coach-cred">CDS Level 3</span>
+      <span class="coach-cred">Kettlebell Coach</span>
+      <span class="coach-cred">Rawai Muay Thai</span>
+    </div>
+  </div>
+  <div class="coach-photo rv d2">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <circle cx="14" cy="11" r="5" stroke="rgba(14,14,14,0.6)" stroke-width="1.5"/>
+      <path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="rgba(14,14,14,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <span class="coach-photo-hint">Photo &mdash; Coach Tony O</span>
+  </div>
+</section>
+
+<!-- 07 FINAL CTA -->
+<section class="s-final">
+  <div class="final-wm" aria-hidden="true">100</div>
+  <div class="final-body">
+    <span class="final-eyebrow rv">Made to Overcome.</span>
+    <h2 class="final-hl rv d1">
+      <span class="c">100 days.</span>
+      <span class="o">Real life.</span>
+      <span class="g">Day 101.</span>
+    </h2>
+    <p class="final-sub rv d2">See who shows up on Day 101.</p>
+    <div class="rv d3">
+      <a href="https://www.skool.com/fit-40-inner-circle-1807/about" class="btn-gold">Explore THE 100</a>
+      <span class="final-micro">See how THE 100 works, what&#39;s included and how to join.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER BAR -->
+<div class="footer-bar">
+  <span class="footer-bar-box">100</span>
+  <p class="footer-bar-copy">LEARN IT. DO IT. <em>LIVE IT.</em></p>
+  <p class="footer-bar-right">FOUR ROUNDS. ONE STANDARD. BECOME YOUR STANDARD.</p>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="#" class="logo"><img src="logo_white_new.png" alt="CTO FIT" style="height:40px;width:auto;display:block;margin-bottom:16px;"></a>
-      <p>A purposeful training system for busy adults over 40 who refuse to quit. Made to Overcome.</p>
-      <div style="display:flex;gap:14px;margin-top:20px;">
-        <a href="https://www.youtube.com/@CoachTonyOmo" target="_blank" style="color:rgba(255,255,255,0.35);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Oswald',sans-serif;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00F261'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">YouTube</a>
-        <span style="color:rgba(255,255,255,0.15);">·</span>
-        <a href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank" style="color:rgba(255,255,255,0.35);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Oswald',sans-serif;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00F261'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Skool</a>
-        <span style="color:rgba(255,255,255,0.15);">·</span>
-        <a href="mailto:tony.o@ctofit.com" style="color:rgba(255,255,255,0.35);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Oswald',sans-serif;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00F261'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Email</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Train</h4>
-      <ul>
-        <li><a href="https://www.skool.com/fit-40-inner-circle-1807">FIT 40 Kickstart Challenge</a></li>
-        <li><a href="https://www.skool.com/fit-40-inner-circle-1807">FIT 40 Inner Circle™</a></li>
-        <li><a href="#method">The 4M Framework</a></li>
-        <li><a href="tracker.html">14-Day Tracker</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
-      <ul>
-        <li><a href="https://www.youtube.com/@CoachTonyOmo" target="_blank">YouTube</a></li>
-        <li><a href="https://www.skool.com/fit-40-inner-circle-1807" target="_blank">Community</a></li>
-        <li><a href="mailto:tony.o@ctofit.com">Contact Coach Tony</a></li>
-        <li><a href="mailto:support@ctofit.com">Support</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="legal.html">Terms &amp; Conditions</a></li>
-        <li><a href="legal.html#privacy">Privacy Policy</a></li>
-        <li><a href="legal.html#disclaimer">Disclaimer</a></li>
-        <li><a href="legal.html#purchase">Terms of Purchase</a></li>
-      </ul>
-    </div>
+  <a href="#" class="footer-logo">THE <em>100</em> &nbsp;&middot;&nbsp; CTO FIT</a>
+  <div class="footer-links">
+    <a href="https://www.youtube.com/@CoachTonyOmo" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.skool.com/fit-40-inner-circle-1807/about" target="_blank" rel="noopener">Community</a>
+    <a href="mailto:tony.o@ctofit.com">Contact</a>
+    <a href="https://ctofit.com/legal">Legal</a>
   </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2025 CTO Health LLC. All rights reserved. · <a href="legal.html" style="color:rgba(255,255,255,0.2);text-decoration:none;">Legal</a> · <a href="legal.html#privacy" style="color:rgba(255,255,255,0.2);text-decoration:none;">Privacy</a></span>
-    <span class="footer-tagline-text">Made to Overcome.</span>
-  </div>
+  <p class="footer-legal">&copy; 2026 CTO Health LLC. All rights reserved. Made to Overcome.</p>
 </footer>
 
 <script>
-  // Wire up all Edit Zone variables to the page
-  document.getElementById('hero-bg-div').style.backgroundImage = "url('" + HERO_IMAGE + "')";
-  document.getElementById('hero-eyebrow-el').textContent = HERO_EYEBROW;
-  document.getElementById('hero-h1-el').innerHTML = HERO_LINE1 + '<span class="accent">' + HERO_LINE2 + '</span>';
-  document.getElementById('hero-sub-el').textContent = HERO_SUBTEXT;
-  document.getElementById('hero-cta-btn').textContent = HERO_CTA_TEXT;
-  document.getElementById('hero-cta-btn').href = HERO_CTA_LINK;
-  document.getElementById('hero-ghost-btn').textContent = HERO_GHOST_TEXT;
-  document.getElementById('nav-cta-btn').href = HERO_CTA_LINK;
-  document.getElementById('s1n').textContent = STAT1_NUM;
-  document.getElementById('s1l').textContent = STAT1_LABEL;
-  document.getElementById('s2n').textContent = STAT2_NUM;
-  document.getElementById('s2l').textContent = STAT2_LABEL;
-  document.getElementById('s3n').textContent = STAT3_NUM;
-  document.getElementById('s3l').textContent = STAT3_LABEL;
-  document.getElementById('f1-eyebrow').textContent = F1_EYEBROW;
-  document.getElementById('f1-headline').innerHTML = F1_HEADLINE + '<br><em>' + F1_HEADLINE_EM + '</em>';
-  document.getElementById('f1-body').textContent = F1_BODY;
-  document.getElementById('f1-cta').textContent = F1_CTA_TEXT;
-  document.getElementById('f1-cta').href = F1_CTA_LINK;
-  document.getElementById('f2-eyebrow').textContent = F2_EYEBROW;
-  document.getElementById('f2-headline').innerHTML = F2_HEADLINE + '<br><em>' + F2_HEADLINE_EM + '</em>';
-  document.getElementById('f2-body').textContent = F2_BODY;
-  document.getElementById('f2-cta').textContent = F2_CTA_TEXT;
-  document.getElementById('f2-cta').href = F2_CTA_LINK;
-  document.getElementById('certs-img').src = CERTS_IMAGE;
-  document.getElementById('feature1-img').src = FEATURE1_IMAGE;
-  document.getElementById('feature2-img').src = FEATURE2_IMAGE;
-  document.getElementById('coach-quote-el').textContent = COACH_QUOTE;
-  document.getElementById('coach-name-el').textContent = COACH_NAME;
-  document.getElementById('coach-title-el').textContent = COACH_TITLE;
-  if(COACH_IMAGE){
-    var cs = document.getElementById('coach-img-section');
-    cs.style.backgroundImage = "url('" + COACH_IMAGE + "')";
-    cs.style.backgroundSize = 'cover';
-    cs.style.backgroundPosition = 'center';
-    document.getElementById('coach-placeholder').style.display = 'none';
-  }
-  document.getElementById('final-h2-el').innerHTML = FINAL_HEADLINE1 + '<br><span>' + FINAL_HEADLINE2 + '</span>';
-  document.getElementById('final-sub-el').textContent = FINAL_SUBTEXT;
-  document.getElementById('final-cta-btn').textContent = FINAL_CTA_TEXT;
-  document.getElementById('final-cta-btn').href = FINAL_CTA_LINK;
-
-  // Carousel
-  (function(){
-    var trk=document.getElementById('carousel-track');
-    var dts=document.getElementById('carousel-dots');
-    var slides=Array.from(trk.children);
-    var N=slides.length,cur=0,gap=12;
-    slides.forEach(function(_,i){
-      var d=document.createElement('button');
-      d.className='carousel-dot'+(i===0?' active':'');
-      d.onclick=function(){go(i);};
-      dts.appendChild(d);
-    });
-    function go(n){
-      cur=(n+N)%N;
-      var win=document.querySelector('.carousel-window');
-      var winW=win.offsetWidth;
-      var slideW=slides[0].offsetWidth;
-      // Center the active slide: offset = center of window - center of active slide
-      var centerOffset=(winW/2)-(slideW/2);
-      var offset=centerOffset - cur*(slideW+gap);
-      trk.style.transform='translateX('+offset+'px)';
-      slides.forEach(function(s,i){s.classList.toggle('active',i===cur);});
-      dts.querySelectorAll('.carousel-dot').forEach(function(d,i){d.classList.toggle('active',i===cur);});
-    }
-    document.getElementById('carousel-prev').onclick=function(){go(cur-1);};
-    document.getElementById('carousel-next').onclick=function(){go(cur+1);};
-    slides.forEach(function(s,i){s.onclick=function(){if(i!==cur){go(i);}};});
-    var sx=0;
-    trk.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
-    trk.addEventListener('touchend',function(e){
-      var d=sx-e.changedTouches[0].clientX;
-      if(Math.abs(d)>40){go(d>0?cur+1:cur-1);}
-    },{passive:true});
-    window.addEventListener('resize',function(){go(cur);});
-    go(0);
-  })();
-
+(function(){
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){ window.scrollY > 72 ? nav.classList.add('on') : nav.classList.remove('on'); }, { passive:true });
+  var obs = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.rv').forEach(function(el){ obs.observe(el); });
+})();
 </script>
 </body>
 </html>
