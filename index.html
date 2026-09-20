@@ -3,722 +3,638 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE 100 — CTO FIT</title>
-<meta name="description" content="100 days to stop starting over and build a way of training, eating and living that can survive real life.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>THE 100 — Answer The Bell.</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #080808; --d1: #111111; --d2: #0E0E0E;
-  --cream: #F0EDE8; --cream-sub: rgba(240,237,232,0.54);
-  --olive-text: #B8CC55; --olive-mid: #7A8C35; --olive: #5C6B28;
-  --gold: #F49E02;
-  --D: 'Oswald', sans-serif; --B: 'Plus Jakarta Sans', sans-serif;
-  --px: clamp(32px, 8vw, 120px);
-}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--cream); font-family: var(--B); overflow-x: hidden; }
-a { text-decoration: none; color: inherit; }
-img { display: block; max-width: 100%; }
 
-.label {
-  font-family: var(--B);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: rgba(240,237,232,0.36);
+:root {
+  --bg:    #080808;
+  --cream: #F0EDE8;
+  --olive: #B8CC55;
+  --gold:  #F49E02;
+  --muted: rgba(240,237,232,0.38);
+  --D:     'Oswald', sans-serif;
+  --B:     'Plus Jakarta Sans', sans-serif;
 }
-.label.on-cream { color: rgba(8,8,8,0.32); }
 
-.rv {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.rv.in { opacity: 1; transform: none; }
-.rv-img {
-  opacity: 0;
-  transform: scale(1.04);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.rv-img.in { opacity: 1; transform: scale(1); }
-.rv-left {
-  opacity: 0;
-  transform: translateX(-28px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.rv-left.in { opacity: 1; transform: none; }
-.rv.d1, .rv-img.d1, .rv-left.d1 { transition-delay: 0.08s; }
-.rv.d2, .rv-img.d2, .rv-left.d2 { transition-delay: 0.18s; }
-.rv.d3, .rv-img.d3, .rv-left.d3 { transition-delay: 0.28s; }
-.rv.d4, .rv-img.d4, .rv-left.d4 { transition-delay: 0.40s; }
-.rv.d5, .rv-img.d5, .rv-left.d5 { transition-delay: 0.52s; }
-.rv.d6, .rv-img.d6, .rv-left.d6 { transition-delay: 0.64s; }
-.arrow-svg { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+body { font-family: var(--B); background: var(--bg); color: var(--cream); overflow-x: hidden; }
 
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 28px var(--px);
-  transition: background 0.5s ease, padding 0.4s ease, backdrop-filter 0.5s ease;
-}
-nav.on {
-  background: rgba(8,8,8,0.88);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  padding-top: 18px; padding-bottom: 18px;
-}
-.nav-logo {
-  font-family: var(--D); font-size: 17px; font-weight: 700;
-  letter-spacing: 0.2em; color: var(--cream);
-}
-.btn-nav {
-  font-family: var(--B); font-size: 10px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); border: 1px solid rgba(244,158,2,0.5);
-  padding: 10px 22px; border-radius: 2px;
-  transition: background 0.22s, color 0.22s, border-color 0.22s;
-}
-.btn-nav:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
-
-.s-hero {
-  position: relative; min-height: 100vh;
-  display: flex; align-items: flex-end;
-  padding: 120px var(--px) 100px;
+/* ─────────────────────────────────────────────────
+   PHOTO PLACEHOLDER SYSTEM
+   Each .ph-* class is a CSS gradient stand-in.
+   When real photos are ready, swap the background:
+     .ph-barn   → hero-bg.jpg
+     .ph-road   → rainy-road.jpg
+     .ph-weight → person-training.jpg
+     .ph-coach  → coach-tony.jpg
+   Use: background: url(photo.jpg) center/cover no-repeat;
+   ───────────────────────────────────────────────── */
+.ph-barn {
+  /* Simulates: dark barn interior, golden sunlight bursting through open door (right) */
   background:
-    linear-gradient(to right,
-      rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.62) 36%,
-      rgba(8,8,8,0.18) 60%, rgba(8,8,8,0.02) 100%),
-    linear-gradient(to bottom,
-      rgba(8,8,8,0.12) 0%, rgba(8,8,8,0.00) 24%,
-      rgba(8,8,8,0.72) 78%, var(--bg) 100%),
-    url("hero-bg.png") center var(--hero-y, 50%) / cover no-repeat;
+    radial-gradient(ellipse 7% 68% at 72% 47%, rgba(255,238,180,0.96) 0%, rgba(245,182,55,0.82) 18%, rgba(175,105,28,0.5) 40%, transparent 68%),
+    radial-gradient(ellipse 46% 82% at 74% 48%, rgba(155,85,18,0.48) 0%, rgba(78,44,10,0.26) 45%, transparent 72%),
+    linear-gradient(102deg, #0a0806 0%, #0e0b07 28%, #15100a 50%, #1c140b 65%, #100d07 82%, #0a0806 100%);
 }
-.hero-inner { position: relative; z-index: 2; max-width: 760px; }
+.ph-road {
+  /* Simulates: moody rainy forest road, dark pine trees, wet asphalt centerline */
+  background:
+    radial-gradient(ellipse 11% 55% at 50% 80%, rgba(185,168,138,0.2) 0%, transparent 55%),
+    linear-gradient(180deg, #07090a 0%, #09100c 18%, #0c1309 38%, #0a1009 60%, #080d08 82%, #050807 100%);
+}
+.ph-weight {
+  /* Simulates: dark industrial weight room, rack + dumbbells */
+  background:
+    radial-gradient(ellipse 60% 50% at 65% 35%, rgba(200,200,190,0.08) 0%, transparent 60%),
+    linear-gradient(148deg, #0e0e0c 0%, #141412 24%, #1c1c18 48%, #141410 72%, #0a0a09 100%);
+}
+.ph-coach {
+  /* Simulates: coach portrait, dark olive/warm background */
+  background:
+    linear-gradient(158deg, #0e0f09 0%, #141708 26%, #1c1f0e 52%, #151609 76%, #0a0b07 100%);
+}
+
+/* ─────────────────────────────────────────────────
+   SHARED BUTTONS
+   ───────────────────────────────────────────────── */
+.btn-gold-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  background: transparent; color: var(--gold);
+  font-family: var(--D); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--gold); cursor: pointer;
+}
+.btn-muted-fill {
+  display: inline-flex; align-items: center;
+  padding: 18px 40px;
+  background: rgba(240,237,232,0.1); color: var(--cream);
+  font-family: var(--D); font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240,237,232,0.2); cursor: pointer;
+}
+.btn-cream-outline {
+  display: inline-flex; align-items: center;
+  padding: 18px 40px;
+  background: transparent; color: var(--cream);
+  font-family: var(--D); font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240,237,232,0.32); cursor: pointer;
+}
+.btn-dark-solid {
+  display: inline-flex; align-items: center;
+  padding: 18px 40px;
+  background: var(--bg); color: var(--cream);
+  font-family: var(--D); font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; border: none; cursor: pointer;
+}
+
+/* ─────────────────────────────────────────────────
+   NAV
+   ───────────────────────────────────────────────── */
+.nav {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 32px 52px;
+}
+.nav-brand {
+  font-family: var(--D); font-size: 12px;
+  letter-spacing: 0.24em; color: var(--cream);
+  text-transform: uppercase; font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────────
+   HERO — Full-bleed photo, left-aligned type
+   Typography lives in the naturally dark left zone.
+   Strong left vignette; photo breathes on the right.
+   ───────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.hero-photo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+/* Left vignette overlay so type is always legible */
+.hero-vignette {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    95deg,
+    rgba(8,7,6,0.97) 0%,
+    rgba(8,7,6,0.90) 28%,
+    rgba(8,7,6,0.60) 52%,
+    rgba(8,7,6,0.22) 74%,
+    rgba(8,7,6,0.06) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 10;
+  padding: 0 52px 80px;
+  max-width: 740px;
+}
 .hero-h1 {
   font-family: var(--D);
-  font-size: clamp(100px, 18vw, 240px);
-  font-weight: 700; line-height: 0.86; letter-spacing: -0.02em;
-  text-transform: uppercase; margin-bottom: 44px;
+  font-size: clamp(80px, 15vw, 218px);
+  font-weight: 700; letter-spacing: -0.025em;
+  line-height: 0.87; color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 28px;
 }
-.hero-h1 .l1 { color: var(--cream); display: block; }
-.hero-h1 .l2 { color: var(--cream); display: block; }
-.hero-sub {
-  font-family: var(--B); font-size: clamp(15px, 1.9vw, 19px);
-  font-weight: 400; line-height: 1.75;
-  color: rgba(240,237,232,0.58); max-width: 420px; margin-bottom: 52px;
+.hero-rule {
+  width: 44px; height: 2px;
+  background: var(--gold); margin-bottom: 32px;
 }
-.hero-divider {
-  width: 36px; height: 1.5px; background: var(--gold);
-  margin-bottom: 44px; transform-origin: left;
+.hero-copy {
+  font-size: 18px; line-height: 1.72;
+  color: rgba(240,237,232,0.58);
+  max-width: 400px; margin-bottom: 48px;
 }
-.btn-cta-gold {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--B); font-size: 11px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); border: 1px solid rgba(244,158,2,0.6);
-  padding: 14px 30px; border-radius: 2px;
-  transition: background 0.25s, color 0.25s, border-color 0.25s;
-  margin-bottom: 20px;
-}
-.btn-cta-gold:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
-.btn-cta-gold:hover .arrow-svg { transform: translateX(4px); }
-.hero-micro {
-  display: block; font-size: 10px; font-weight: 600;
-  color: rgba(240,237,232,0.35); letter-spacing: 0.2em; text-transform: uppercase;
+.hero-foot {
+  font-family: var(--D); font-size: 10px;
+  letter-spacing: 0.24em; color: rgba(240,237,232,0.22);
+  text-transform: uppercase; margin-top: 44px;
 }
 
-.s-recognition {
-  background: var(--cream); color: var(--bg); padding: 160px var(--px) 0;
+/* ─────────────────────────────────────────────────
+   TICKER
+   ───────────────────────────────────────────────── */
+.ticker {
+  overflow: hidden; white-space: nowrap;
+  background: #0b0b0b;
+  border-top: 1px solid rgba(240,237,232,0.06);
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  padding: 20px 0;
 }
-.recognition-split {
-  display: grid; grid-template-columns: 1fr 380px; gap: 100px; align-items: start;
+.ticker-track {
+  display: inline-flex;
+  animation: scroll 52s linear infinite;
 }
-.recognition-h2 {
-  font-family: var(--D); font-size: clamp(56px, 9vw, 120px);
-  font-weight: 700; line-height: 0.86; letter-spacing: -0.02em;
-  text-transform: uppercase; color: var(--bg); margin: 0 0 60px;
+@keyframes scroll { to { transform: translateX(-50%); } }
+.t {
+  font-family: var(--D); font-size: 11px;
+  letter-spacing: 0.2em; color: rgba(240,237,232,0.26);
+  text-transform: uppercase; padding: 0 28px;
 }
-.r-body {
-  font-family: var(--B); font-size: clamp(16px, 1.9vw, 19px);
-  line-height: 1.82; color: rgba(8,8,8,0.58); margin-bottom: 1em;
-}
-.r-beat {
-  font-family: var(--D); font-size: clamp(28px, 4vw, 52px); font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.01em; color: rgba(8,8,8,0.48);
-  margin: 44px 0 4px; line-height: 1;
-}
-.r-beat-soft {
-  font-family: var(--D); font-size: clamp(16px, 2.2vw, 26px); font-weight: 500;
-  text-transform: uppercase; letter-spacing: 0.1em; color: rgba(8,8,8,0.18); margin-bottom: 44px;
-}
-.r-pull {
-  font-family: var(--D); font-size: clamp(42px, 7vw, 92px); font-weight: 700;
-  text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.88;
-  color: var(--bg); margin: 20px 0 44px;
-}
-.recognition-img {
-  position: sticky; top: 88px; height: calc(100vh - 108px);
-  max-height: 780px; overflow: hidden; border-radius: 2px;
-}
-.recognition-img img {
-  width: 100%; height: 100%; object-fit: cover;
-  object-position: center 15%; transition: transform 8s ease;
-}
-.recognition-img:hover img { transform: scale(1.03); }
-.recognition-close {
-  margin-top: 100px; padding: 88px 0 120px;
-  border-top: 1px solid rgba(8,8,8,0.08);
-}
-.recognition-close-h {
-  font-family: var(--D); font-size: clamp(56px, 10.5vw, 148px);
-  font-weight: 700; line-height: 0.86; letter-spacing: -0.025em;
-  text-transform: uppercase; color: var(--bg);
-}
-.recognition-close-h .accent { color: var(--olive-mid); }
+.t-sep { color: rgba(244,158,2,0.45); padding: 0 4px; }
 
-.s-reframe { background: var(--bg); padding: 160px var(--px); }
-.two-col { display: grid; gap: 100px; align-items: start; }
-.two-col.left-main { grid-template-columns: 1fr 300px; }
-.two-col.left-main-wide { grid-template-columns: 1fr 360px; }
-.sticky-col { position: sticky; top: 120px; }
-.portrait { width: 100%; aspect-ratio: 3/4; border-radius: 2px; overflow: hidden; background: rgba(8,8,8,0.07); }
-.portrait img { width: 100%; height: 100%; object-fit: cover; }
-.portrait.on-dark { background: rgba(240,237,232,0.04); }
-.reframe-h2 {
-  font-family: var(--D); font-size: clamp(56px, 10vw, 128px);
-  font-weight: 700; line-height: 0.88; letter-spacing: -0.02em;
-  text-transform: uppercase; color: var(--cream); margin-bottom: 52px;
+/* ─────────────────────────────────────────────────
+   PROBLEM — Editorial split
+   Photo left (dark) · Text right (cream)
+   ───────────────────────────────────────────────── */
+.section-problem {
+  display: grid; grid-template-columns: 1fr 1fr;
 }
-.reframe-body { font-family: var(--B); font-size: clamp(15px, 1.8vw, 18px); line-height: 1.82; color: var(--cream-sub); }
-.reframe-body p { margin-bottom: 1em; }
-.reframe-pivot {
-  font-family: var(--D); font-size: clamp(11px, 1.2vw, 14px); font-weight: 600;
-  color: rgba(240,237,232,0.32); text-transform: uppercase; letter-spacing: 0.18em; margin: 36px 0 16px;
+.problem-photo {
+  position: relative; min-height: 580px;
+  background-size: cover; background-position: center;
 }
-.reframe-answer {
-  font-family: var(--D); font-size: clamp(22px, 3.2vw, 40px); font-weight: 700;
-  color: var(--cream); text-transform: uppercase; line-height: 1.1;
-  letter-spacing: 0.01em; margin-bottom: 48px;
+.problem-text {
+  background: var(--cream);
+  padding: 120px 80px;
+  display: flex; flex-direction: column; justify-content: center;
 }
-.reframe-lines { list-style: none; margin: 0 0 40px; }
-.reframe-lines li {
-  font-family: var(--D); font-size: clamp(14px, 1.8vw, 20px); font-weight: 500;
-  text-transform: uppercase; letter-spacing: 0.06em; line-height: 2.1;
-  color: rgba(240,237,232,0.36); border-bottom: 1px solid rgba(240,237,232,0.05);
+.overline {
+  font-family: var(--D); font-size: 10px;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  display: block; margin-bottom: 28px;
 }
-.reframe-lines li:last-child { border-bottom: none; }
-.reframe-lines li.hi { color: var(--cream); font-weight: 600; }
-.reframe-close {
-  font-family: var(--D); font-size: clamp(16px, 2vw, 22px); font-weight: 600;
-  color: rgba(240,237,232,0.42); text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.6; margin-top: 8px;
+.overline-dark  { color: rgba(8,8,8,0.32); }
+.overline-light { color: rgba(240,237,232,0.32); }
+.problem-text h2 {
+  font-family: var(--D);
+  font-size: clamp(44px, 5.5vw, 74px);
+  font-weight: 700; color: var(--bg);
+  text-transform: uppercase;
+  letter-spacing: -0.02em; line-height: 0.93;
+  margin-bottom: 32px;
 }
-.reframe-close strong { color: var(--cream); font-weight: 700; }
-.reframe-col-img { overflow: hidden; }
-.reframe-col-img .portrait { overflow: hidden; position: sticky; top: 120px; }
-.reframe-col-img .portrait img { transition: transform 8s ease; }
-.reframe-col-img .portrait:hover img { transform: scale(1.04); }
+.problem-text p {
+  font-size: 17px; line-height: 1.75;
+  color: rgba(8,8,8,0.58); max-width: 380px;
+}
 
-.s-reveal {
-  background: var(--d2); padding: 160px var(--px) 140px;
+/* ─────────────────────────────────────────────────
+   DECIDE — Centered statement, dark
+   ───────────────────────────────────────────────── */
+.section-decide {
+  background: var(--bg);
+  padding: 180px 40px;
+  text-align: center;
   border-top: 1px solid rgba(240,237,232,0.05);
 }
-.reveal-inner { max-width: 1100px; margin: 0 auto; }
-.reveal-headline { text-align: center; margin-bottom: 100px; }
-.reveal-h2 {
-  font-family: var(--D); font-size: clamp(56px, 10vw, 132px);
-  font-weight: 700; line-height: 0.88; letter-spacing: -0.02em;
-  text-transform: uppercase; color: var(--cream); margin-top: 28px;
+.section-decide h2 {
+  font-family: var(--D);
+  font-size: clamp(44px, 7vw, 100px);
+  font-weight: 700; color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: -0.02em; line-height: 0.92;
+  max-width: 860px; margin: 0 auto 32px;
 }
-.progress-rail-wrap { position: relative; margin-bottom: 100px; overflow: hidden; }
-.progress-rail { display: flex; align-items: center; gap: 0; position: relative; }
-.progress-rail::before {
-  content: ''; position: absolute; top: 28px; left: 0; right: 0;
-  height: 1px; background: rgba(240,237,232,0.08); z-index: 0;
+.section-decide p {
+  font-size: 18px; color: var(--muted);
+  max-width: 400px; margin: 0 auto;
+  line-height: 1.72;
 }
-.rail-fill {
-  position: absolute; top: 28px; left: 0; height: 1px; width: 0%;
-  background: linear-gradient(to right, var(--olive), var(--olive-text));
-  z-index: 1; transition: width 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+/* ─────────────────────────────────────────────────
+   FOUR ROUNDS — 2×2 bold card grid
+   Headline is the "at a glance" read; description
+   is the "read more" that follows.
+   ───────────────────────────────────────────────── */
+.section-rounds {
+  background: #050505;
+  padding: 100px 80px;
+  border-top: 1px solid rgba(240,237,232,0.05);
 }
-.rail-fill.go { width: 100%; }
-.rail-node { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 18px; position: relative; z-index: 2; }
-.node-dot {
-  width: 56px; height: 56px; border-radius: 50%;
-  border: 1px solid rgba(240,237,232,0.12); background: var(--d2);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--D); font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-  color: rgba(240,237,232,0.22);
-  transition: border-color 0.7s ease, color 0.7s ease, background 0.7s ease, box-shadow 0.7s ease;
+.rounds-header {
+  display: flex; align-items: center; gap: 24px;
+  margin-bottom: 48px;
 }
-.node-dot.lit {
-  border-color: var(--olive-text); color: var(--olive-text);
-  background: rgba(92,107,40,0.1); box-shadow: 0 0 0 4px rgba(184,204,85,0.07);
+.rounds-header-label {
+  font-family: var(--D); font-size: 10px;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap;
 }
-.node-label {
-  font-family: var(--D); font-size: clamp(10px, 1vw, 12px); font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.22); text-align: center;
-  transition: color 0.7s ease;
+.rounds-header-line {
+  flex: 1; height: 1px;
+  background: rgba(240,237,232,0.07);
 }
-.node-label.lit { color: rgba(240,237,232,0.7); }
-@keyframes marquee-ltr { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee-wrap {
-  padding: 28px 0; border-top: 1px solid rgba(240,237,232,0.06); border-bottom: 1px solid rgba(240,237,232,0.06);
+.rounds-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+/* Dark typographic cards — ghost number watermark in background */
+.round-card {
+  background: #0a0a0a;
+  padding: 64px 56px 72px;
+  position: relative;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
 }
-.marquee-inner { display: inline-flex; align-items: center; animation: marquee-ltr 32s linear infinite; white-space: nowrap; will-change: transform; }
-.m-step { font-family: var(--D); font-size: clamp(12px, 1.4vw, 15px); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(240,237,232,0.28); padding: 0 24px; }
-.m-step.hi { color: var(--olive-text); }
-.m-sep { font-family: var(--B); font-size: 13px; color: rgba(92,107,40,0.38); padding: 0 4px; }
-
-.s-philosophy { background: var(--bg); padding: 180px 0; text-align: center; border-top: 1px solid rgba(240,237,232,0.04); }
-.philosophy-inner { max-width: 900px; margin: 0 auto; padding: 0 var(--px); }
-.philosophy-h2 {
-  font-family: var(--D); font-size: clamp(84px, 16vw, 210px);
-  font-weight: 700; line-height: 0.86; letter-spacing: -0.025em;
-  text-transform: uppercase; color: var(--cream); margin-bottom: 72px;
+.round-card-num {
+  font-family: var(--D);
+  font-size: 200px; font-weight: 700;
+  color: rgba(240,237,232,0.04);
+  position: absolute; top: -16px; right: -12px;
+  line-height: 1; pointer-events: none;
+  user-select: none;
 }
-.philosophy-copy { font-family: var(--B); font-size: clamp(16px, 2vw, 20px); line-height: 2; color: rgba(240,237,232,0.48); max-width: 440px; margin: 0 auto 100px; text-align: left; }
-.philosophy-copy p { margin-bottom: 0.4em; }
-.philosophy-img-full { width: 100%; aspect-ratio: 21/9; overflow: hidden; margin: 0 0 120px; position: relative; }
-.philosophy-img-full img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
-.day101-moment { padding-top: 88px; border-top: 1px solid rgba(240,237,232,0.06); }
-.day101-pre { font-family: var(--B); font-size: clamp(14px, 1.6vw, 17px); color: rgba(240,237,232,0.42); margin-bottom: 20px; letter-spacing: 0.04em; }
-.day101-display { font-family: var(--D); font-size: clamp(80px, 18vw, 240px); font-weight: 700; line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; color: var(--gold); }
-
-.s-proof { background: var(--d2); padding: 160px var(--px); border-top: 1px solid rgba(240,237,232,0.04); }
-.proof-inner { max-width: 1100px; margin: 0 auto; }
-.proof-header { margin-bottom: 80px; }
-.proof-h2 { font-family: var(--D); font-size: clamp(56px, 10vw, 132px); font-weight: 700; line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; color: var(--cream); margin-top: 24px; }
-.proof-screens { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-.screen-wrap { display: flex; flex-direction: column; gap: 12px; }
-.screen-frame { aspect-ratio: 3/4; border-radius: 2px; background: rgba(240,237,232,0.02); border: 1px solid rgba(240,237,232,0.07); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; transition: border-color 0.4s ease; position: relative; }
-.screen-frame:hover { border-color: rgba(240,237,232,0.16); }
-.screen-frame img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-.screen-ph { display: flex; flex-direction: column; align-items: center; gap: 10px; position: relative; z-index: 1; }
-.screen-ph-dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(240,237,232,0.08); }
-.screen-ph-text { font-family: var(--B); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.15); text-align: center; line-height: 1.9; }
-.screen-label { font-family: var(--D); font-size: clamp(10px, 1vw, 11px); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,237,232,0.24); text-align: center; }
-.proof-copy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding-top: 64px; margin-top: 48px; border-top: 1px solid rgba(240,237,232,0.05); }
-.proof-copy-label { font-family: var(--D); font-size: clamp(24px, 3.5vw, 44px); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); margin-bottom: 28px; line-height: 1.05; }
-.proof-copy-label .sep { color: rgba(240,237,232,0.24); font-weight: 400; margin: 0 8px; }
-.proof-copy-body { font-family: var(--B); font-size: clamp(14px, 1.7vw, 17px); line-height: 1.88; color: var(--cream-sub); }
-.proof-copy-body p { margin-bottom: 0.8em; }
-
-.s-coach { background: var(--cream); color: var(--bg); padding: 160px var(--px); }
-.coach-h2 { font-family: var(--D); font-size: clamp(52px, 9.5vw, 120px); font-weight: 700; line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; color: var(--bg); margin-bottom: 48px; }
-.coach-copy { font-family: var(--B); font-size: clamp(15px, 1.8vw, 18px); line-height: 1.88; color: rgba(8,8,8,0.62); }
-.coach-copy p { margin-bottom: 1.1em; }
-.creds-block { margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(8,8,8,0.08); display: flex; flex-direction: column; gap: 28px; }
-.cred-group-label { font-family: var(--B); font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(8,8,8,0.28); margin-bottom: 12px; }
-.cert-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.cert-badge { min-height: 34px; border-radius: 2px; background: rgba(8,8,8,0.03); border: 1px solid rgba(8,8,8,0.07); display: flex; align-items: center; justify-content: center; padding: 6px 14px; transition: border-color 0.25s, background 0.25s; }
-.cert-badge:hover { border-color: rgba(8,8,8,0.18); background: rgba(8,8,8,0.07); }
-.cert-badge img { height: 22px; width: auto; object-fit: contain; mix-blend-mode: multiply; opacity: 0.62; }
-.cert-badge.ph { font-family: var(--B); font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(8,8,8,0.38); white-space: nowrap; }
-
-.s-day101 {
-  position: relative; min-height: 92vh;
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  padding: 180px var(--px);
-  background:
-    linear-gradient(to bottom, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.18) 30%, rgba(8,8,8,0.18) 64%, rgba(8,8,8,0.88) 100%),
-    url("mountains.png") center var(--mountains-y, 40%) / cover no-repeat;
+.round-card-index {
+  font-family: var(--D); font-size: 10px;
+  letter-spacing: 0.24em; color: rgba(240,237,232,0.22);
+  text-transform: uppercase; margin-bottom: 28px;
+  display: block;
 }
-.day101-cin { position: relative; z-index: 2; max-width: 860px; }
-.day101-cin-h2 { font-family: var(--D); font-size: clamp(58px, 10.5vw, 140px); font-weight: 700; line-height: 0.90; letter-spacing: -0.02em; text-transform: uppercase; color: var(--cream); margin-bottom: 56px; margin-top: 28px; }
-.day101-cin-body { font-family: var(--B); font-size: clamp(16px, 2vw, 20px); line-height: 1.9; color: rgba(240,237,232,0.62); max-width: 520px; margin: 0 auto; }
-.day101-cin-body p { margin-bottom: 0.9em; }
-
-.s-cta { background: var(--bg); padding: 220px var(--px) 200px; text-align: center; }
-.cta-inner { max-width: 900px; margin: 0 auto; }
-.cta-h2 { font-family: var(--D); font-size: clamp(68px, 13vw, 172px); font-weight: 700; line-height: 0.86; letter-spacing: -0.025em; text-transform: uppercase; margin-bottom: 56px; }
-.cta-h2 .l1, .cta-h2 .l2 { color: var(--cream); display: block; }
-.cta-h2 .l3 { color: var(--gold); display: block; }
-.cta-sub { font-family: var(--B); font-size: clamp(15px, 1.8vw, 18px); color: rgba(240,237,232,0.44); margin-bottom: 60px; letter-spacing: 0.02em; }
-.btn-cta-large { display: inline-flex; align-items: center; gap: 12px; font-family: var(--B); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg); background: var(--gold); border: 1.5px solid var(--gold); padding: 18px 48px; border-radius: 2px; transition: background 0.25s, color 0.25s; margin-bottom: 24px; }
-.btn-cta-large:hover { background: transparent; color: var(--gold); }
-.btn-cta-large:hover .arrow-svg { transform: translateX(4px); }
-.cta-micro { display: block; font-size: 10px; font-weight: 500; color: rgba(240,237,232,0.26); letter-spacing: 0.2em; text-transform: uppercase; }
-
-.footer-bar { background: var(--d1); border-top: 1px solid rgba(240,237,232,0.05); padding: 32px var(--px); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.footer-brand { font-family: var(--D); font-size: 14px; font-weight: 700; letter-spacing: 0.16em; color: var(--cream); }
-.footer-brand span { color: var(--olive-text); }
-.footer-tagline { font-family: var(--B); font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,232,0.18); }
-.footer-standard { font-family: var(--D); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.22); }
-footer { background: var(--bg); padding: 28px var(--px); text-align: center; border-top: 1px solid rgba(240,237,232,0.04); }
-footer p { font-family: var(--B); font-size: 10px; color: rgba(240,237,232,0.12); letter-spacing: 0.12em; }
-
-@media (max-width: 1000px) {
-  .proof-screens { grid-template-columns: 1fr 1fr; }
-  .proof-screens .screen-wrap:last-child { display: none; }
-  .proof-copy-grid { grid-template-columns: 1fr; gap: 44px; }
+.round-card h3 {
+  font-family: var(--D);
+  font-size: clamp(56px, 5.8vw, 88px);
+  font-weight: 700; color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: -0.025em; line-height: 0.88;
+  margin-bottom: 28px;
 }
-@media (max-width: 900px) {
-  .two-col.left-main, .two-col.left-main-wide { grid-template-columns: 1fr; gap: 56px; }
-  .sticky-col { position: static; max-width: 360px; margin: 0 auto; }
-  .reframe-col-img { order: -1; max-width: 360px; margin: 0 auto; }
-  .reframe-col-img .portrait { position: static; }
-  .recognition-split { grid-template-columns: 1fr; gap: 56px; }
-  .recognition-img { position: static; height: 500px; max-height: none; max-width: 500px; margin: 0 auto; }
-  .proof-screens { grid-template-columns: 1fr; }
-  .proof-screens .screen-wrap:not(:first-child) { display: none; }
-  .progress-rail { flex-direction: column; align-items: flex-start; gap: 32px; }
-  .progress-rail::before { display: none; }
-  .rail-fill { display: none; }
-  .rail-node { flex-direction: row; flex: none; align-items: center; gap: 20px; }
-  .node-label { text-align: left; }
-  .philosophy-img-full { aspect-ratio: 16/9; }
+.round-card-rule {
+  width: 32px; height: 2px;
+  background: var(--gold); margin-bottom: 24px;
 }
-@media (max-width: 640px) {
-  :root { --px: 24px; }
-  nav { padding: 18px var(--px); }
-  .s-hero { padding: 100px var(--px) 72px; }
-  .footer-bar { flex-direction: column; text-align: center; }
-  .recognition-img { height: 400px; }
-  .recognition-close-h { font-size: clamp(42px, 11vw, 72px); }
-  .philosophy-img-full { aspect-ratio: 4/3; }
-  .day101-display { font-size: clamp(72px, 20vw, 160px); }
+.round-card p {
+  font-size: 16px; line-height: 1.76;
+  color: rgba(240,237,232,0.42);
+  max-width: 300px;
 }
+
+/* ─────────────────────────────────────────────────
+   BACKUP — Editorial split (reversed)
+   Text left (cream) · Photo right
+   ───────────────────────────────────────────────── */
+.section-backup {
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.backup-text {
+  background: var(--cream);
+  padding: 120px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.backup-text h2 {
+  font-family: var(--D);
+  font-size: clamp(44px, 5.5vw, 74px);
+  font-weight: 700; color: var(--bg);
+  text-transform: uppercase;
+  letter-spacing: -0.02em; line-height: 0.93;
+  margin-bottom: 32px;
+}
+.backup-text h2 em {
+  font-style: normal;
+  color: #5a6c25;  /* deep olive on cream */
+}
+.backup-text p {
+  font-size: 17px; line-height: 1.75;
+  color: rgba(8,8,8,0.58); max-width: 380px;
+}
+.backup-photo {
+  position: relative; min-height: 540px;
+  background-size: cover; background-position: center;
+}
+
+/* ─────────────────────────────────────────────────
+   COACH TONY O — Photo left · Text right (dark)
+   ───────────────────────────────────────────────── */
+.section-coach {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(240,237,232,0.04);
+}
+.coach-photo {
+  position: relative; min-height: 640px;
+  background-size: cover; background-position: center top;
+}
+.coach-text {
+  background: #0a0a0a;
+  padding: 100px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.coach-text h2 {
+  font-family: var(--D);
+  font-size: clamp(56px, 8.5vw, 120px);
+  font-weight: 700; color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: -0.02em; line-height: 0.88;
+  margin-bottom: 24px;
+}
+.coach-rule {
+  width: 36px; height: 2px;
+  background: var(--gold); margin-bottom: 28px;
+}
+.coach-text p {
+  font-size: 16px; line-height: 1.75;
+  color: rgba(240,237,232,0.52);
+  max-width: 380px; margin-bottom: 48px;
+}
+
+/* ─────────────────────────────────────────────────
+   CTA — Full-bleed road photo, type over it
+   ───────────────────────────────────────────────── */
+.section-cta {
+  position: relative;
+  min-height: 80vh;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.cta-photo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.cta-overlay {
+  position: absolute; inset: 0;
+  background: rgba(6,9,8,0.72);
+}
+.cta-content {
+  position: relative; z-index: 10;
+  padding: 140px 52px;
+  max-width: 900px;
+}
+.cta-content h2 {
+  font-family: var(--D);
+  font-size: clamp(52px, 9.5vw, 136px);
+  font-weight: 700; color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: -0.02em; line-height: 0.9;
+  margin-bottom: 32px;
+}
+.cta-content p {
+  font-size: 18px; line-height: 1.72;
+  color: rgba(240,237,232,0.58);
+  margin-bottom: 52px; max-width: 440px;
+}
+.cta-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* ─────────────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────────────── */
+footer {
+  background: #040404;
+  padding: 52px 52px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(240,237,232,0.07);
+}
+.footer-mark {
+  font-family: var(--D); font-size: 13px;
+  font-weight: 700; color: var(--cream);
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(240,237,232,0.28);
+  padding: 8px 14px; line-height: 1;
+}
+.footer-tag {
+  font-family: var(--D); font-size: 10px;
+  letter-spacing: 0.2em; color: var(--muted);
+  text-transform: uppercase;
+}
+.footer-url {
+  font-family: var(--D); font-size: 10px;
+  letter-spacing: 0.18em; color: rgba(240,237,232,0.22);
+  text-transform: uppercase; text-decoration: none;
+}
+/* Photo placeholder label */
+.ph-label {
+  position: absolute; bottom: 24px; left: 24px;
+  font-family: var(--D); font-size: 9px;
+  letter-spacing: 0.22em; color: rgba(240,237,232,0.15);
+  text-transform: uppercase; pointer-events: none;
+}
+
 </style>
 </head>
 <body>
 
-<nav id="nav">
-  <a class="nav-logo" href="/">THE 100</a>
-  <a class="btn-nav" href="https://www.skool.com/fit-40-inner-circle-1807/about" target="_blank">EXPLORE THE 100</a>
-</nav>
+<!-- ═══════════════════════
+     HERO
+     Full-bleed photo, left-aligned Monument type
+     ═══════════════════════ -->
+<section class="hero">
+  <div class="hero-photo ph-barn" style="background-image: url('hero-bg.png'); background-position: left center;">
+  </div>
+  <div class="hero-vignette"></div>
 
-<!-- S01: HERO -->
-<section class="s-hero" id="hero">
-  <div class="hero-inner">
-    <h1 class="hero-h1 rv">
-      <span class="l1">ANSWER</span>
-      <span class="l2">THE BELL.</span>
-    </h1>
-    <div class="hero-divider rv d1"></div>
-    <p class="hero-sub rv d2">100 days to stop starting over and build a way of training, eating and living that can survive real life.</p>
-    <a class="btn-cta-gold rv d3" href="https://www.skool.com/fit-40-inner-circle-1807/about" target="_blank">
-      EXPLORE THE 100
-      <svg class="arrow-svg" width="14" height="10" viewBox="0 0 14 10" fill="none">
-        <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-    <span class="hero-micro rv d4">100 active days. Four rounds. One standard.</span>
+  <nav class="nav">
+    <span class="nav-brand">The 100</span>
+    <a class="btn-gold-outline" href="#">Explore The 100</a>
+  </nav>
+
+  <div class="hero-content">
+    <h1 class="hero-h1">Answer<br>The<br>Bell.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-copy">100 days to stop starting over and build a way of training, eating and living that can survive real life.</p>
+    <a class="btn-gold-outline" href="#">Explore The 100 &thinsp;→</a>
+    <p class="hero-foot">100 Active Days &nbsp;·&nbsp; Four Rounds &nbsp;·&nbsp; One Standard</p>
   </div>
 </section>
 
-<!-- S02: RECOGNITION -->
-<section class="s-recognition">
-  <div class="recognition-split">
-    <div class="recognition-left">
-      <h2 class="recognition-h2 rv">YOU ALREADY<br>KNOW WHAT<br>TO DO.</h2>
-      <div class="recognition-body">
-        <p class="r-body rv d1">You've trained before.</p>
-        <p class="r-body rv d1">You've eaten better before.</p>
-        <p class="r-body rv d2">You've told yourself this time would be different.</p>
-        <p class="r-beat rv d3">And maybe it was.</p>
-        <p class="r-beat-soft rv d3">For a while.</p>
-        <p class="r-body rv d4">Then work got crazy. You traveled. The kids needed you. You missed a few workouts. One bad meal became a bad weekend.</p>
-        <p class="r-body rv d4">And eventually...</p>
-        <p class="r-pull rv d4">YOU WERE<br>STARTING AGAIN.</p>
-        <p class="r-body rv d5">The problem wasn't that you didn't know what to do.</p>
-      </div>
-    </div>
-    <div class="recognition-img rv-img d1">
-      <img src="person-training.png" alt="Training in real life" loading="lazy">
-    </div>
-  </div>
-  <div class="recognition-close rv">
-    <p class="recognition-close-h">KNOWING ISN'T<br>THE BOTTLENECK.<br><span class="accent">EXECUTION IS.</span></p>
-  </div>
-</section>
 
-<!-- S03: REFRAME -->
-<section class="s-reframe">
-  <div class="two-col left-main-wide">
-    <div>
-      <h2 class="reframe-h2 rv">THIS ISN'T<br>ANOTHER<br>FITNESS<br>CHALLENGE.</h2>
-      <div class="reframe-body rv d1">
-        <p>Most challenges ask one question:</p>
-        <p style="font-weight:600;color:var(--cream);">Can you follow the rules?</p>
-      </div>
-      <p class="reframe-pivot rv d2">THE 100 ASKS SOMETHING DIFFERENT</p>
-      <p class="reframe-answer rv d2">CAN YOU BUILD SOMETHING<br>THAT SURVIVES REAL LIFE?</p>
-      <ul class="reframe-lines rv d3">
-        <li class="hi">100 active days.</li>
-        <li>Busy weeks.</li>
-        <li>Missed workouts.</li>
-        <li>Travel.</li>
-        <li>Low motivation.</li>
-        <li class="hi">Returns.</li>
-        <li class="hi">Real life.</li>
-      </ul>
-      <div class="reframe-close rv d4">
-        <strong>Not a perfect streak.</strong><br>
-        <strong>A permanent shift.</strong>
-      </div>
-    </div>
-    <div class="reframe-col-img rv-img d2">
-      <div class="portrait on-dark">
-        <img src="rainy-road.png" alt="Real life continues" loading="lazy">
-      </div>
-    </div>
+<!-- ═══════════════════════
+     TICKER
+     ═══════════════════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="t">Learn It</span><span class="t-sep">·</span>
+    <span class="t">Do It</span><span class="t-sep">·</span>
+    <span class="t">Live It</span><span class="t-sep">·</span>
+    <span class="t">Four Rounds</span><span class="t-sep">·</span>
+    <span class="t">One Standard</span><span class="t-sep">·</span>
+    <span class="t">Become Your Standard</span><span class="t-sep">·</span>
+    <span class="t">Answer the Bell</span><span class="t-sep">·</span>
+    <span class="t">100 Active Days</span><span class="t-sep">·</span>
+    <span class="t">Learn It</span><span class="t-sep">·</span>
+    <span class="t">Do It</span><span class="t-sep">·</span>
+    <span class="t">Live It</span><span class="t-sep">·</span>
+    <span class="t">Four Rounds</span><span class="t-sep">·</span>
+    <span class="t">One Standard</span><span class="t-sep">·</span>
+    <span class="t">Become Your Standard</span><span class="t-sep">·</span>
+    <span class="t">Answer the Bell</span><span class="t-sep">·</span>
+    <span class="t">100 Active Days</span><span class="t-sep">·</span>
   </div>
-</section>
-
-<!-- S04: HOW IT WORKS -->
-<section class="s-reveal">
-  <div class="reveal-inner">
-    <div class="reveal-headline rv">
-      <p class="label">HOW THE GAME WORKS</p>
-      <h2 class="reveal-h2">100 DAYS.<br>FOUR ROUNDS.</h2>
-    </div>
-    <div class="progress-rail-wrap rv d2">
-      <div class="progress-rail" id="progressRail">
-        <div class="rail-fill" id="railFill"></div>
-        <div class="rail-node"><div class="node-dot" data-node>PREP</div><div class="node-label" data-node-label>Prepare</div></div>
-        <div class="rail-node"><div class="node-dot" data-node>R 01</div><div class="node-label" data-node-label>Round 01</div></div>
-        <div class="rail-node"><div class="node-dot" data-node>R 02</div><div class="node-label" data-node-label>Round 02</div></div>
-        <div class="rail-node"><div class="node-dot" data-node>R 03</div><div class="node-label" data-node-label>Round 03</div></div>
-        <div class="rail-node"><div class="node-dot" data-node>R 04</div><div class="node-label" data-node-label>Round 04</div></div>
-        <div class="rail-node"><div class="node-dot" data-node>CLOSE</div><div class="node-label" data-node-label>Complete</div></div>
-      </div>
-    </div>
-    <div class="marquee-wrap rv d3">
-      <div class="marquee-inner" aria-label="Practice cycle">
-        <span class="m-step hi">LEARN</span><span class="m-sep"> → </span><span class="m-step">DO</span><span class="m-sep"> → </span><span class="m-step">EXPERIENCE</span><span class="m-sep"> → </span><span class="m-step">REFLECT</span><span class="m-sep"> → </span><span class="m-step">ADJUST</span><span class="m-sep"> → </span><span class="m-step hi">GO AGAIN</span><span class="m-sep"> &nbsp;·&nbsp; </span>
-        <span class="m-step hi">LEARN</span><span class="m-sep"> → </span><span class="m-step">DO</span><span class="m-sep"> → </span><span class="m-step">EXPERIENCE</span><span class="m-sep"> → </span><span class="m-step">REFLECT</span><span class="m-sep"> → </span><span class="m-step">ADJUST</span><span class="m-sep"> → </span><span class="m-step hi">GO AGAIN</span><span class="m-sep"> &nbsp;·&nbsp; </span>
-        <span class="m-step hi">LEARN</span><span class="m-sep"> → </span><span class="m-step">DO</span><span class="m-sep"> → </span><span class="m-step">EXPERIENCE</span><span class="m-sep"> → </span><span class="m-step">REFLECT</span><span class="m-sep"> → </span><span class="m-step">ADJUST</span><span class="m-sep"> → </span><span class="m-step hi">GO AGAIN</span><span class="m-sep"> &nbsp;·&nbsp; </span>
-        <span class="m-step hi">LEARN</span><span class="m-sep"> → </span><span class="m-step">DO</span><span class="m-sep"> → </span><span class="m-step">EXPERIENCE</span><span class="m-sep"> → </span><span class="m-step">REFLECT</span><span class="m-sep"> → </span><span class="m-step">ADJUST</span><span class="m-sep"> → </span><span class="m-step hi">GO AGAIN</span><span class="m-sep"> &nbsp;·&nbsp; </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- S05: PHILOSOPHY -->
-<section class="s-philosophy">
-  <div class="philosophy-inner">
-    <h2 class="philosophy-h2 rv">YOU DON'T<br>START OVER.</h2>
-    <div class="philosophy-copy rv d1">
-      <p>Life will interrupt THE 100.</p><p>That's not failure.</p><p>That's the point.</p>
-      <p>You learn to adapt.</p><p>You learn to return.</p><p>You collect evidence.</p><p>You go again.</p>
-    </div>
-  </div>
-  <div class="philosophy-img-full rv-img d2">
-    <img src="lake-reflection.png" alt="Stillness and return" loading="lazy">
-  </div>
-  <div class="philosophy-inner">
-    <div class="day101-moment rv d3">
-      <p class="day101-pre">The goal isn't a perfect Day 1–100.</p>
-      <div class="day101-display">DAY 101.</div>
-    </div>
-  </div>
-</section>
-
-<!-- S06: SYSTEM -->
-<section class="s-proof">
-  <div class="proof-inner">
-    <div class="proof-header">
-      <p class="label rv">THE SYSTEM</p>
-      <h2 class="proof-h2 rv d1">BUILT FOR<br>THE WORK.</h2>
-    </div>
-    <div class="proof-screens rv d2">
-      <div class="screen-wrap">
-        <div class="screen-frame">
-          <img src="screen-practice-card.jpg" alt="Practice Card" loading="lazy">
-          <div class="screen-ph"><div class="screen-ph-dot"></div><p class="screen-ph-text">Practice<br>Card</p></div>
-        </div>
-        <p class="screen-label">Practice Cards</p>
-      </div>
-      <div class="screen-wrap">
-        <div class="screen-frame">
-          <img src="screen-tracker.jpg" alt="THE 100 Tracker" loading="lazy">
-          <div class="screen-ph"><div class="screen-ph-dot"></div><p class="screen-ph-text">THE 100<br>Tracker</p></div>
-        </div>
-        <p class="screen-label">Live Tracker</p>
-      </div>
-      <div class="screen-wrap">
-        <div class="screen-frame">
-          <img src="screen-coaching.jpg" alt="Coaching environment" loading="lazy">
-          <div class="screen-ph"><div class="screen-ph-dot"></div><p class="screen-ph-text">Coaching<br>Environment</p></div>
-        </div>
-        <p class="screen-label">Coaching</p>
-      </div>
-    </div>
-    <div class="proof-copy-grid">
-      <div class="rv d3">
-        <p class="proof-copy-label">CARDS<span class="sep">+</span>COACHING<span class="sep">+</span>PRACTICE</p>
-        <div class="proof-copy-body">
-          <p>The framework gives you direction.</p>
-          <p>The coaching helps you understand it.</p>
-          <p>Real life teaches you how to use it.</p>
-        </div>
-      </div>
-      <div class="rv d4" style="display:flex;align-items:center;">
-        <p style="font-family:var(--D);font-size:clamp(13px,1.4vw,17px);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.28);line-height:1.88;">Inside THE 100 you get access to Practice Cards, a live Tracker, structured coaching content, and a community of people doing the same work.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- S07: COACH -->
-<section class="s-coach">
-  <div class="two-col left-main-wide">
-    <div>
-      <h2 class="coach-h2 rv">I BUILT THE 100<br>BECAUSE I<br>NEEDED IT TOO.</h2>
-      <div class="coach-copy rv d1">
-        <p>I've spent years studying fitness, coaching it and practicing it myself.</p>
-        <p>And I've still drifted.</p>
-        <p>I've still had stretches where training slipped, nutrition got loose and the things I knew I should be doing weren't happening.</p>
-        <p>That taught me something important.</p>
-        <p>Knowing what to do doesn't make you immune to real life.</p>
-        <p>What mattered wasn't finding another perfect plan.</p>
-        <p>It was learning how to return.</p>
-        <p>THE 100 grew from that idea.</p>
-      </div>
-      <div class="creds-block rv d2">
-        <div>
-          <p class="cred-group-label">CERTIFIED</p>
-          <div class="cert-row">
-            <div class="cert-badge ph">PRECISION NUTRITION L1</div>
-            <div class="cert-badge ph">PRECISION NUTRITION CDS</div>
-            <div class="cert-badge ph">ISSA CERTIFIED</div>
-            <div class="cert-badge ph">KETTLEBELL COACH</div>
-          </div>
-        </div>
-        <div>
-          <p class="cred-group-label">TRAINED WITH</p>
-          <div class="cert-row">
-            <div class="cert-badge ph">RAWAI MUAY THAI</div>
-            <div class="cert-badge ph">AJARN PHIL NURSE</div>
-            <div class="cert-badge ph">SOS GYM</div>
-            <div class="cert-badge ph">UFC</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sticky-col rv-img d2">
-      <div class="portrait">
-        <img src="coach-tony.jpg" alt="Coach Tony O" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- S08: DAY 101 CINEMATIC -->
-<section class="s-day101" id="day101sec">
-  <div class="day101-cin">
-    <h2 class="day101-cin-h2 rv">THAT'S THE DAY<br>THAT MATTERS.</h2>
-    <div class="day101-cin-body rv d1">
-      <p>Anyone can follow a set of rules for a while.</p>
-      <p>But eventually the challenge ends.</p>
-      <p>Nobody is keeping score.</p>
-      <p>Nobody is telling you what box to check.</p>
-      <p>Life keeps going.</p>
-      <p>And that's when you discover what you actually built.</p>
-      <p>THE 100 isn't only about what happens during the 100 days.</p>
-      <p>It's about who shows up the day after.</p>
-    </div>
-  </div>
-</section>
-
-<!-- S09: CTA -->
-<section class="s-cta">
-  <div class="cta-inner">
-    <h2 class="cta-h2 rv">
-      <span class="l1">100 DAYS.</span>
-      <span class="l2">REAL LIFE.</span>
-      <span class="l3">DAY 101.</span>
-    </h2>
-    <p class="cta-sub rv d1">You don't need another restart.</p>
-    <a class="btn-cta-large rv d2" href="https://www.skool.com/fit-40-inner-circle-1807/about" target="_blank">
-      EXPLORE THE 100
-      <svg class="arrow-svg" width="14" height="10" viewBox="0 0 14 10" fill="none">
-        <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-    <span class="cta-micro rv d3">See how THE 100 works, what's included and how to join.</span>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<div class="footer-bar">
-  <div class="footer-brand">[<span>100</span>] LEARN IT. DO IT. LIVE IT.</div>
-  <div class="footer-tagline">FOUR ROUNDS. ONE STANDARD.</div>
-  <div class="footer-standard">BECOME YOUR STANDARD.</div>
 </div>
-<footer><p>&copy; 2026 CTO FIT. All rights reserved.</p></footer>
 
-<script>
-// Scroll reveals
-const revealEls = document.querySelectorAll('.rv, .rv-img, .rv-left');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.08 });
-revealEls.forEach(el => io.observe(el));
 
-// Nav scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => { nav.classList.toggle('on', window.scrollY > 60); }, { passive: true });
+<!-- ═══════════════════════
+     PROBLEM
+     Photo left · Cream text right
+     ═══════════════════════ -->
+<section class="section-problem">
+  <div class="problem-photo ph-weight" style="background-image: url('training.png'); background-position: center center;">
+  </div>
+  <div class="problem-text">
+    <span class="overline overline-dark">The Problem</span>
+    <h2>You Know<br>What To Do.<br>So Why<br>Aren't You?</h2>
+    <p>The information exists. The plan exists. The problem is never knowledge — it's execution. Day after day after day. Most programs skip this part. The 100 is only this part.</p>
+  </div>
+</section>
 
-// Hero parallax
-const hero = document.getElementById('hero');
-function updateHeroParallax() {
-  const scrolled = window.scrollY;
-  if (scrolled < window.innerHeight * 1.5) {
-    hero.style.setProperty('--hero-y', (50 + scrolled * 0.016).toFixed(2) + '%');
-  }
-}
 
-// Mountains parallax
-const day101sec = document.getElementById('day101sec');
-function updateMountainsParallax() {
-  if (!day101sec) return;
-  const rect = day101sec.getBoundingClientRect();
-  if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-  const progress = 1 - (rect.bottom / (window.innerHeight + rect.height));
-  day101sec.style.setProperty('--mountains-y', (40 + progress * 18).toFixed(2) + '%');
-}
-window.addEventListener('scroll', () => { updateHeroParallax(); updateMountainsParallax(); }, { passive: true });
+<!-- ═══════════════════════
+     DECIDE
+     Centered statement, dark, Monument
+     ═══════════════════════ -->
+<section class="section-decide">
+  <h2>Decide Now.<br>Negotiate Less Later.</h2>
+  <p>Specific plans remove decisions from your future self. The standard is set before the week begins.</p>
+</section>
 
-// Progress rail
-const rail = document.getElementById('progressRail');
-const fillBar = document.getElementById('railFill');
-const dots = document.querySelectorAll('[data-node]');
-const nodeLabels = document.querySelectorAll('[data-node-label]');
-function lightNodes(count) {
-  dots.forEach((d, i) => d.classList.toggle('lit', i < count));
-  nodeLabels.forEach((l, i) => l.classList.toggle('lit', i < count));
-}
-const railObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      setTimeout(() => { fillBar.classList.add('go'); }, 200);
-      dots.forEach((_, i) => { setTimeout(() => lightNodes(i + 1), 300 + i * 210); });
-      railObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.35 });
-if (rail) railObserver.observe(rail);
 
-// Screen placeholders
-document.querySelectorAll('.screen-frame img').forEach(img => {
-  const ph = img.closest('.screen-frame').querySelector('.screen-ph');
-  if (!ph) return;
-  if (img.complete && img.naturalWidth > 0) { ph.style.display = 'none'; }
-  else {
-    img.addEventListener('load', () => { ph.style.display = 'none'; });
-    img.addEventListener('error', () => { img.style.display = 'none'; });
-  }
-});
-</script>
+<!-- ═══════════════════════
+     FOUR ROUNDS
+     2×2 bold card grid — headline is the at-a-glance read
+     ═══════════════════════ -->
+<section class="section-rounds">
+  <div class="rounds-header">
+    <span class="rounds-header-label">The Four Rounds</span>
+    <div class="rounds-header-line"></div>
+  </div>
+  <div class="rounds-grid">
+
+    <div class="round-card">
+      <span class="round-card-num" aria-hidden="true">01</span>
+      <span class="round-card-index">Round 01</span>
+      <h3>Learn It</h3>
+      <div class="round-card-rule"></div>
+      <p>Each week, one concept. Built for real life, not theory. Practical, direct, and designed to be applied — not just understood.</p>
+    </div>
+
+    <div class="round-card">
+      <span class="round-card-num" aria-hidden="true">02</span>
+      <span class="round-card-index">Round 02</span>
+      <h3>Do It</h3>
+      <div class="round-card-rule"></div>
+      <p>You apply it. That day. Train 3× per week, non-negotiable. Decide now. Specific beats vague — every time.</p>
+    </div>
+
+    <div class="round-card">
+      <span class="round-card-num" aria-hidden="true">03</span>
+      <span class="round-card-index">Round 03</span>
+      <h3>Live It</h3>
+      <div class="round-card-rule"></div>
+      <p>Life happens. The kid's school event. The travel. The exhaustion. You build a plan that survives real life — and you have a backup.</p>
+    </div>
+
+    <div class="round-card">
+      <span class="round-card-num" aria-hidden="true">04</span>
+      <span class="round-card-index">Round 04</span>
+      <h3>Become Your Standard</h3>
+      <div class="round-card-rule"></div>
+      <p>100 days is the beginning. After that, you're not following a program — you are the program. Day 101 is just Tuesday.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     BACKUP
+     Cream text left · Photo right
+     ═══════════════════════ -->
+<section class="section-backup">
+  <div class="backup-text">
+    <span class="overline overline-dark">Real Life</span>
+    <h2>Life Happens.<br><em>Have A</em><br>Backup.</h2>
+    <p>Friday's kid's school event. Saturday morning, 9 AM. Specific beats "I'll work out this week." The 100 builds the skill of bouncing back — every single time.</p>
+  </div>
+  <div class="backup-photo ph-road" style="background-image: url('road.png'); background-position: center center;">
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     COACH TONY O
+     Photo left · Text right (dark)
+     ═══════════════════════ -->
+<section class="section-coach">
+  <div class="coach-photo ph-coach" style="background-image: url('coach.png'); background-position: left center;">
+  </div>
+  <div class="coach-text">
+    <span class="overline overline-light">The Coach</span>
+    <h2>Coach<br>Tony O.</h2>
+    <div class="coach-rule"></div>
+    <p>Built a fitness habit in his 40s — while running a business, raising a family, and navigating every excuse he'd ever heard. Coach Tony O built The 100 as the program he needed and couldn't find.</p>
+    <a class="btn-gold-outline" href="#" style="align-self:flex-start;">His Story &thinsp;→</a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     CTA
+     Full-bleed road photo, type over it
+     ═══════════════════════ -->
+<section class="section-cta">
+  <div class="cta-photo ph-road" style="background-image: url('cta-bg.png'); background-position: center 30%;">
+  </div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content">
+    <h2>Your Day 1<br>Starts When<br>You Decide<br>It Does.</h2>
+    <p>No cohort. No waiting list. Prep, then the bell.</p>
+    <div class="cta-btns">
+      <a class="btn-muted-fill" href="#">Join The 100</a>
+      <a class="btn-cream-outline" href="#">Read the Full Breakdown</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     FOOTER
+     ═══════════════════════ -->
+<footer>
+  <span class="footer-mark">100</span>
+  <span class="footer-tag">Learn It &nbsp;·&nbsp; Do It &nbsp;·&nbsp; Live It</span>
+  <a class="footer-url" href="#">The100.co</a>
+</footer>
+
 </body>
 </html>
