@@ -454,6 +454,80 @@ footer {
   text-transform: uppercase; pointer-events: none;
 }
 
+/* ─────────────────────────────────────────────────
+   RESPONSIVE — Mobile (≤767px)
+   Stack all splits, reduce padding/photo heights
+   ───────────────────────────────────────────────── */
+@media (max-width: 767px) {
+
+  /* Nav */
+  .nav { padding: 24px 24px; }
+  .nav .btn-gold-outline { display: none; } /* hide nav CTA on mobile */
+
+  /* Hero */
+  .hero { min-height: 100svh; align-items: flex-end; }
+  .hero-photo { background-position: center center; }
+  .hero-vignette {
+    background: linear-gradient(
+      180deg,
+      rgba(8,7,6,0.10) 0%,
+      rgba(8,7,6,0.55) 45%,
+      rgba(8,7,6,0.96) 100%
+    );
+  }
+  .hero-content { padding: 0 24px 64px; }
+
+  /* Problem split → stack: photo on top, text below */
+  .section-problem { grid-template-columns: 1fr; }
+  .problem-photo { min-height: 320px; order: -1; background-position: center top; }
+  .problem-text { padding: 56px 24px; }
+
+  /* Decide */
+  .section-decide { padding: 72px 24px; }
+
+  /* Four Rounds → single column */
+  .section-rounds { padding: 72px 24px; }
+  .rounds-grid { grid-template-columns: 1fr; gap: 2px; }
+  .round-card { padding: 48px 28px 56px; }
+  .round-card h3 { font-size: clamp(48px, 13vw, 72px); }
+  .round-card-num { font-size: 140px; }
+
+  /* Backup split → stack: text on top, photo below */
+  .section-backup { grid-template-columns: 1fr; }
+  .backup-photo { min-height: 320px; order: 1; }
+  .backup-text { padding: 56px 24px; }
+
+  /* Coach split → stack: photo on top, text below */
+  .section-coach { grid-template-columns: 1fr; }
+  .coach-photo { min-height: 420px; order: -1; background-position: center top; }
+  .coach-text { padding: 56px 24px; }
+
+  /* CTA */
+  .section-cta { min-height: 90svh; }
+  .cta-content { padding: 80px 24px; }
+  .cta-btns { flex-direction: column; }
+
+  /* Footer */
+  footer {
+    flex-direction: column; gap: 20px;
+    text-align: center; padding: 40px 24px;
+  }
+}
+
+/* ─────────────────────────────────────────────────
+   RESPONSIVE — Tablet (768px – 1024px)
+   Reduce padding, keep side-by-side splits
+   ───────────────────────────────────────────────── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .nav { padding: 28px 36px; }
+  .hero-content { padding: 0 36px 72px; }
+  .problem-text, .backup-text, .coach-text { padding: 80px 48px; }
+  .section-rounds { padding: 80px 48px; }
+  .round-card { padding: 52px 40px 60px; }
+  .cta-content { padding: 100px 36px; }
+  footer { padding: 40px 36px; }
+}
+
 </style>
 </head>
 <body>
