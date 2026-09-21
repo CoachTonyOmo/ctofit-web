@@ -227,7 +227,7 @@ body { font-family: var(--B); background: var(--bg); color: var(--cream); overfl
    ───────────────────────────────────────────────── */
 .section-decide {
   background: var(--bg);
-  padding: 180px 40px;
+  padding: 100px 40px;
   text-align: center;
   border-top: 1px solid rgba(240,237,232,0.05);
 }
@@ -237,12 +237,15 @@ body { font-family: var(--B); background: var(--bg); color: var(--cream); overfl
   font-weight: 700; color: var(--cream);
   text-transform: uppercase;
   letter-spacing: -0.02em; line-height: 0.92;
-  max-width: 860px; margin: 0 auto 32px;
+  max-width: 860px; margin: 0 auto 40px;
 }
 .section-decide p {
-  font-size: 18px; color: var(--muted);
-  max-width: 400px; margin: 0 auto;
-  line-height: 1.72;
+  font-size: clamp(17px, 1.4vw, 22px);
+  color: rgba(240,237,232,0.62);
+  max-width: 520px; margin: 0 auto;
+  line-height: 1.65;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 /* ─────────────────────────────────────────────────
