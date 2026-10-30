@@ -1,718 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE 100 — Answer The Bell.</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CTO FIT | Made to Overcome.</title>
+  <meta name="description" content="Practical fitness, nutrition, and coaching for real life. Join In Your Corner Fit Club free on Skool."/>
+  <meta name="theme-color" content="#08160F"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet"/>
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <script>
+  /* ============================================================
+     EDIT ZONE: Make all your changes here, nowhere else
+     ============================================================ */
 
-:root {
-  --bg:    #080808;
-  --cream: #F0EDE8;
-  --olive: #B8CC55;
-  --gold:  #F49E02;
-  --muted: rgba(240,237,232,0.38);
-  --D:     'Oswald', sans-serif;
-  --B:     'Plus Jakarta Sans', sans-serif;
-}
+  /* IMAGES (must match filenames in your web root exactly) */
+  var HERO_IMAGE      = "hero-bg.jpg";
+  var LOGO_IMAGE      = "logo_white_new.png";
 
-body { font-family: var(--B); background: var(--bg); color: var(--cream); overflow-x: hidden; }
+  /* SKOOL LINK (every button on the page uses this) */
+  var SKOOL_LINK      = "https://www.skool.com/coachtonyo/about";
 
-/* ─────────────────────────────────────────────────
-   PHOTO PLACEHOLDER SYSTEM
-   Each .ph-* class is a CSS gradient stand-in.
-   When real photos are ready, swap the background:
-     .ph-barn   → hero-bg.jpg
-     .ph-road   → rainy-road.jpg
-     .ph-weight → person-training.jpg
-     .ph-coach  → coach-tony.jpg
-   Use: background: url(photo.jpg) center/cover no-repeat;
-   ───────────────────────────────────────────────── */
-.ph-barn {
-  /* Simulates: dark barn interior, golden sunlight bursting through open door (right) */
-  background:
-    radial-gradient(ellipse 7% 68% at 72% 47%, rgba(255,238,180,0.96) 0%, rgba(245,182,55,0.82) 18%, rgba(175,105,28,0.5) 40%, transparent 68%),
-    radial-gradient(ellipse 46% 82% at 74% 48%, rgba(155,85,18,0.48) 0%, rgba(78,44,10,0.26) 45%, transparent 72%),
-    linear-gradient(102deg, #0a0806 0%, #0e0b07 28%, #15100a 50%, #1c140b 65%, #100d07 82%, #0a0806 100%);
-}
-.ph-road {
-  /* Simulates: moody rainy forest road, dark pine trees, wet asphalt centerline */
-  background:
-    radial-gradient(ellipse 11% 55% at 50% 80%, rgba(185,168,138,0.2) 0%, transparent 55%),
-    linear-gradient(180deg, #07090a 0%, #09100c 18%, #0c1309 38%, #0a1009 60%, #080d08 82%, #050807 100%);
-}
-.ph-weight {
-  /* Simulates: dark industrial weight room, rack + dumbbells */
-  background:
-    radial-gradient(ellipse 60% 50% at 65% 35%, rgba(200,200,190,0.08) 0%, transparent 60%),
-    linear-gradient(148deg, #0e0e0c 0%, #141412 24%, #1c1c18 48%, #141410 72%, #0a0a09 100%);
-}
-.ph-coach {
-  /* Simulates: coach portrait, dark olive/warm background */
-  background:
-    linear-gradient(158deg, #0e0f09 0%, #141708 26%, #1c1f0e 52%, #151609 76%, #0a0b07 100%);
-}
+  /* NAV */
+  var NAV_CTA_TEXT    = "Join Free";
 
-/* ─────────────────────────────────────────────────
-   SHARED BUTTONS
-   ───────────────────────────────────────────────── */
-.btn-gold-outline {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 28px;
-  background: transparent; color: var(--gold);
-  font-family: var(--D); font-size: 11px;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid var(--gold); cursor: pointer;
-}
-.btn-muted-fill {
-  display: inline-flex; align-items: center;
-  padding: 18px 40px;
-  background: rgba(240,237,232,0.1); color: var(--cream);
-  font-family: var(--D); font-size: 12px;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid rgba(240,237,232,0.2); cursor: pointer;
-}
-.btn-cream-outline {
-  display: inline-flex; align-items: center;
-  padding: 18px 40px;
-  background: transparent; color: var(--cream);
-  font-family: var(--D); font-size: 12px;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid rgba(240,237,232,0.32); cursor: pointer;
-}
-.btn-dark-solid {
-  display: inline-flex; align-items: center;
-  padding: 18px 40px;
-  background: var(--bg); color: var(--cream);
-  font-family: var(--D); font-size: 12px;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  text-decoration: none; border: none; cursor: pointer;
-}
+  /* HERO */
+  var HERO_EYEBROW    = "In Your Corner Fit Club · Free Community";
+  var HERO_LINE1      = "Win Through";
+  var HERO_LINE2      = "The Chaos.";
+  var HERO_SUBTEXT    = "You don't need a perfect schedule or a fancy gym. Simple training, practical nutrition, a stronger mindset, and a coach in your corner when life gets messy.";
+  var HERO_CTA_TEXT   = "Join the Club Free";
+  var HERO_CTA_NOTE   = "Free to join on Skool. From a coach with 20 years in the game.";
 
-/* ─────────────────────────────────────────────────
-   NAV
-   ───────────────────────────────────────────────── */
-.nav {
-  position: absolute; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 32px 52px;
-}
-.nav-brand {
-  font-family: var(--D); font-size: 12px;
-  letter-spacing: 0.24em; color: var(--cream);
-  text-transform: uppercase; font-weight: 600;
-}
+  /* QUICK PROOF POINTS (under the button) */
+  var POINT1          = "Free Workouts";
+  var POINT2          = "Nutrition Guidance";
+  var POINT3          = "Mindset Training";
 
-/* ─────────────────────────────────────────────────
-   HERO — Full-bleed photo, left-aligned type
-   Typography lives in the naturally dark left zone.
-   Strong left vignette; photo breathes on the right.
-   ───────────────────────────────────────────────── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex; align-items: flex-end;
-  overflow: hidden;
-}
-.hero-photo {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-}
-/* Left vignette overlay so type is always legible */
-.hero-vignette {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    95deg,
-    rgba(8,7,6,0.97) 0%,
-    rgba(8,7,6,0.90) 28%,
-    rgba(8,7,6,0.60) 52%,
-    rgba(8,7,6,0.22) 74%,
-    rgba(8,7,6,0.06) 100%
-  );
-}
-.hero-content {
-  position: relative; z-index: 10;
-  padding: 0 52px 80px;
-  max-width: 740px;
-}
-.hero-h1 {
-  font-family: var(--D);
-  font-size: clamp(80px, 15vw, 218px);
-  font-weight: 700; letter-spacing: -0.025em;
-  line-height: 0.87; color: var(--cream);
-  text-transform: uppercase;
-  margin-bottom: 28px;
-}
-.hero-rule {
-  width: 44px; height: 2px;
-  background: var(--gold); margin-bottom: 32px;
-}
-.hero-copy {
-  font-size: 18px; line-height: 1.72;
-  color: rgba(240,237,232,0.58);
-  max-width: 400px; margin-bottom: 48px;
-}
-.hero-foot {
-  font-family: var(--D); font-size: 10px;
-  letter-spacing: 0.24em; color: rgba(240,237,232,0.22);
-  text-transform: uppercase; margin-top: 44px;
-}
+  /* META PIXEL (leave "" to turn off) */
+  var META_PIXEL_ID   = "1930317005037660";
 
-/* ─────────────────────────────────────────────────
-   TICKER
-   ───────────────────────────────────────────────── */
-.ticker {
-  overflow: hidden; white-space: nowrap;
-  background: #0b0b0b;
-  border-top: 1px solid rgba(240,237,232,0.06);
-  border-bottom: 1px solid rgba(240,237,232,0.06);
-  padding: 20px 0;
-}
-.ticker-track {
-  display: inline-flex;
-  animation: scroll 52s linear infinite;
-}
-@keyframes scroll { to { transform: translateX(-50%); } }
-.t {
-  font-family: var(--D); font-size: 11px;
-  letter-spacing: 0.2em; color: rgba(240,237,232,0.26);
-  text-transform: uppercase; padding: 0 28px;
-}
-.t-sep { color: rgba(244,158,2,0.45); padding: 0 4px; }
+  /* ============================================================
+     STOP EDITING: Do not change anything below this line
+     ============================================================ */
+  </script>
 
-/* ─────────────────────────────────────────────────
-   PROBLEM — Editorial split
-   Photo left (dark) · Text right (cream)
-   ───────────────────────────────────────────────── */
-.section-problem {
-  display: grid; grid-template-columns: 1fr 1fr;
-}
-.problem-photo {
-  position: relative; min-height: 580px;
-  background-size: cover; background-position: center;
-}
-.problem-text {
-  background: var(--cream);
-  padding: 120px 80px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.overline {
-  font-family: var(--D); font-size: 10px;
-  letter-spacing: 0.26em; text-transform: uppercase;
-  display: block; margin-bottom: 28px;
-}
-.overline-dark  { color: rgba(8,8,8,0.32); }
-.overline-light { color: rgba(240,237,232,0.32); }
-.problem-text h2 {
-  font-family: var(--D);
-  font-size: clamp(44px, 5.5vw, 74px);
-  font-weight: 700; color: var(--bg);
-  text-transform: uppercase;
-  letter-spacing: -0.02em; line-height: 0.93;
-  margin-bottom: 32px;
-}
-.problem-text p {
-  font-size: 17px; line-height: 1.75;
-  color: rgba(8,8,8,0.58); max-width: 380px;
-}
+  <style>
+    :root{
+      --gold:#E8B04B;
+      --gold-light:#F6CF7A;
+      --gold-deep:#C9862A;
+      --forest:#10281F;
+      --forest-deep:#08160F;
+      --cream:#F3EAD8;
+      --ink:#0B0B0B;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{overflow-x:hidden;max-width:100%;}
+    body{background:var(--forest-deep);color:var(--cream);font-family:'Sora',sans-serif;font-size:16px;line-height:1.7;}
 
-/* ─────────────────────────────────────────────────
-   DECIDE — Centered statement, dark
-   ───────────────────────────────────────────────── */
-.section-decide {
-  background: var(--bg);
-  padding: 100px 40px;
-  text-align: center;
-  border-top: 1px solid rgba(240,237,232,0.05);
-}
-.section-decide h2 {
-  font-family: var(--D);
-  font-size: clamp(44px, 7vw, 100px);
-  font-weight: 700; color: var(--cream);
-  text-transform: uppercase;
-  letter-spacing: -0.02em; line-height: 0.92;
-  max-width: 860px; margin: 0 auto 40px;
-}
-.section-decide p {
-  font-size: clamp(17px, 1.4vw, 22px);
-  color: rgba(240,237,232,0.62);
-  max-width: 520px; margin: 0 auto;
-  line-height: 1.65;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(8,22,15,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,176,75,0.15);}
+    .nav-logo img{height:38px;width:auto;display:block;}
+    .nav-cta{background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));color:var(--ink);font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;padding:11px 26px;border-radius:4px;text-decoration:none;transition:opacity 0.2s;}
+    .nav-cta:hover{opacity:0.88;}
 
-/* ─────────────────────────────────────────────────
-   FOUR ROUNDS — 2×2 bold card grid
-   Headline is the "at a glance" read; description
-   is the "read more" that follows.
-   ───────────────────────────────────────────────── */
-.section-rounds {
-  background: #050505;
-  padding: 100px 80px;
-  border-top: 1px solid rgba(240,237,232,0.05);
-}
-.rounds-header {
-  display: flex; align-items: center; gap: 24px;
-  margin-bottom: 48px;
-}
-.rounds-header-label {
-  font-family: var(--D); font-size: 10px;
-  letter-spacing: 0.26em; text-transform: uppercase;
-  color: var(--muted); white-space: nowrap;
-}
-.rounds-header-line {
-  flex: 1; height: 1px;
-  background: rgba(240,237,232,0.07);
-}
-.rounds-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-/* Dark typographic cards — ghost number watermark in background */
-.round-card {
-  background: #0a0a0a;
-  padding: 64px 56px 72px;
-  position: relative;
-  overflow: hidden;
-}
-.round-card-num {
-  font-family: var(--D);
-  font-size: 200px; font-weight: 700;
-  color: rgba(240,237,232,0.04);
-  position: absolute; top: -16px; right: -12px;
-  line-height: 1; pointer-events: none;
-  user-select: none;
-}
-.round-card-index {
-  font-family: var(--D); font-size: 10px;
-  letter-spacing: 0.24em; color: rgba(240,237,232,0.22);
-  text-transform: uppercase; margin-bottom: 28px;
-  display: block;
-}
-.round-card h3 {
-  font-family: var(--D);
-  font-size: clamp(56px, 5.8vw, 88px);
-  font-weight: 700; color: var(--cream);
-  text-transform: uppercase;
-  letter-spacing: -0.025em; line-height: 0.88;
-  margin-bottom: 28px;
-}
-.round-card-rule {
-  width: 32px; height: 2px;
-  background: var(--gold); margin-bottom: 24px;
-}
-.round-card p {
-  font-size: 16px; line-height: 1.76;
-  color: rgba(240,237,232,0.42);
-  max-width: 300px;
-}
+    /* HERO */
+    .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:0;}
+    .hero-overlay{position:absolute;inset:0;background:rgba(8,22,15,0.62);z-index:1;}
+    .hero-overlay2{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,22,15,0.9) 0%,transparent 60%);z-index:1;}
+    .hero-content{position:relative;z-index:2;padding:150px 48px 110px;max-width:900px;width:100%;}
 
-/* ─────────────────────────────────────────────────
-   BACKUP — Editorial split (reversed)
-   Text left (cream) · Photo right
-   ───────────────────────────────────────────────── */
-.section-backup {
-  display: grid; grid-template-columns: 1fr 1fr;
-}
-.backup-text {
-  background: var(--cream);
-  padding: 120px 80px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.backup-text h2 {
-  font-family: var(--D);
-  font-size: clamp(44px, 5.5vw, 74px);
-  font-weight: 700; color: var(--bg);
-  text-transform: uppercase;
-  letter-spacing: -0.02em; line-height: 0.93;
-  margin-bottom: 32px;
-}
-.backup-text h2 em {
-  font-style: normal;
-  color: #5a6c25;  /* deep olive on cream */
-}
-.backup-text p {
-  font-size: 17px; line-height: 1.75;
-  color: rgba(8,8,8,0.58); max-width: 380px;
-}
-.backup-photo {
-  position: relative; min-height: 540px;
-  background-size: cover; background-position: center;
-}
+    .hero-eyebrow{font-size:13px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;}
+    .hero-eyebrow::before,.hero-eyebrow::after{content:'';flex:0 0 36px;height:1px;background:var(--gold);opacity:0.7;}
 
-/* ─────────────────────────────────────────────────
-   COACH TONY O — Photo left · Text right (dark)
-   ───────────────────────────────────────────────── */
-.section-coach {
-  display: grid; grid-template-columns: 1fr 1fr;
-  border-top: 1px solid rgba(240,237,232,0.04);
-}
-.coach-photo {
-  position: relative; min-height: 640px;
-  background-size: cover; background-position: center top;
-}
-.coach-text {
-  background: #0a0a0a;
-  padding: 100px 80px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.coach-text h2 {
-  font-family: var(--D);
-  font-size: clamp(56px, 8.5vw, 120px);
-  font-weight: 700; color: var(--cream);
-  text-transform: uppercase;
-  letter-spacing: -0.02em; line-height: 0.88;
-  margin-bottom: 24px;
-}
-.coach-rule {
-  width: 36px; height: 2px;
-  background: var(--gold); margin-bottom: 28px;
-}
-.coach-text p {
-  font-size: 16px; line-height: 1.75;
-  color: rgba(240,237,232,0.52);
-  max-width: 380px; margin-bottom: 48px;
-}
+    .hero-h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:104px;line-height:0.95;text-transform:uppercase;letter-spacing:0.01em;margin-bottom:28px;color:var(--cream);}
+    .hero-h1 .accent{display:block;color:var(--gold);background:linear-gradient(180deg,var(--gold-light) 0%,var(--gold) 55%,var(--gold-deep) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 
-/* ─────────────────────────────────────────────────
-   CTA — Full-bleed road photo, type over it
-   ───────────────────────────────────────────────── */
-.section-cta {
-  position: relative;
-  min-height: 80vh;
-  display: flex; align-items: center;
-  overflow: hidden;
-}
-.cta-photo {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-}
-.cta-overlay {
-  position: absolute; inset: 0;
-  background: rgba(6,9,8,0.72);
-}
-.cta-content {
-  position: relative; z-index: 10;
-  padding: 140px 52px;
-  max-width: 900px;
-}
-.cta-content h2 {
-  font-family: var(--D);
-  font-size: clamp(52px, 9.5vw, 136px);
-  font-weight: 700; color: var(--cream);
-  text-transform: uppercase;
-  letter-spacing: -0.02em; line-height: 0.9;
-  margin-bottom: 32px;
-}
-.cta-content p {
-  font-size: 18px; line-height: 1.72;
-  color: rgba(240,237,232,0.58);
-  margin-bottom: 52px; max-width: 440px;
-}
-.cta-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-sub{font-size:20px;color:rgba(243,234,216,0.82);line-height:1.65;max-width:620px;margin:0 auto 40px;}
 
-/* ─────────────────────────────────────────────────
-   FOOTER
-   ───────────────────────────────────────────────── */
-footer {
-  background: #040404;
-  padding: 52px 52px;
-  display: flex; align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid rgba(240,237,232,0.07);
-}
-.footer-mark {
-  font-family: var(--D); font-size: 13px;
-  font-weight: 700; color: var(--cream);
-  letter-spacing: 0.04em;
-  border: 1px solid rgba(240,237,232,0.28);
-  padding: 8px 14px; line-height: 1;
-}
-.footer-tag {
-  font-family: var(--D); font-size: 10px;
-  letter-spacing: 0.2em; color: var(--muted);
-  text-transform: uppercase;
-}
-.footer-url {
-  font-family: var(--D); font-size: 10px;
-  letter-spacing: 0.18em; color: rgba(240,237,232,0.22);
-  text-transform: uppercase; text-decoration: none;
-}
-/* Photo placeholder label */
-.ph-label {
-  position: absolute; bottom: 24px; left: 24px;
-  font-family: var(--D); font-size: 9px;
-  letter-spacing: 0.22em; color: rgba(240,237,232,0.15);
-  text-transform: uppercase; pointer-events: none;
-}
+    .btn-primary{display:inline-block;background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));color:var(--ink);font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:0.14em;text-transform:uppercase;padding:20px 52px;border-radius:4px;text-decoration:none;transition:opacity 0.2s,transform 0.15s;animation:pulse-neon 2.5s ease-in-out infinite;}
+    .btn-primary:hover{opacity:0.92;transform:translateY(-2px);animation:none;box-shadow:0 0 32px rgba(232,176,75,0.65);}
+    @keyframes pulse-neon{0%,100%{box-shadow:0 0 0 0 rgba(232,176,75,0);}50%{box-shadow:0 0 24px 6px rgba(232,176,75,0.38);}}
 
-/* ─────────────────────────────────────────────────
-   RESPONSIVE — Mobile (≤767px)
-   Stack all splits, reduce padding/photo heights
-   ───────────────────────────────────────────────── */
-@media (max-width: 767px) {
+    .cta-note{font-size:14px;color:rgba(243,234,216,0.55);margin-top:16px;letter-spacing:0.04em;}
 
-  /* Nav */
-  .nav { padding: 24px 24px; }
-  .nav .btn-gold-outline { display: none; } /* hide nav CTA on mobile */
+    .hero-points{margin-top:56px;display:flex;justify-content:center;flex-wrap:wrap;gap:16px 40px;list-style:none;}
+    .hero-points li{display:flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream);}
+    .hero-points svg{width:20px;height:20px;flex-shrink:0;}
 
-  /* Hero */
-  .hero { min-height: 100svh; align-items: flex-end; }
-  .hero-photo { background-position: center center; }
-  .hero-vignette {
-    background: linear-gradient(
-      180deg,
-      rgba(8,7,6,0.10) 0%,
-      rgba(8,7,6,0.55) 45%,
-      rgba(8,7,6,0.96) 100%
-    );
-  }
-  .hero-content { padding: 0 24px 64px; }
+    /* MINI FOOTER */
+    .mini-footer{background:var(--forest);border-top:1px solid rgba(232,176,75,0.15);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(243,234,216,0.4);}
+    .mini-footer a{color:rgba(243,234,216,0.55);text-decoration:none;transition:color 0.2s;}
+    .mini-footer a:hover{color:var(--gold);}
+    .mini-footer .links{display:flex;gap:20px;flex-wrap:wrap;}
+    .mini-footer .tagline{font-family:'Oswald',sans-serif;letter-spacing:0.18em;text-transform:uppercase;font-size:12px;}
 
-  /* Problem split → stack: photo on top, text below */
-  .section-problem { grid-template-columns: 1fr; }
-  .problem-photo { min-height: 320px; order: -1; background-position: center top; }
-  .problem-text { padding: 56px 24px; }
+    /* ENTRANCE ANIMATION */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .hero-eyebrow{animation:fadeUp 0.7s 0.1s ease both;}
+    .hero-h1{animation:fadeUp 0.7s 0.2s ease both;}
+    .hero-sub{animation:fadeUp 0.7s 0.3s ease both;}
+    .hero-cta-wrap{animation:fadeUp 0.7s 0.4s ease both;}
+    .hero-points{animation:fadeUp 0.7s 0.5s ease both;}
 
-  /* Decide */
-  .section-decide { padding: 72px 24px; }
-
-  /* Four Rounds → single column */
-  .section-rounds { padding: 72px 24px; }
-  .rounds-grid { grid-template-columns: 1fr; gap: 2px; }
-  .round-card { padding: 48px 28px 56px; }
-  .round-card h3 { font-size: clamp(48px, 13vw, 72px); }
-  .round-card-num { font-size: 140px; }
-
-  /* Backup split → stack: text on top, photo below */
-  .section-backup { grid-template-columns: 1fr; }
-  .backup-photo { min-height: 320px; order: 1; }
-  .backup-text { padding: 56px 24px; }
-
-  /* Coach split → stack: photo on top, text below */
-  .section-coach { grid-template-columns: 1fr; }
-  .coach-photo { min-height: 420px; order: -1; background-position: center top; }
-  .coach-text { padding: 56px 24px; }
-
-  /* CTA */
-  .section-cta { min-height: 90svh; }
-  .cta-content { padding: 80px 24px; }
-  .cta-btns { flex-direction: column; }
-
-  /* Footer */
-  footer {
-    flex-direction: column; gap: 20px;
-    text-align: center; padding: 40px 24px;
-  }
-}
-
-/* ─────────────────────────────────────────────────
-   RESPONSIVE — Tablet (768px – 1024px)
-   Reduce padding, keep side-by-side splits
-   ───────────────────────────────────────────────── */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .nav { padding: 28px 36px; }
-  .hero-content { padding: 0 36px 72px; }
-  .problem-text, .backup-text, .coach-text { padding: 80px 48px; }
-  .section-rounds { padding: 80px 48px; }
-  .round-card { padding: 52px 40px 60px; }
-  .cta-content { padding: 100px 36px; }
-  footer { padding: 40px 36px; }
-}
-
-</style>
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      nav{padding:0 20px;height:64px;}
+      .nav-logo img{height:32px;}
+      .nav-cta{font-size:13px;padding:10px 18px;}
+      .hero-content{padding:120px 24px 80px;}
+      .hero-h1{font-size:64px;}
+      .hero-sub{font-size:18px;}
+      .hero-points{flex-direction:column;align-items:center;gap:14px;margin-top:44px;}
+      .mini-footer{padding:24px 20px;flex-direction:column;align-items:flex-start;}
+    }
+    @media(max-width:480px){
+      .hero-eyebrow{font-size:11px;letter-spacing:0.16em;}
+      .hero-eyebrow::before,.hero-eyebrow::after{flex-basis:18px;}
+      .hero-h1{font-size:48px;}
+      .hero-sub{font-size:17px;}
+      .btn-primary{display:block;width:100%;padding:20px 24px;font-size:17px;}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{animation:none !important;transition:none !important;}
+    }
+  </style>
 </head>
 <body>
 
-<!-- ═══════════════════════
-     HERO
-     Full-bleed photo, left-aligned Monument type
-     ═══════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo"><img id="logo-img" src="" alt="CTO FIT"/></a>
+  <a id="nav-cta" href="#" class="nav-cta skool-link"></a>
+</nav>
+
 <section class="hero">
-  <div class="hero-photo ph-barn" style="background-image: url('hero-bg.png'); background-position: left center;">
-  </div>
-  <div class="hero-vignette"></div>
-
-  <nav class="nav">
-    <span class="nav-brand">The 100</span>
-    <a class="btn-gold-outline" href="https://www.skool.com/fit-40-inner-circle-1807/about">Explore The 100</a>
-  </nav>
-
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay2"></div>
   <div class="hero-content">
-    <h1 class="hero-h1">Answer<br>The<br>Bell.</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-copy">100 days to stop starting over and build a way of training, eating and living that can survive real life.</p>
-    <a class="btn-gold-outline" href="https://www.skool.com/fit-40-inner-circle-1807/about">Explore The 100 &thinsp;→</a>
-    <p class="hero-foot">100 Active Days &nbsp;·&nbsp; Four Rounds &nbsp;·&nbsp; One Standard</p>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════
-     TICKER
-     ═══════════════════════ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span class="t">Learn It</span><span class="t-sep">·</span>
-    <span class="t">Do It</span><span class="t-sep">·</span>
-    <span class="t">Live It</span><span class="t-sep">·</span>
-    <span class="t">Four Rounds</span><span class="t-sep">·</span>
-    <span class="t">One Standard</span><span class="t-sep">·</span>
-    <span class="t">Become Your Standard</span><span class="t-sep">·</span>
-    <span class="t">Answer the Bell</span><span class="t-sep">·</span>
-    <span class="t">100 Active Days</span><span class="t-sep">·</span>
-    <span class="t">Learn It</span><span class="t-sep">·</span>
-    <span class="t">Do It</span><span class="t-sep">·</span>
-    <span class="t">Live It</span><span class="t-sep">·</span>
-    <span class="t">Four Rounds</span><span class="t-sep">·</span>
-    <span class="t">One Standard</span><span class="t-sep">·</span>
-    <span class="t">Become Your Standard</span><span class="t-sep">·</span>
-    <span class="t">Answer the Bell</span><span class="t-sep">·</span>
-    <span class="t">100 Active Days</span><span class="t-sep">·</span>
-  </div>
-</div>
-
-
-<!-- ═══════════════════════
-     PROBLEM
-     Photo left · Cream text right
-     ═══════════════════════ -->
-<section class="section-problem">
-  <div class="problem-photo ph-weight" style="background-image: url('person-training.png'); background-position: center top;">
-  </div>
-  <div class="problem-text">
-    <span class="overline overline-dark">The Problem</span>
-    <h2>You Know<br>What To Do.<br>So Why<br>Aren't You?</h2>
-    <p>The information exists. The plan exists. The problem is never knowledge — it's execution. Day after day after day. Most programs skip this part. The 100 is only this part.</p>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════
-     DECIDE
-     Centered statement, dark, Monument
-     ═══════════════════════ -->
-<section class="section-decide">
-  <h2>Decide Now.<br>Negotiate Less Later.</h2>
-  <p>Specific plans remove decisions from your future self. The standard is set before the week begins.</p>
-</section>
-
-
-<!-- ═══════════════════════
-     FOUR ROUNDS
-     2×2 bold card grid — headline is the at-a-glance read
-     ═══════════════════════ -->
-<section class="section-rounds">
-  <div class="rounds-header">
-    <span class="rounds-header-label">The Four Rounds</span>
-    <div class="rounds-header-line"></div>
-  </div>
-  <div class="rounds-grid">
-
-    <div class="round-card">
-      <span class="round-card-num" aria-hidden="true">01</span>
-      <span class="round-card-index">Round 01</span>
-      <h3>Learn It</h3>
-      <div class="round-card-rule"></div>
-      <p>Each week, one concept. Built for real life, not theory. Practical, direct, and designed to be applied — not just understood.</p>
+    <div class="hero-eyebrow" id="hero-eyebrow"></div>
+    <h1 class="hero-h1" id="hero-h1"></h1>
+    <p class="hero-sub" id="hero-sub"></p>
+    <div class="hero-cta-wrap">
+      <a id="hero-cta" href="#" class="btn-primary skool-link"></a>
+      <p class="cta-note" id="cta-note"></p>
     </div>
-
-    <div class="round-card">
-      <span class="round-card-num" aria-hidden="true">02</span>
-      <span class="round-card-index">Round 02</span>
-      <h3>Do It</h3>
-      <div class="round-card-rule"></div>
-      <p>You apply it. That day. Train 3× per week, non-negotiable. Decide now. Specific beats vague — every time.</p>
-    </div>
-
-    <div class="round-card">
-      <span class="round-card-num" aria-hidden="true">03</span>
-      <span class="round-card-index">Round 03</span>
-      <h3>Live It</h3>
-      <div class="round-card-rule"></div>
-      <p>Life happens. The kid's school event. The travel. The exhaustion. You build a plan that survives real life — and you have a backup.</p>
-    </div>
-
-    <div class="round-card">
-      <span class="round-card-num" aria-hidden="true">04</span>
-      <span class="round-card-index">Round 04</span>
-      <h3>Become Your Standard</h3>
-      <div class="round-card-rule"></div>
-      <p>100 days is the beginning. After that, you're not following a program — you are the program. Day 101 is just Tuesday.</p>
-    </div>
-
+    <ul class="hero-points">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#E8B04B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span id="p1"></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#E8B04B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span id="p2"></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#E8B04B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span id="p3"></span></li>
+    </ul>
   </div>
 </section>
 
-
-<!-- ═══════════════════════
-     BACKUP
-     Cream text left · Photo right
-     ═══════════════════════ -->
-<section class="section-backup">
-  <div class="backup-text">
-    <span class="overline overline-dark">Real Life</span>
-    <h2>Life Happens.<br><em>Have A</em><br>Backup.</h2>
-    <p>Friday's kid's school event. Saturday morning, 9 AM. Specific beats "I'll work out this week." The 100 builds the skill of bouncing back — every single time.</p>
+<footer class="mini-footer">
+  <span>© 2026 CTO Health LLC. All rights reserved.</span>
+  <div class="links">
+    <a href="legal.html">Terms</a>
+    <a href="legal.html#privacy">Privacy</a>
+    <a href="legal.html#disclaimer">Disclaimer</a>
+    <a href="mailto:support@ctofit.com">Support</a>
   </div>
-  <div class="backup-photo ph-road" style="background-image: url('rainy-road.png'); background-position: center center;">
-  </div>
-</section>
-
-
-<!-- ═══════════════════════
-     COACH TONY O
-     Photo left · Text right (dark)
-     ═══════════════════════ -->
-<section class="section-coach">
-  <div class="coach-photo ph-coach" style="background-image: url('coach-tony.jpg'); background-position: left center;">
-  </div>
-  <div class="coach-text">
-    <span class="overline overline-light">The Coach</span>
-    <h2>Coach<br>Tony O.</h2>
-    <div class="coach-rule"></div>
-    <p>Built a fitness habit in his 40s — while running a business, raising a family, and navigating every excuse he'd ever heard. Coach Tony O built The 100 as the program he needed and couldn't find.</p>
-    <a class="btn-gold-outline" href="https://www.skool.com/fit-40-inner-circle-1807/about" style="align-self:flex-start;">His Story &thinsp;→</a>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════
-     CTA
-     Full-bleed road photo, type over it
-     ═══════════════════════ -->
-<section class="section-cta">
-  <div class="cta-photo ph-road" style="background-image: url('lake-reflection.png'); background-position: center 30%;">
-  </div>
-  <div class="cta-overlay"></div>
-  <div class="cta-content">
-    <h2>Your Day 1<br>Starts When<br>You Decide<br>It Does.</h2>
-    <p>No cohort. No waiting list. Prep, then the bell.</p>
-    <div class="cta-btns">
-      <a class="btn-muted-fill" href="https://www.skool.com/fit-40-inner-circle-1807/about">Join The 100</a>
-      <a class="btn-cream-outline" href="https://www.skool.com/fit-40-inner-circle-1807/about">Read the Full Breakdown</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════
-     FOOTER
-     ═══════════════════════ -->
-<footer>
-  <span class="footer-mark">100</span>
-  <span class="footer-tag">Learn It &nbsp;·&nbsp; Do It &nbsp;·&nbsp; Live It</span>
-  <a class="footer-url" href="https://www.skool.com/fit-40-inner-circle-1807/about">The100.co</a>
+  <span class="tagline">Made to Overcome.</span>
 </footer>
 
+<script>
+  // Wire Edit Zone to the page
+  document.getElementById('hero-bg').style.backgroundImage = "url('" + HERO_IMAGE + "')";
+  document.getElementById('logo-img').src = LOGO_IMAGE;
+  document.getElementById('nav-cta').textContent = NAV_CTA_TEXT;
+  document.getElementById('hero-eyebrow').textContent = HERO_EYEBROW;
+  document.getElementById('hero-h1').innerHTML = HERO_LINE1 + '<span class="accent">' + HERO_LINE2 + '</span>';
+  document.getElementById('hero-sub').textContent = HERO_SUBTEXT;
+  document.getElementById('hero-cta').textContent = HERO_CTA_TEXT;
+  document.getElementById('cta-note').textContent = HERO_CTA_NOTE;
+  document.getElementById('p1').textContent = POINT1;
+  document.getElementById('p2').textContent = POINT2;
+  document.getElementById('p3').textContent = POINT3;
+
+  // Every Skool button gets the same link
+  document.querySelectorAll('.skool-link').forEach(function(a){
+    a.href = SKOOL_LINK;
+    a.addEventListener('click', function(){
+      if (window.fbq) fbq('trackCustom', 'SkoolClick', {location: a.id});
+    });
+  });
+
+  // Meta Pixel (PageView)
+  if (META_PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+</script>
 </body>
 </html>
